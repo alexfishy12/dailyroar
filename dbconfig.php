@@ -1,6 +1,6 @@
 <?php
-    $dbhost = "imc.kean.edu";
-    $dbname = "csemaildb";
-    $dbuser = "csemail";
-    $dbpassword = "2023CSemail";
+$host="imc.kean.edu";
+$username="csemail";
+$password="2023CSemail";
+$dbname="csemaildb";
 ?>
