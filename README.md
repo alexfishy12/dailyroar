@@ -1,4 +1,4 @@
 # The Daily Roar
-### Authors: Alexander Fisher, Uko Ebreso, Pankati Patel, Kevin Parra-Olmedo, Nicholas Moff
+### Authors: Alexander Fisher, Uko Ebreso, Pankati Patel, Kevin Parra-Olmedo, Nicholas Moffa
 Repository for CIS Capstone
 
