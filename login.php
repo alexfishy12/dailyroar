@@ -23,7 +23,7 @@ if(mysqli_num_rows($result)){
             $id = $row['ID'];
             setcookie("Account_type",$account_type,time()+3600);
             setcookie("ID",$id,time()+3600);
-            header("refresh:0;url=home.html");
+            header("Location;url=home.html");
         }
     }
 }
