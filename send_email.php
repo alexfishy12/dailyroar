@@ -1,7 +1,7 @@
 <?php
     include("dbconfig.php");
 
-    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpassword");
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", "$username", "$password");
     // $con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname)
     //     or die("Could not connect to the database.");
     // Create a new PDO connection
