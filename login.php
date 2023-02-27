@@ -16,14 +16,14 @@ if(mysqli_num_rows($result)){
     if(strtolower($row['Email_Address'])== $user){
         if($row['Password']!=$pass){
             echo "Password incorrect <br> Login Failed!";
-            header("location;url=index.html");
+            header("refresh:2;url=index.html");
         }
         else{
             $account_type = $row['Account_Type'];
             $id = $row['ID'];
             setcookie("Account_type",$account_type,time()+3600);
             setcookie("ID",$id,time()+3600);
-            header("Location;url=home.html");
+            header("refresh:0;url=home.html");
         }
     }
 }
