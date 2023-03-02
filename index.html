@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
-    <!-- <script type="text/javascript" src="index.js"></script> -->
+    <script src= "../dailyroar/libraries/PapaParse/papaparse.min.js" integrity="sha512-BLtgHExslovxU1AJD+h/x7c8GGLvTTYe1evotrEkUDj0vTKRz6f4XAvziWO/7ykOfTnHvNWmx0vn14j8NlYuBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+    <script src="uploadCSV/uploadCSV.js"></script>
 </head>
 <title id="title">Daily Roar</title>
 <body>
@@ -19,7 +21,7 @@
         <p>Welcome to the Daily Roar!</p>
     </div>
     <div>
-        <input type = "file" name = "uploadcsv">
+        <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
     </div>
 </body>
 </html>
