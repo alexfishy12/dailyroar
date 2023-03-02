@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<html lang="en" >
 <head>
-    <!-- <script type="text/javascript" src="index.js"></script> -->
+
+  
+  <title>Daily Roar Login</title>
+
+  <script src= "libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+  <script src="uploadCSV/uploadCSV.js"></script>
 </head>
-<title id="title">Daily Roar</title>
+
 <body>
+
     <div class="title">Daily Roar - Home</div>
     <div class="menu">
         <ul>
@@ -18,5 +26,11 @@
     <div class="body">
         <p>Welcome to the Daily Roar!</p>
     </div>
+    <div>
+        <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
+    </div>
+
+
+
 </body>
 </html>
