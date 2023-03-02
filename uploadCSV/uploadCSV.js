@@ -1,7 +1,9 @@
 function readCSV()
 {
     var file = document.getElementById("uploadcsv");
-    var fileName = file.files[0].name;
+    var fileName = file.files[0];
+
+  
 
     Papa.parse(fileName, {
         header: true, // use the first row as headers
