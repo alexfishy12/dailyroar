@@ -29,28 +29,48 @@
 
             // Define the query to retrieve the student ID by email
             $query = "SELECT StudentID FROM Students WHERE EmailAddress = :email";
-
+            
             // Prepare the query
             $stmt = $pdo->prepare($query);
-
+            
             // Bind the email parameter
             $stmt->bindParam(":email", $recipient);
-
+            
             // Execute the query
             $stmt->execute();
-
+            
             // Fetch the result
             $result = $stmt->fetch();
-
-            // Print the student ID
-            $studentID = $result["StudentID"];
-
-            $body = $body. '<img src="'.$base_url.'tracking.php?email_id='.$email_id.'&studentID='.$studentID.'" width="1" height="1" />';
-            $recipient = trim($recipient); // Remove any leading/trailing whitespace
-
-            echo "SUCCESS: Email broadcast sent!";
-            mail($recipient, $subject, $body, $headers);
             
+            // Print the student ID
+            $student_id = $result["StudentID"];
+            
+            $body = $body. '<img src="'.$base_url.'tracking.php?email_id='.$email_id.'&student_id='.$student_id.'" width="1" height="1" />';
+            $recipient = trim($recipient); // Remove any leading/trailing whitespace
+            
+            //insert statement for this student tracking response to this email
+            $tracking_query = "INSERT into Tracking(StudentID, EmailID, Opened, Closed) values (':student_id', ':email_id', 0, 0)";
+            $stmt = $pdo->prepare($tracking_query);
+            $stmt->bindParam(":student_id", $student_id);
+            $stmt->bindParam(":email_id", $email_id);
+            $tracking_insert_result = $stmt->execute();
+            
+            //checks if tracking for this email and student was inserted
+            if ($tracking_insert_result) {
+                echo "SUCCESS: Insert into tracking table success.";
+                echo "<br>";
+            }
+            else {
+                echo "ERROR: Insert into tracking table failed!";
+                echo "<br>";
+            }
+            
+            $email = mail($recipient, $subject, $body, $headers);
+            if ($email) {
+                echo 'SUCCESS: Email sent successfully.';
+            } else {
+                echo 'ERROR: An error occurred while sending the email.';
+            }
         }
     }
 
