@@ -1,13 +1,12 @@
 <?php
-if(!isset($_COOKIE['Account_type'])){
-    header('Location: index.html');
-    exit;
-}else{
-    header('Location: index.html');
-    unset($_COOKIE['Account_type']);
-    unset($_COOKIE['ID']);
-    setcookie("Account_type","",time()-3600);
-    setcookie("ID","",time()-3600);
-    exit;
+session_start();
+if(isset($_SESSION["user"])){
+session_destroy();
+unset($_SESSION["user"]);
+unset($_SESSION['account_type']);
+header("Location: index.php");
+}
+else{
+    echo "error";
 }
 ?>

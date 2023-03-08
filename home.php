@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <head>
     <!-- <script type="text/javascript" src="index.js"></script> -->
@@ -11,7 +17,7 @@
                 <a href="javascript:void(0)" class="btn">Home</a>
             </li>
             <li class="option">
-                <a href="email.html" class="btn">Email</a>
+                <a href="email.php" class="btn">Email</a>
             </li>
         </ul>
     </div>

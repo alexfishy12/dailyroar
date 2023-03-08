@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
@@ -26,7 +32,7 @@
     <div class="menu">
         <ul>
             <li class="option">
-                <a href="home.html" class="btn">Home</a>
+                <a href="home.php" class="btn">Home</a>
             </li>
             <li class="option">
                 <a href="javascript:void(0)" class="btn">Email</a>
