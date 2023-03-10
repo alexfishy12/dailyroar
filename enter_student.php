@@ -50,26 +50,27 @@ if(isset($_COOKIE['account_type']) && $_COOKIE['account_type']== "FA" ){
     echo $count;
 
 
-    if ($count > 0){
-        echo "<br> This email address is already in the system. Please Go back.";
-        echo "<br><a href ='insert_student.php'> Back </a><br>";
+   if ($count > 0){
+    echo "<br> This email address is already in the system. Please Go back.";
+       echo "<br><a href ='insert_student.php'> Back </a><br>";
     }
 
-    if ($count == 0) {
+   if ($count == 0) {
         $sql = "INSERT INTO csemaildb.Students VALUES (NULL, '$first_name', '$last_name', '$program', '$major1', '$major2', '$minor', '$class', '$email')";
         $result = mysqli_query($con, $sql);
+        
     
 
-        if ($result){
-            echo "Student" .$first_name. " " .$last_name. "has been added successfully";
-            echo "<br><a href ='insert_student.php'> Back </a><br>";
+       if ($result){
+           echo "Student" .$first_name. " " .$last_name. "has been added successfully";
+           echo "<br><a href ='insert_student.php'> Back </a><br>";
+           }
+    
+           else {
+             echo "<br> An error has been encountered. Please Try again later.";
             }
     
-            else {
-                echo "<br> An error has been encountered. Please Try again later.";
-            }
-    
-    }
+   }
 
     
 
