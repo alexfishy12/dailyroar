@@ -14,7 +14,7 @@ if(isset($_COOKIE['account_type']) && $_COOKIE['account_type']== "FA" ) {
     $result3 = mysqli_query($con, $sql);
     $result4 = mysqli_query($con, $sql2);
     $count = mysqli_num_rows($result);
-    // yo i changed it
+    // yo i changed it      uhhhhuhuhu
    
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
