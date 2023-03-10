@@ -82,7 +82,7 @@
         $email_id = $_POST['email_id'];
 
         if (strlen($recipient) < 1){
-            echo "ERROR: There are no students to recieve this email.";
+            echo "ERROR: There are no students to receive this email.";
         }
         else {
             sendEmail($sender, $recipient, $subject, $body, $email_id);
