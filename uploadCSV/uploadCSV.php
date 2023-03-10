@@ -176,7 +176,7 @@ $data = json_decode($jsonString,true);
             else 
                 $classLevelId = "NULL";
             
-            //echo $classLevel. "\n";
+           // echo $classLevelId. "\n";
         }
         else 
             echo "There is an error";
@@ -208,12 +208,12 @@ $data = json_decode($jsonString,true);
         echo $classLevelId."\n";
         echo $email."\n";
       
-      //$insertStudent = "INSERT INTO csemaildb.Students 
-                      //  VALUES(NULL,'$firstName', '$lastName','$activeProgramId','$major1Id','$major2Id','$minorId','$classLevelId','$email' )";
+      $insertStudent = "INSERT INTO csemaildb.Students 
+                        VALUES(NULL,'$firstName', '$lastName',$activeProgramId,$major1Id, $major2Id,$minorId,$classLevelId,'$email' )";
 
-      // $insertResult = mysqli_query($con, $insertStudent);
-      // if(!$insertResult)
-      //  echo "there is an error";
+       $insertResult = mysqli_query($con, $insertStudent);
+        if(!$insertResult)
+         echo "there is an error";
 
 
        
