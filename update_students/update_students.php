@@ -5,7 +5,7 @@
     $successful_deletions = 0;
     $successful_updates = 0;
 
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", "$username", "$password");
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

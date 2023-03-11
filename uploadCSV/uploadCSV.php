@@ -3,7 +3,7 @@
 
 include "../dbconfig.php";
 
-$con = mysqli_connect($host,$username,$password,$dbname)
+$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname)
     or die("<br> Cannot connect to DB: $dbname on $host");
 
 $lastNameArr= array();
