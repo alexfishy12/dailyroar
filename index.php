@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['user'])){
+	header("Location: home.php");
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -13,11 +20,12 @@
 	<div class="left">
 		<div class="overlay">
 		<h1>Daily Roar</h1>
+		<h3>"Onward and Upward!"</h3>
 		</div>
 	</div>
 		<div class="right">
 		<h5>Login</h5>
-		<p>Please enter your log in credentials, it should take less than a minute</p>
+		<p>To begin sending out opportunities, Please enter your log in credentials. </p>
 		<form name="input" action="login.php" method="post">
 		<div class="inputs">
 			<input type="text" placeholder="user name" name ="login_id" required="required">

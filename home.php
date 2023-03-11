@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -19,7 +25,7 @@
                 <a href="javascript:void(0)" class="btn">Home</a>
             </li>
             <li class="option">
-                <a href="email.html" class="btn">Email</a>
+                <a href="email.php" class="btn">Email</a>
             </li>
             <li class="option">
                 <a href="insert_student.php" class="btn">Manually Insert a Student</a>
@@ -35,11 +41,8 @@
     <div class="body">
         <p>Welcome to the Daily Roar!</p>
     </div>
-    <div>
-        <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
+    <div class="logout">
+        <a href="logout.php">logout</a>
     </div>
-
-
-
 </body>
 </html>
