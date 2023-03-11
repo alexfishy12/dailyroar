@@ -1,6 +1,6 @@
 <?php
     include "dbconfig.php";
-    $connect = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser","$dbpassword");
+    $connect = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser","$dbpass");
     $email_id = null;
     $student_id = null;
 
