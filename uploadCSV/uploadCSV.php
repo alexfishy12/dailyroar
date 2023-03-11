@@ -199,21 +199,23 @@ $data = json_decode($jsonString,true);
             $email = $emailArr[$i];
 
 
-        echo $firstName."\n";
-        echo $lastName."\n";
-        echo $activeProgramId."\n";
-        echo $major1Id."\n";
-        echo $major2Id."\n";
-        echo $minorId."\n";
-        echo $classLevelId."\n";
-        echo $email."\n";
+        // echo $firstName."\n";
+        // echo $lastName."\n";
+        // echo $activeProgramId."\n";
+        // echo $major1Id."\n";
+        // echo $major2Id."\n";
+        // echo $minorId."\n";
+        // echo $classLevelId."\n";
+        // echo $email."\n";
       
       $insertStudent = "INSERT INTO csemaildb.Students 
                         VALUES(NULL,'$firstName', '$lastName',$activeProgramId,$major1Id, $major2Id,$minorId,$classLevelId,'$email' )";
 
        $insertResult = mysqli_query($con, $insertStudent);
-        if(!$insertResult)
-         echo "there is an error";
+        if(!$insertResult) {
+            echo "<b>There is an error inserting student: $firstName $lastName. See error below.</b><br>";
+            echo mysqli_error($con) . "<br><br>";
+        }
 
 
        
