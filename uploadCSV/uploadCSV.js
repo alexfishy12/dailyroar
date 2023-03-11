@@ -16,19 +16,40 @@ function readCSV()
             // create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
 
-            // set the HTTP method and URL
-            xhr.open('POST', 'uploadCSV/uploadCSV.php');
+            // // set the HTTP method and URL
+            // xhr.open('POST', 'uploadCSV/uploadCSV.php');
 
-            // set the request header to indicate that the payload is JSON
-            xhr.setRequestHeader('Content-Type', 'application/json');
+            // // set the request header to indicate that the payload is JSON
+            // xhr.setRequestHeader('Content-Type', 'application/json');
 
-            // send the JSON payload
-            xhr.send(jsonString);
+            // // send the JSON payload
+            // xhr.send(jsonString);
 
-
+            upload_csv(jsonString).then(function (response) {
+                $("#responseMessage").html(response)
+            })
         }
       });
 
+      // push changes to the database
+        function upload_csv(csv){
+            return new Promise(function(resolve) {
+                $.ajax({
+                    url: 'uploadCSV.php',
+                    dataType: 'text',
+                    type: 'POST',
+                    data: csv,
+                    success: function (response, status) {
+                        console.log('AJAX Success.');
+                        resolve(response);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log('AJAX Error:' + textStatus);
+                        resolve("Error " . textStatus);
+                    }
+                })
+            });
+        }
 
 
 }
