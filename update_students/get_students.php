@@ -1,7 +1,7 @@
 <?php 
 include("../dbconfig.php");
 
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", "$username", "$password");
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

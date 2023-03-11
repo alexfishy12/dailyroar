@@ -1,7 +1,7 @@
 <?php
     include("dbconfig.php");
 
-    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpassword");
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
     // $con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname)
     //     or die("Could not connect to the database.");
     // Create a new PDO connection
@@ -28,7 +28,7 @@
         foreach ($recipients as $recipient) {
 
             // Define the query to retrieve the student ID by email
-            $query = "SELECT StudentID FROM Students WHERE EmailAddress = :email";
+            $query = "SELECT ID FROM Students WHERE EmailAddress = :email";
             
             // Prepare the query
             $stmt = $pdo->prepare($query);
@@ -43,7 +43,7 @@
             $result = $stmt->fetch();
             
             // Print the student ID
-            $student_id = $result["StudentID"];
+            $student_id = $result["ID"];
             
             $body = $body. '<img src="'.$base_url.'tracking.php?email_id='.$email_id.'&student_id='.$student_id.'" width="1" height="1" />';
             $recipient = trim($recipient); // Remove any leading/trailing whitespace
