@@ -1,6 +1,13 @@
 var quill_editor;
 
 $(document).ready(function(){
+    //initialize curriculum options
+    getCurriculum()
+    $("#email_curriculum").innerHTML
+
+    //initialize class standing options
+
+
     //initialize quill editor
     quill_editor = new Quill('#email_editor', {
         modules: { toolbar: '#toolbar' },
@@ -11,7 +18,14 @@ $(document).ready(function(){
         console.log("Clicked submit.")
         getEmailAttributes()
     })
+
 })
+
+//function that gets curriculum
+function getCurriculum() {
+    
+}
+
 
 //Onclick send email button
 function getEmailAttributes(){

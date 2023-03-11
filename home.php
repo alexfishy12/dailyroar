@@ -5,11 +5,19 @@ if(!isset($_SESSION['user'])){
 }
 ?>
 <!DOCTYPE html>
+<html lang="en" >
 <head>
-    <!-- <script type="text/javascript" src="index.js"></script> -->
+
+  
+  <title>Daily Roar Login</title>
+
+  <script src= "libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+  <script src="uploadCSV/uploadCSV.js"></script>
 </head>
-<title id="title">Daily Roar</title>
+
 <body>
+
     <div class="title">Daily Roar - Home</div>
     <div class="menu">
         <ul>
@@ -18,6 +26,9 @@ if(!isset($_SESSION['user'])){
             </li>
             <li class="option">
                 <a href="email.php" class="btn">Email</a>
+            </li>
+            <li class="option">
+                <a href="update_students/update_student.html" class="btn">Update Student</a>
             </li>
         </ul>
     </div>

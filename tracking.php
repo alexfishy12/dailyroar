@@ -1,24 +1,24 @@
 <?php
+    include "dbconfig.php";
+    $connect = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser","$dbpass");
+    $email_id = null;
+    $student_id = null;
 
-    $connect = new PDO("mysql:host=imc.kean.edu;dbname=csemaildb", "csemail","2023CSemail");
-    $emailID = null;
-    $studentID = null;
-
-    if(isset($_GET["emailID"])) {
-        $emailID = $_GET["emailID"];
+    if(isset($_GET["email_id"])) {
+        $email_id = $_GET["email_id"];
     } else {
-        echo "Error: emailID not set<br>";
+        echo "Error: email_id not set<br>";
     }
-    if(isset($_GET["studentID"])) {
-        $studentID = $_GET["studentID"];
+    if(isset($_GET["student_id"])) {
+        $student_id = $_GET["student_id"];
     } else {
-        echo "Error: studentID not set<br>";
+        echo "Error: student_id not set<br>";
     }
 
-    if ($emailID && $studentID) {
-        $query = "INSERT INTO Tracking (studentID, emailID, Opened) VALUES (?, ?, ?)";
+    if ($email_id && $student_id) {
+        $query = "INSERT INTO Tracking (student_id, email_id, Opened) VALUES (?, ?, ?)";
         $statement = $connect->prepare($query);
-        if ($statement->execute([$studentID, $emailID, 1])) {
+        if ($statement->execute([$student_id, $email_id, 1])) {
             echo "Insert successful<br>";
         } else {
             echo "Error: insert failed<br>";

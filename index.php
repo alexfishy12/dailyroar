@@ -8,6 +8,7 @@ if(isset($_SESSION['user'])){
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+
   <meta charset="UTF-8">
   <title>Daily Roar Login</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -40,5 +41,6 @@ if(isset($_SESSION['user'])){
 		</form>
 	</div>
 </div>
+
 </body>
 </html>

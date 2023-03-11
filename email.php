@@ -6,7 +6,7 @@ if(!isset($_SESSION['user'])){
 ?>
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
 
     <!-- Quill -->
@@ -51,7 +51,11 @@ if(!isset($_SESSION['user'])){
     
         <label for="composer_address">From:</label>
         <input type="email" name="composer_address" id="email_composer" required><br>
-    
+        
+        <label for="curriculum">Curricula: </label>
+        <select name="curriculum" id="email_curriculum">
+
+        </select>
         <label for="recipient_address">To: (ex: "fisheral@kean.edu,moffan@kean.edu,...,pankapatel@kean.edu")</label>
         <input type="text" name="recipient_address" id="email_recipients" required><br>
         
