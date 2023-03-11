@@ -1,6 +1,14 @@
 <?php
+session_start();
+if(!isset($_SESSION['account_type'])){
+    header("Location: index.php");
+	exit;
+}
+elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
+    header("Location: GA_Home.php");
+    exit;
+}
 include "dbconfig.php";
-$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("<br>Cannot connect to DB:$dbname on $dbhost\n");
 
 setcookie('account_type', "FA", time() + 99999);
 
@@ -15,7 +23,7 @@ if(isset($_COOKIE['account_type']) && $_COOKIE['account_type']== "FA" ) {
     $result4 = mysqli_query($con, $sql2);
     $count = mysqli_num_rows($result);
     
-   
+echo "<a href='Faculty_Home.php' class='btn'>Home</a><br>";   
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
 echo "<br> First Name: <input type='text' name='first_name' required='required'>";
