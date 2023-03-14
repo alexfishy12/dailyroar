@@ -1,7 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['account_type'])){
     header("Location: ../index.php");
+    exit;
+}
+elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
+    header("Location: ../GA_Home.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +37,7 @@ if(!isset($_SESSION['user'])){
     <div class="menu">
         <ul>
             <li class="option">
-                <a href="../home.php" class="btn">Home</a>
+                <a href="../Faculty_Home.php" class="btn">Home</a>
             </li>
         </ul>
     </div>

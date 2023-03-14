@@ -13,16 +13,16 @@ if(mysqli_num_rows($result)){
     if(strtolower($row['Email_Address'])== $user){
         if($row['Password']!=$pass){
             echo "Password incorrect <br> Login Failed!";
-            header("refresh:2;url=index.html");
+            header("refresh:2;url=index.php");
         }
         else{
             $_SESSION["user"] = $user;
             $_SESSION['account_type'] = $row['Account_Type'];
-            if(isset($_SESSION['user'])){
-                header("Location: home.php");
+            if($_SESSION['account_type']=="FA"){
+                header("Location: Faculty_Home.php");
             }
             else{
-                echo "error";
+                header("location: GA_Home.php");
             }
         }
     }

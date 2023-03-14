@@ -1,7 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['account_type'])){
     header("Location: index.php");
+    exit;
+}
+elseif($_SESSION['account_type']=="GA"){
+    header("Location: GA_Home.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -9,7 +14,7 @@ if(!isset($_SESSION['user'])){
 <head>
 
   
-  <title>Daily Roar Login</title>
+  <title>Faculty Home Page</title>
 
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
@@ -18,7 +23,7 @@ if(!isset($_SESSION['user'])){
 
 <body>
 
-    <div class="title">Daily Roar - Home</div>
+    <div class="title">Welcome Faculty Member</div>
     <div class="menu">
         <ul>
             <li class="option">
@@ -31,7 +36,7 @@ if(!isset($_SESSION['user'])){
                 <a href="insert_student/insert_student.php" class="btn">Manually Insert a Student</a>
             </li>
             <li class="option">
-                <a href="update_students/update_student.html" class="btn">Update a Student</a>
+                <a href="update_students/update_student.php" class="btn">Update a Student</a>
             </li>
             <li class="option">
                 <a href="uploadCSV/uploadCSV.html" class="btn">Upload Students CSV</a>
