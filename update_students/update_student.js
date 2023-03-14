@@ -78,6 +78,7 @@ function review_students() {
 
     // show review options
     $("div#review_options").show()
+    $("div#info").html("<b>Review the students you have made changes to, then click \"Confirm\" to push changes to the database.</b>");
 }
 
 function display_students_table(html, isError) {
@@ -85,8 +86,10 @@ function display_students_table(html, isError) {
         $("#students_table_error").html(html)
     }
     else {
-        html = "<br><b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b><br>" + html;
+        $("#info").show();
+        $("#info").html("<b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b>");
         $("#students_table").html(html);
+        $("#students_table").show();
         $("#form_options").show();
     }
 }
