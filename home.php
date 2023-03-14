@@ -25,10 +25,10 @@ if(!isset($_SESSION['user'])){
                 <a href="javascript:void(0)" class="btn">Home</a>
             </li>
             <li class="option">
-                <a href="email.php" class="btn">Email</a>
+                <a href="send_email/email.php" class="btn">Email</a>
             </li>
             <li class="option">
-                <a href="insert_student.php" class="btn">Manually Insert a Student</a>
+                <a href="insert_student/insert_student.php" class="btn">Manually Insert a Student</a>
             </li>
             <li class="option">
                 <a href="update_students/update_student.html" class="btn">Update a Student</a>

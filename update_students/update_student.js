@@ -242,7 +242,7 @@ function get_changed_student_index(elem) {
 function update_students(){
     return new Promise(function(resolve) {
         $.ajax({
-            url: 'update_students.php',
+            url: 'send_updates.php',
             dataType: 'text',
             type: 'POST',
             data: {changed_students: changed_students},

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['user'])){
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -32,10 +32,7 @@ if(!isset($_SESSION['user'])){
     <div class="menu">
         <ul>
             <li class="option">
-                <a href="home.php" class="btn">Home</a>
-            </li>
-            <li class="option">
-                <a href="javascript:void(0)" class="btn">Email</a>
+                <a href="../home.php" class="btn">Home</a>
             </li>
         </ul>
     </div>

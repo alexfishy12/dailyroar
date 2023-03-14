@@ -1,5 +1,5 @@
 <?php
-include "dbconfig.php";
+include("../dbconfig.php");
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("<br>Cannot connect to DB:$dbname on $dbhost\n");
 
 setcookie('account_type', "FA", time() + 99999);
