@@ -8,7 +8,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     header("Location: GA_Home.php");
     exit;
 }
-include "dbconfig.php";
+include("../dbconfig.php");
 
 setcookie('account_type', "FA", time() + 99999);
 
