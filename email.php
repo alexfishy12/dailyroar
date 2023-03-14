@@ -1,6 +1,17 @@
+<?php
+session_start();
+if(!isset($_SESSION['account_type'])){
+    header("Location: index.php");
+    exit;
+}
+elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
+    header("Location: GA_Home.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
 
     <!-- Quill -->
@@ -26,7 +37,7 @@
     <div class="menu">
         <ul>
             <li class="option">
-                <a href="index.html" class="btn">Home</a>
+                <a href="Faculty_Home.php" class="btn">Home</a>
             </li>
             <li class="option">
                 <a href="javascript:void(0)" class="btn">Email</a>
@@ -45,7 +56,11 @@
     
         <label for="composer_address">From:</label>
         <input type="email" name="composer_address" id="email_composer" required><br>
-    
+        
+        <label for="curriculum">Curricula: </label>
+        <select name="curriculum" id="email_curriculum">
+
+        </select>
         <label for="recipient_address">To: (ex: "fisheral@kean.edu,moffan@kean.edu,...,pankapatel@kean.edu")</label>
         <input type="text" name="recipient_address" id="email_recipients" required><br>
         
