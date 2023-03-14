@@ -25,15 +25,23 @@ include("../dbconfig.php");
         Global $pdo;
         // Define the query to retrieve the students
         $query = "";
-        if ($search_text == "") {
+        if ($search_text == "" || $search_text == null) {
             $query = "SELECT * FROM csemaildb.Students;";
+        }
+        else {
+            $search_text = "%" . $search_text . "%";
+            $query = "SELECT * from Students where (FirstName like :first_name) OR (LastName like :last_name) OR (EmailAddress like :email)";
         }
         // Prepare the query
         $stmt = $pdo->prepare($query);
         
-        // Bind the email parameter
+        // Bind the search parameters
         //$stmt->bindParam(":name", $search_text);
-        //$stmt->bindParam(":email", $search_text);
+        if ($search_text != "" && $search_text != null) {
+            $stmt->bindParam(":first_name", $search_text, PDO::PARAM_STR);
+            $stmt->bindParam(":last_name", $search_text, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $search_text, PDO::PARAM_STR);
+        }
         
         // Execute the query
         $stmt->execute();
