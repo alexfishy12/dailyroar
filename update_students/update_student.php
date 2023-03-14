@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(!isset($_SESSION['account_type'])){
+    header("Location: index.php");
+	exit;
+}
+elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
+    header("Location: GA_Home.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +40,8 @@
     </style>
 </head>
 <body>
-    <a href="../home.php">Go Home (Cancels changes)</a><br><br>
-    Search for student (first name, last name, or email): <input type="text" name="student_name" id="search_box">
+    <a href="../Faculty_Home.php">Go Home (Cancels changes)</a><br><br>
+    Search for student by name: <input type="text" name="student_name" id="search_box">
     <button name="search_student" id="search">Search</button><br>
     <div id="info" hidden></div>
     <div id="students_table" class="students_table" hidden></div>
