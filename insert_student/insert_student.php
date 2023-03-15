@@ -8,7 +8,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     header("Location: GA_Home.php");
     exit;
 }
-include "dbconfig.php";
+include("../dbconfig.php");
 
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
@@ -21,8 +21,12 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
     $result3 = mysqli_query($con, $sql);
     $result4 = mysqli_query($con, $sql2);
     $count = mysqli_num_rows($result);
+
+   
+
     
 echo "<a href='Faculty_Home.php' class='btn'>Home</a><br>";   
+
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
 echo "<br> First Name: <input type='text' name='first_name' required='required'>";
