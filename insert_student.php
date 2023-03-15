@@ -10,9 +10,8 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 }
 include "dbconfig.php";
 
-setcookie('account_type', "FA", time() + 99999);
 
-if(isset($_COOKIE['account_type']) && $_COOKIE['account_type']== "FA" ) {
+if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
     $sql = "SELECT * FROM csemaildb.Curriculum";
     $sql2 = "SELECT * FROM csemaildb.ClassStanding";
     $sqlactive = "SELECT * FROM csemaildb.ActiveProgram";
