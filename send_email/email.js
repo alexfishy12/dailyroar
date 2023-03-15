@@ -2,7 +2,7 @@ var quill_editor;
 
 $(document).ready(function(){
     //initialize curriculum options
-    getCurriculum()
+    load_filter_options()
     $("#email_curriculum").innerHTML
 
     //initialize class standing options
@@ -22,8 +22,13 @@ $(document).ready(function(){
 })
 
 //function that gets curriculum
-function getCurriculum() {
-    
+function load_filter_options() {
+    get_filter_options().then(function(response){
+        var jsonResponse = JSON.parse(response)
+        $("div#select_curriculum").html(jsonResponse.response.curriculum_dropdown)
+        $("div#select_class_standings").html(jsonResponse.response.class_standing_dropdown)
+        $("#get_response").html(response.errors)
+    })
 }
 
 
@@ -75,6 +80,24 @@ function send_email(email_data){
             dataType: 'text',
             type: 'POST',
             data: email_data,
+            success: function (response, status) {
+                console.log('AJAX Success.');
+                resolve(response);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('AJAX Error:' + textStatus);
+                resolve("Error " . textStatus);
+            }
+        })
+    });
+}
+
+function get_filter_options(){
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: 'get_filter_options.php',
+            dataType: 'text',
+            type: 'GET',
             success: function (response, status) {
                 console.log('AJAX Success.');
                 resolve(response);
