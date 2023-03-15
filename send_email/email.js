@@ -25,8 +25,8 @@ $(document).ready(function(){
 function load_filter_options() {
     get_filter_options().then(function(response){
         var jsonResponse = JSON.parse(response)
-        $("div#select_curriculum").html(jsonResponse.response.curriculum_dropdown)
-        $("div#select_class_standings").html(jsonResponse.response.class_standing_dropdown)
+        $("div#curriculum").html(jsonResponse.response.curriculum_dropdown)
+        $("div#class_standings").html(jsonResponse.response.class_standing_dropdown)
         $("#get_response").html(response.errors)
     })
 }
@@ -52,11 +52,30 @@ function getEmailAttributes(){
     var just_html = quill_editor.root.innerHTML;
     json_form_data["body"] = just_html;
 
+    //get selected options for curriculum
+    var curriculum = []
+    $("select#select_curriculum option:selected").each(function()
+    {
+        console.log($(this).val())
+        curriculum.push($(this).val())
+    });
+    json_form_data["curriculum"] = JSON.stringify(curriculum);
+
+    //get selected options for class standing
+    var class_standing = []
+    $("select#select_curriculum option:selected").each(function()
+    {
+        console.log($(this).val())
+        class_standing.push($(this).val())
+    });
+    json_form_data["class_standing"] = JSON.stringify(class_standing);
+    
     //add file attachments to "attachments" property of json
     //json_form_data["attachments"] = $('#email_attachments').prop('files');
     
     
     console.log(json_form_data)
+    /*
     send_email(json_form_data).then(function(response) {
         console.log(response);
         if (response.startsWith("ERROR")) {
@@ -71,6 +90,7 @@ function getEmailAttributes(){
             $("#send_email_response").html(success_message);
         }
     })
+    */
 }
 
 function send_email(email_data){

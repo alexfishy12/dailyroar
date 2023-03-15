@@ -55,15 +55,13 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
         <input type="email" name="composer_address" id="email_composer" required><br>
         
         <label for="curriculum">Curricula: </label>
-        <div name="curriculum" id="select_curriculum" multiple>
+        <div name="curriculum" id="curriculum" multiple>
 
         </div>
         <label for="class_standing">Class Standings: </label>
-        <div name="curriculum" id="select_class_standings" multiple>
+        <div name="curriculum" id="class_standings" multiple>
 
         </div>
-        <label for="recipient_address">To: (ex: "fisheral@kean.edu,moffan@kean.edu,...,pankapatel@kean.edu")</label>
-        <input type="text" name="recipient_address" id="email_recipients" required><br>
         
         <!-- EXAMPLE QUILL CODE -->
             <!-- Create the toolbar container -->

@@ -105,7 +105,7 @@
             die();
         }
 
-        $html = "<select name='". $col_name ."' form='email' multiple>";
+        $html = "<select name='". $col_name ."' id='select_$col_name' multiple>";
 
         foreach ($choices as &$choice){
             if ($choice["ID"] == $default_choice_id && $default_choice_id !== null) {
