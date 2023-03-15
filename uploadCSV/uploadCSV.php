@@ -186,12 +186,12 @@ $data = json_decode($jsonString,true);
         if(empty($lastNameArr[$i]))
             $lastName = "NULL";
         else 
-            $lastName = $lastNameArr[$i];
+            $lastName = mysqli_real_escape_string($con,$lastNameArr[$i]);
 
         if(empty($firstNameArr[$i]))
             $firstName = "NULL";
         else 
-            $firstName = $firstNameArr[$i];
+            $firstName = mysqli_real_escape_string($con,$firstNameArr[$i]);
 
         if(empty($emailArr[$i]))
             $email = "NULL";
