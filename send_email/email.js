@@ -75,22 +75,22 @@ function getEmailAttributes(){
     
     
     console.log(json_form_data)
-    /*
+    
     send_email(json_form_data).then(function(response) {
         console.log(response);
-        if (response.startsWith("ERROR")) {
+        if (response.includes("ERROR")) {
             var error_message = response.split(/:(.*)/s)[1];
 
             $("#send_email_response").attr("style", "color:red")
             $("#send_email_response").html(error_message);
         }
-        else if (response.startsWith("SUCCESS")){
+        else if (response.includes("SUCCESS")){
             var success_message = response.split(/:(.*)/s)[1];
-            $("#send_email_response").attr("style", "color:black");
-            $("#send_email_response").html(success_message);
         }
+        $("#send_email_response").attr("style", "color:black");
+        $("#send_email_response").html(success_message);
     })
-    */
+    
 }
 
 function send_email(email_data){

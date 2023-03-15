@@ -44,24 +44,17 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     <hr>
     <h2>Compose Email</h2>
 
-    <div class="email_form">
-        <label for="emailID">Email ID:</label>
-        <input type="number" name="email_id" id="email_ID" required></textarea><br>
-        
-        <label for="subject">Subject:</label>
-        <input type="text" name="subject" id="email_subject" required><br> 
-    
-        <label for="composer_address">From:</label>
-        <input type="email" name="composer_address" id="email_composer" required><br>
-        
+    <div class="email_form">       
         <label for="curriculum">Curricula: </label>
         <div name="curriculum" id="curriculum" multiple>
-
+            
         </div>
         <label for="class_standing">Class Standings: </label>
         <div name="curriculum" id="class_standings" multiple>
-
+            
         </div>
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" id="email_subject" required><br> 
         
         <!-- EXAMPLE QUILL CODE -->
             <!-- Create the toolbar container -->

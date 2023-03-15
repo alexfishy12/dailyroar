@@ -1,27 +1,33 @@
 <?php
     include("../dbconfig.php");
 
+
+    session_start();
+    if  (!isset($_SESSION["user"])){
+        echo "ERROR: Login email not set.";
+        die();
+    }
+    if (!isset($_SESSION["id"])){
+        echo "ERROR: Login ID not set.";
+        die();
+    }
+    $sender_email = $_SESSION["user"];
+    $sender_id = $_SESSION["id"];
+
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
     // $con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname)
     //     or die("Could not connect to the database.");
     // Create a new PDO connection
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $sender_id = $_POST['sender_id'];
         $subject = $_POST['subject'];
         $body = $_POST['body'];
-        $email_id = $_POST['email_id'];
         $curriculum = $_POST['curriculum'];
         $class_standing = $_POST['class_standing'];
 
-        if (strlen($recipient) < 1){
-            echo "ERROR: There are no students to receive this email.";
-        }
-        else {
-            $sender = getSender($sender_id);
-            $recipients = getRecipients($curriculum, $class_standing);
-            sendEmail($sender, $recipients, $subject, $body);
-        }
+        $recipients = getRecipients($curriculum, $class_standing);
+        sendEmail($recipients, $subject, $body);
+        
     }
 
     function getSender($sender_id){
@@ -56,13 +62,13 @@
         $values_to_search = [];
 
         // start query
-        $query = "SELECT ID, FirstName, LastName, EmailAddress from csemaildb.Students where ";
-
+        $query = "SELECT ID, FirstName, LastName, EmailAddress from csemaildb.TestStudents where ";
 
         //paramCount
         $count = 0;
 
-        //create parameters for curriculum
+        $curriculum = json_decode($curriculum, true);
+        //create parameters for curriculum (major1)
         $curriculum_param = "(";
         foreach ($curriculum as &$programID) {
             $paramName = ":param".$count;
@@ -72,6 +78,27 @@
         }
         $curriculum_param = rtrim($curriculum_param, ", ") . ")";
 
+        //create parameters for curriculum (major2)
+        $curriculum_param2 = "(";
+        foreach ($curriculum as &$programID) {
+            $paramName = ":param".$count;
+            $curriculum_param2 = $curriculum_param2 . $paramName .", ";
+            array_push($values_to_search, array("param" => $paramName, "value" => $programID));
+            $count = $count + 1;
+        }
+        $curriculum_param2 = rtrim($curriculum_param2, ", ") . ")";
+
+        //create parameters for curriculum (minor)
+        $curriculum_param3 = "(";
+        foreach ($curriculum as &$programID) {
+            $paramName = ":param".$count;
+            $curriculum_param3 = $curriculum_param3 . $paramName .", ";
+            array_push($values_to_search, array("param" => $paramName, "value" => $programID));
+            $count = $count + 1;
+        }
+        $curriculum_param3 = rtrim($curriculum_param3, ", ") . ")";
+
+        $class_standing = json_decode($class_standing, true);
         //create parameters for class standings
         $class_standing_param = "(";
         foreach ($class_standing as &$levelID) {
@@ -83,14 +110,14 @@
         $class_standing_param = rtrim($class_standing_param, ", ") . ")";
 
         $query = $query . "(Major1 IN ". $curriculum_param
-                        . " OR Major2 IN ". $curriculum_param
-                        . " OR Minor IN ". $curriculum_param . ")"
-                        . "AND (ClassStanding IN ". $class_standing_param . ");";
+                        . " OR Major2 IN ". $curriculum_param2
+                        . " OR Minor IN ". $curriculum_param3 . ")"
+                        . " AND (ClassStanding IN ". $class_standing_param . ");";
 
         // Prepare the query
         $stmt = $pdo->prepare($query);
 
-        foreach ($values_to_change as &$value) {
+        foreach ($values_to_search as &$value) {
             $stmt->bindParam($value["param"], $value["value"]);
         }
     
@@ -115,8 +142,10 @@
         }
     }
 
-    function sendEmail($sender, $recipients, $subject, $body) {
+    function sendEmail($recipients, $subject, $body) {
         Global $pdo;
+        Global $sender_id;
+        Global $sender_email;
         $email_id;
 
         // Escape any potentially dangerous characters in the input
@@ -124,18 +153,19 @@
         $body = htmlspecialchars($body, ENT_QUOTES);
 
         // Set the email headers
-        $headers = "From: ". $sender['Email']. "\r\n";
-        $headers .= "Reply-To: ". $sender['Email']. "\r\n";
+        $headers = "From: ". $sender_email. "\r\n";
+        $headers .= "Reply-To: ". $sender_email. "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
         //insert email into email table
         $query = "insert into Email values(null, CURRENT_TIMESTAMP(), :sender_id, :subject, :body, :attachments, 0, 0, 0);";
 
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":sender_id", $sender["ID"]);
+        $stmt->bindParam(":sender_id", $sender_id);
         $stmt->bindParam(":subject", $subject);
         $stmt->bindParam(":body", $body);
-        $stmt->bindParam(":attachments", "");
+        $attachments = "";
+        $stmt->bindParam(":attachments", $attachments);
 
         $stmt->execute();
 
@@ -151,10 +181,12 @@
         $base_url = "http://obi.kean.edu/~fisheral/capstone/";
 
         foreach ($recipients as $recipient) {            
+            echo $recipient["ID"];
+            echo $email_id;
             $body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
             
             //insert statement for this student tracking response to this email
-            $tracking_query = "INSERT into Tracking(StudentID, EmailID, Opened, Closed) values (':student_id', ':email_id', 0, 0)";
+            $tracking_query = "INSERT into Tracking(StudentID, EmailID, Opened, Clicked) values (:student_id, :email_id, 0, 0)";
             $stmt = $pdo->prepare($tracking_query);
             $stmt->bindParam(":student_id", $recipient["ID"]);
             $stmt->bindParam(":email_id", $email_id);
@@ -170,7 +202,7 @@
                 echo "<br>";
             }
             
-            $email = mail($recipient, $subject, $body, $headers);
+            $email = mail($recipient["Email"], $subject, $body, $headers);
             if ($email) {
                 echo 'SUCCESS: Email sent successfully.';
             } else {
