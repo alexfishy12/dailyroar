@@ -32,7 +32,7 @@
 
             // Convert response to JSON string:
             $string = "{\"errors\" : ". json_encode($errors) . ",".
-                    "\"response\" : ". $response ."}";
+                    "\"response\" : ". json_encode($response) ."}";
 
             echo $string;
     }
