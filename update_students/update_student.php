@@ -41,17 +41,27 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 </head>
 <body>
     <a href="../Faculty_Home.php">Go Home (Cancels changes)</a><br><br>
-    Search for student by name: <input type="text" name="student_name" id="search_box">
-    <button name="search_student" id="search">Search</button><br>
+    <form id="search">
+        <label for="student_name">Search for student by first name, last name, or email address: </label>
+        <input type="text" name="student_name" id="search_box" form="search">
+        <button type="submit" name="search_student" id="search_button" form="search">Search</button>
+    </form>
+    <br>
     <div id="info" hidden></div>
     <div id="students_table" class="students_table" hidden></div>
     <div class="error" id="students_table_error"></div>
     <br>
     <div id="form_options" hidden>
-        <button id="done" disabled>Done</button>
+        <button id="done" disabled>Done</button><br>
+        <button id="cancel" onclick="location.reload()">Cancel Edits and Refresh Page</button>
     </div>
     <div id="review_options" hidden>
-        <button id="confirm">Confirm</button>
+        <button id="confirm">Confirm</button><br>
+        <button id="make_changes">Make changes</button>
+    </div>
+    <div id="finished_options" hidden>
+        <button id="refresh" onclick="location.reload()">Update more students</button><br>
+        <button id="home" onclick="window.location.href = '../Faculty_Home.php'">Home</button>
     </div>
     <div id="update_response"></div>
 </body>
