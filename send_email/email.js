@@ -63,7 +63,7 @@ function getEmailAttributes(){
 
     //get selected options for class standing
     var class_standing = []
-    $("select#select_curriculum option:selected").each(function()
+    $("select#select_class_standing option:selected").each(function()
     {
         console.log($(this).val())
         class_standing.push($(this).val())
@@ -78,17 +78,22 @@ function getEmailAttributes(){
     
     send_email(json_form_data).then(function(response) {
         console.log(response);
-        if (response.includes("ERROR")) {
-            var error_message = response.split(/:(.*)/s)[1];
-
-            $("#send_email_response").attr("style", "color:red")
-            $("#send_email_response").html(error_message);
+        var responseHTML = "";
+        var errorHTML = "";
+        response = JSON.parse(response);
+        console.log(response);
+        if (response) {
+            for (item in response.response) {
+                responseHTML += response.response[item] + "<br>";
+            }
+            for (item in response.errors) {
+                errorHTML += response.errors[item] + "<br>";
+            }
+            $("#send_email_response").attr("style", "color:black");
+            $("#send_email_response").html(responseHTML);
+            $("#send_email_errors").attr("style", "color:red");
+            $("#send_email_errors").html(errorHTML);
         }
-        else if (response.includes("SUCCESS")){
-            var success_message = response.split(/:(.*)/s)[1];
-        }
-        $("#send_email_response").attr("style", "color:black");
-        $("#send_email_response").html(success_message);
     })
     
 }

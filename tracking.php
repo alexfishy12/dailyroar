@@ -1,6 +1,6 @@
 <?php
-    include "dbconfig.php";
-    $connect = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser","$dbpass");
+    include("dbconfig.php");
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser","$dbpass");
     $email_id = null;
     $student_id = null;
 
@@ -16,12 +16,17 @@
     }
 
     if ($email_id && $student_id) {
-        $query = "INSERT INTO Tracking (student_id, email_id, Opened) VALUES (?, ?, ?)";
-        $statement = $connect->prepare($query);
-        if ($statement->execute([$student_id, $email_id, 1])) {
-            echo "Insert successful<br>";
+        $query = "UPDATE Tracking set Opened = 1 where StudentID = :student_id AND EmailID = :email_id;";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":student_id", $student_id);
+        $stmt->bindParam(":email_id", $email_id);
+        $stmt->execute();
+        if ($stmt->errorCode() === '00000') {
+            echo "Update successful<br>";
         } else {
-            echo "Error: insert failed<br>";
+            echo "Error: Update failed!<br>";
+            echo $pdo->errorInfo()[2];
+            die();
         }
     }
 ?>

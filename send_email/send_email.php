@@ -1,14 +1,18 @@
 <?php
     include("../dbconfig.php");
 
+    $responseList = [];
+    $errorList = [];
 
     session_start();
     if  (!isset($_SESSION["user"])){
-        echo "ERROR: Login email not set.";
+        array_push($errorList, "ERROR: Login email not set.");
+        print_response($responseList, $errorList);
         die();
     }
     if (!isset($_SESSION["id"])){
-        echo "ERROR: Login ID not set.";
+        array_push($errorList, "ERROR: Login ID not set.");
+        print_response($responseList, $errorList);
         die();
     }
     $sender_email = $_SESSION["user"];
@@ -30,6 +34,7 @@
         
     }
 
+    //THIS FUNCTION IS UNUSED, WE USE SESSION VARIABLES FOR SENDER INFO
     function getSender($sender_id){
         Global $pdo;
         $sender;
@@ -59,6 +64,8 @@
 
     function getRecipients($curriculum, $class_standing) {
         Global $pdo;
+        Global $responseList;
+        Global $errorList;
         $values_to_search = [];
 
         // start query
@@ -132,25 +139,32 @@
                 return $students;
             }
             else {
-                echo "No students found with the query: <br>".$query;
+                array_push($errorList, "ERROR: No students found using the selected filters.");
+                print_response($responseList, $errorList);
                 die();
             }
         }
         else {
-            echo "ERROR: ". $stmt->errorInfo()[2];
+            array_push($errorList, "ERROR: ". $stmt->errorInfo()[2]);
+            print_response($responseList, $errorList);
             die();
         }
     }
 
     function sendEmail($recipients, $subject, $body) {
+
+        //access global variables inside function
         Global $pdo;
         Global $sender_id;
         Global $sender_email;
+        Global $responseList;
+        Global $errorList;
         $email_id;
 
         // Escape any potentially dangerous characters in the input
-        $subject = htmlspecialchars($subject, ENT_QUOTES);
-        $body = htmlspecialchars($body, ENT_QUOTES);
+        $sqlsubject = htmlspecialchars($subject, ENT_QUOTES);
+        $sqlbody = htmlspecialchars($body, ENT_QUOTES);
+        
 
         // Set the email headers
         $headers = "From: ". $sender_email. "\r\n";
@@ -162,8 +176,8 @@
 
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":sender_id", $sender_id);
-        $stmt->bindParam(":subject", $subject);
-        $stmt->bindParam(":body", $body);
+        $stmt->bindParam(":subject", $sqlsubject);
+        $stmt->bindParam(":body", $sqlbody);
         $attachments = "";
         $stmt->bindParam(":attachments", $attachments);
 
@@ -173,17 +187,16 @@
             $email_id = $pdo->lastInsertId();
         }
         else {
-            echo "ERROR: ". $stmt->errorInfo()[2];
+            array_push($errorList, $stmt->errorInfo()[2]);
+            print_response($responseList, $errorList);
             die();
         }
 
         // Send the email to each recipient using the mail() function
-        $base_url = "http://obi.kean.edu/~fisheral/capstone/";
+        $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
 
-        foreach ($recipients as $recipient) {            
-            echo $recipient["ID"];
-            echo $email_id;
-            $body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
+        foreach ($recipients as $recipient) {
+            $new_body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
             
             //insert statement for this student tracking response to this email
             $tracking_query = "INSERT into Tracking(StudentID, EmailID, Opened, Clicked) values (:student_id, :email_id, 0, 0)";
@@ -194,20 +207,33 @@
             
             //checks if tracking for this email and student was inserted
             if ($tracking_insert_result) {
-                echo "SUCCESS: Insert into tracking table success.";
-                echo "<br>";
+                //echo "SUCCESS: Insert into tracking table success.<br>";
             }
             else {
-                echo "ERROR: Insert into tracking table failed!";
-                echo "<br>";
+                array_push($errorList, "Insert into tracking table failed for StudentID: ". $recipient["ID"] . " and EmailID: ". $email_id . ". Email not sent.");
+                continue;
             }
             
-            $email = mail($recipient["Email"], $subject, $body, $headers);
+            //send the actual email
+            $email = mail($recipient["Email"], $subject, $new_body, $headers);
             if ($email) {
-                echo 'SUCCESS: Email sent successfully.';
+                array_push($responseList, "Email sent to ". $recipient["Email"] ." successfully.");
             } else {
-                echo 'ERROR: An error occurred while sending the email.';
+                array_push($errorList, "An error occurred while sending the email to ". $recipient["Email"]);
             }
         }
+    }
+
+    print_response($responseList, $errorList);
+
+    // prints response to webpage
+    function print_response($response = [], $errors = []) {
+        $string = "";
+
+        // Convert response to JSON string:
+        $string = "{\"errors\" : ". json_encode($errors) . ",".
+                "\"response\" : ". json_encode($response) ."}";
+
+        echo $string;
     }
 ?>
