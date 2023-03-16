@@ -73,7 +73,10 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
         <button type="button" id="form_submit">Send Email</button>
     </div>
     <div id="get_response"></div>
+    <br>
     <div id="send_email_response"></div>
+    <br>
+    <div id="send_email_errors"></div>
 </body>
 
 </html>
