@@ -11,7 +11,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 ?>
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
 
     <!-- Quill -->
