@@ -1,6 +1,7 @@
 <?php
 include "../dbconfig.php";
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("<br>Cannot connect to DB:$dbname on $dbhost\n");
+session_start();
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
     if (isset($_POST["first_name"]))
@@ -27,11 +28,22 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
     {
         $major2 = ($_POST['major2']);   
     }
+    else {
+        $major2 = NULL;
+
+    }
+
+    
+    echo "<br>$major2";
 
     if (isset($_POST["minor"]))
     {
         $minor = ($_POST['minor']);   
     }
+    else {
+        $minor = NULL;
+    }
+    echo "<br>this is $minor";
 
     if (isset($_POST["class_stand"]))
     {
@@ -47,7 +59,6 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
     $sqlcheck ="SELECT EmailAddress FROM Students WHERE EmailAddress = '$email';";
     $resultcheck = mysqli_query($con, $sqlcheck);
     $count = mysqli_num_rows($resultcheck);
-    echo $count;
 
 
    if ($count > 0){
@@ -62,7 +73,7 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
     
 
        if ($result){
-           echo "Student" .$first_name. " " .$last_name. "has been added successfully";
+           echo "Student " .$first_name. " " .$last_name. " has been added successfully";
            echo "<br><a href ='insert_student.php'> Back </a><br>";
            }
     

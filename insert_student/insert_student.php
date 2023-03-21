@@ -34,7 +34,7 @@ echo "<br> Last Name: <input type='text' name='last_name' required='required'>";
 echo "<br> Active Program: <select name='active_program' required='required'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Active = mysqli_fetch_array($resultactive)){
 		echo '<option value = "' .$Active["ID"]. '">' .$Active["ActiveProgram"].'</option>';
 	}
@@ -44,27 +44,27 @@ echo "</select>";
 echo "<br> Major 1: <select name='major1' required='required'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Major1 = mysqli_fetch_array($result)){
 		echo '<option value = "' .$Major1["ID"]. '">' .$Major1["Curriculum"].'</option>';
 	}
 }
 echo "</select>";
 
-echo "<br> Major 2: <select name='major2' required='required'>";
+echo "<br> Major 2: <select name='major2'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Major2 = mysqli_fetch_array($result2)){
 		echo '<option value = "' .$Major2["ID"]. '">' .$Major2["Curriculum"].'</option>';
 	}
 }
 echo "</select>";
 
-echo "<br> Minor: <select name='minor' required='required'>";
+echo "<br> Minor: <select name='minor'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Minor = mysqli_fetch_array($result3)){
 		echo '<option value = "' .$Minor["ID"]. '">' .$Minor["Curriculum"].'</option>';
 	}
@@ -75,7 +75,7 @@ echo "</select>";
 echo "<br> Class Standing: <select name='class_stand' required='required'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Standing = mysqli_fetch_array($result4)){
 		echo '<option value = "' .$Standing["ID"]. '">' .$Standing["Standing"].'</option>';
 	}
