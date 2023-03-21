@@ -83,8 +83,8 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
 
 
    if ($count > 0){
-    echo "<br> This email address is already in the system. Please Go back.";
-       echo "<br><a href ='insert_student.php'> Back </a><br>";
+       echo "<a href ='insert_student.php'> Back </a><br>";
+        echo "This email address is already in the system. Please Go back.";
     }
 
 
@@ -110,12 +110,10 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
         }
         $sql = $sql . "'$email');";
         $result = mysqli_query($con, $sql);
-        
-        echo $sql;
 
        if ($result){
-           echo "Student" .$first_name. " " .$last_name. "has been added successfully";
-           echo "<br><a href ='insert_student.php'> Back </a><br>";
+           echo "<a href ='insert_student.php'> Back </a><br>";
+           echo "Student " .$first_name. " " .$last_name. " has been added successfully.";
            }
     
            else {
