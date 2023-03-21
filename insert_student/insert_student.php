@@ -34,7 +34,7 @@ echo "<br> Last Name: <input type='text' name='last_name' required='required'>";
 echo "<br> Active Program: <select name='active_program' required='required'>";
 if ($count > 0){
 	
-	echo "<option value = ' '></option>";
+	echo "<option value = ''></option>";
 	while ($Active = mysqli_fetch_array($resultactive)){
 		echo '<option value = "' .$Active["ID"]. '">' .$Active["ActiveProgram"].'</option>';
 	}
