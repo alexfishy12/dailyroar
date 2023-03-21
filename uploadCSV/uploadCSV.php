@@ -199,14 +199,6 @@ $data = json_decode($jsonString,true);
             $email = $emailArr[$i];
 
 
-        // echo $firstName."\n";
-        // echo $lastName."\n";
-        // echo $activeProgramId."\n";
-        // echo $major1Id."\n";
-        // echo $major2Id."\n";
-        // echo $minorId."\n";
-        // echo $classLevelId."\n";
-        // echo $email."\n";
       
       $insertStudent = "INSERT INTO csemaildb.Students 
                         VALUES(NULL,'$firstName', '$lastName',$activeProgramId,$major1Id, $major2Id,$minorId,$classLevelId,'$email' )";

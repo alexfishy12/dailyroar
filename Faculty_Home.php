@@ -19,6 +19,8 @@ elseif($_SESSION['account_type']=="GA"){
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
+  <link rel="stylesheet" href="CSS/faculty_home_page.css">
+  <link 
 </head>
 
 <body>
@@ -48,6 +50,33 @@ elseif($_SESSION['account_type']=="GA"){
     </div>
     <div class="logout">
         <a href="logout.php">logout</a>
+    </div>
+
+
+    <div class="title" >Welcome Faculty Member</div>
+    <div class = "squareGrid">
+
+        <div class = "navOption" type = "button" href = "google.com">
+    
+            <h3 class = "navTitle"> Home </h3>
+        </div>
+
+        <div class=" btn-primary navOption" href = "send_email/email.php">
+            <h3 class = "navTitle"> Email </h3>
+        </div>
+
+        <div class="navOption">
+            <h3 class = "navTitle"> Manually Insert Student</h3>
+        </div>
+
+        <div class="navOption">
+            <h3 class = "navTitle"> Update a Student </h3>
+        </div>
+
+        <div class="navOption">
+            <h3 class = "navTitle"> Upload Students CSV</h3>
+        </div>
+
     </div>
 </body>
 </html>
