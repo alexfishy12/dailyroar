@@ -3,7 +3,6 @@ include "../dbconfig.php";
 
 session_start();
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("<br>Cannot connect to DB:$dbname on $dbhost\n");
-session_start();
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
     if (isset($_POST["first_name"]))
