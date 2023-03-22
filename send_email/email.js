@@ -19,6 +19,11 @@ $(document).ready(function(){
         getEmailAttributes()
     })
 
+    $("button#upload").on('click', function() {
+        console.log("Files uploading...")
+        uploadFile();
+    })
+
 })
 
 //function that gets curriculum
@@ -70,12 +75,18 @@ function getEmailAttributes(){
     });
     json_form_data["class_standing"] = JSON.stringify(class_standing);
     
+    // Enable file upload after sprint 1
+    /*
     //add file attachments to "attachments" property of json
-    //json_form_data["attachments"] = $('#email_attachments').prop('files');
-    
-    
+    var files = $('#email_attachments').prop('files')[0];
+
+    if (files != null) {
+        uploadFile()
+    }
+    json_form_data["attachments"] = file_path;
+    */
     console.log(json_form_data)
-    
+
     send_email(json_form_data).then(function(response) {
         console.log(response);
         var responseHTML = "";
@@ -98,6 +109,17 @@ function getEmailAttributes(){
     
 }
 
+async function uploadFile() {
+    let formData = new FormData(); 
+    formData.append("file", $("#email_attachments").prop("files")[0]);
+    await fetch('upload_attachments.php', {
+      method: "POST",
+      body: formData
+    }).then(data => {
+            console.log(data);
+    })
+}
+  
 function send_email(email_data){
     return new Promise(function(resolve) {
         $.ajax({
