@@ -45,12 +45,12 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     <h2>Compose Email</h2>
 
     <div class="email_form">       
-        <label for="curriculum">Curricula: </label>
+        <label for="curriculum"><b>Curricula:</b></label>
         <div name="curriculum" id="curriculum" multiple>
             
         </div>
-        <label for="class_standing">Class Standings: </label>
-        <div name="curriculum" id="class_standings" multiple>
+        <label for="class_standing"><b>Class Standings:</b></label>
+        <div name="class_standing" id="class_standings" multiple>
             
         </div>
         <label for="subject">Subject:</label>
@@ -69,6 +69,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
             </div>
         <!-- END OF EXAMPLE QUILL CODE -->
         <input type="file" id="email_attachments" name="attachments">
+       <!-- <button id='upload'>Upload attachments</button>-->
     
         <button type="button" id="form_submit">Send Email</button>
     </div>
