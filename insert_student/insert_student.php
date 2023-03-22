@@ -1,4 +1,5 @@
 <?php
+include ("../faculty_nav.php");
 session_start();
 if(!isset($_SESSION['account_type'])){
     header("Location: index.php");
@@ -24,8 +25,7 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 
    
 
-    
-echo "<a href='../Faculty_Home.php' class='btn'>Home</a><br>";   
+  
 
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";

@@ -1,4 +1,6 @@
 <?php
+
+include("../faculty_nav.php");
 session_start();
 if(!isset($_SESSION['account_type'])){
     header("Location: index.php");
@@ -40,7 +42,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     </style>
 </head>
 <body>
-    <a href="../Faculty_Home.php">Go Home (Cancels changes)</a><br><br>
+
     <form id="search">
         <label for="student_name">Search for student by first name, last name, or email address: </label>
         <input type="text" name="student_name" id="search_box" form="search">
