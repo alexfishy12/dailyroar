@@ -24,6 +24,7 @@
 
     function get_students($search_text) {
         Global $pdo;
+
         // Define the query to retrieve the students
         $query = "";
         if ($search_text == "" || $search_text == null) {
@@ -74,6 +75,8 @@
                     "<th>Class Standing" .
                     "<th>Email Address".
                     "<th>Delete?";
+            
+            $count = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $html = $html . "<tr id='". $row['ID'] ."'>" .
                     "<td>".$row['ID'].
@@ -86,6 +89,7 @@
                     "<td>".generate_dropdown($class_standings, $row['ClassStanding'], "ClassStanding").
                     "<td><input type='text' name='EmailAddress' value='".$row['EmailAddress'] . "'>".
                     "<td><input type='checkbox' name='Delete'>";
+                $count++;
             }
             $html = $html . "</table>";
             return $html;
@@ -160,6 +164,12 @@
 
         $html = "<select name='". $col_name ."' form='update_student'>";
 
+        if ($default_choice_id == null) {
+            $html = $html . "<option class='original_value' value='null' selected></option>";
+        }
+        else {
+            $html = $html . "<option value='null'></option>";
+        }
         foreach ($choices as &$choice){
             if ($choice["ID"] == $default_choice_id && $default_choice_id !== null) {
                 $html = $html . "<option class='original_value' value='". $choice["ID"] ."' selected>". $choice["name"] ."</option>";
@@ -167,9 +177,23 @@
             else {
                 $html = $html . "<option value='". $choice["ID"] ."'>". $choice["name"] ."</option>";
             }
+            unset($choice);
         }
         $html = $html . "</select>";
 
         return $html;
     }
+
+    // prints response to webpage
+    function print_response($response = "", $errors = []) {
+        $string = "";
+
+        // Convert response to JSON string:
+        $string = "{\"errors\" : ". json_encode($errors) . ",".
+                "\"response\" : ". json_encode($response) ."}";
+
+        echo $string;
+    }
+
+
 ?>

@@ -12,7 +12,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 ?>
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
 
     <!-- Quill -->
@@ -40,22 +40,17 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     <hr>
     <h2>Compose Email</h2>
 
-    <div class="email_form">
-        <label for="emailID">Email ID:</label>
-        <input type="number" name="email_id" id="email_ID" required></textarea><br>
-        
+    <div class="email_form">       
+        <label for="curriculum"><b>Curricula:</b></label>
+        <div name="curriculum" id="curriculum" multiple>
+            
+        </div>
+        <label for="class_standing"><b>Class Standings:</b></label>
+        <div name="class_standing" id="class_standings" multiple>
+            
+        </div>
         <label for="subject">Subject:</label>
         <input type="text" name="subject" id="email_subject" required><br> 
-    
-        <label for="composer_address">From:</label>
-        <input type="email" name="composer_address" id="email_composer" required><br>
-        
-        <label for="curriculum">Curricula: </label>
-        <select name="curriculum" id="email_curriculum">
-
-        </select>
-        <label for="recipient_address">To: (ex: "fisheral@kean.edu,moffan@kean.edu,...,pankapatel@kean.edu")</label>
-        <input type="text" name="recipient_address" id="email_recipients" required><br>
         
         <!-- EXAMPLE QUILL CODE -->
             <!-- Create the toolbar container -->
@@ -70,10 +65,15 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
             </div>
         <!-- END OF EXAMPLE QUILL CODE -->
         <input type="file" id="email_attachments" name="attachments">
+       <!-- <button id='upload'>Upload attachments</button>-->
     
         <button type="button" id="form_submit">Send Email</button>
     </div>
+    <div id="get_response"></div>
+    <br>
     <div id="send_email_response"></div>
+    <br>
+    <div id="send_email_errors"></div>
 </body>
 
 </html>

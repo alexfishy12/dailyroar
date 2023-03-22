@@ -2,7 +2,7 @@ var quill_editor;
 
 $(document).ready(function(){
     //initialize curriculum options
-    getCurriculum()
+    load_filter_options()
     $("#email_curriculum").innerHTML
 
     //initialize class standing options
@@ -19,11 +19,21 @@ $(document).ready(function(){
         getEmailAttributes()
     })
 
+    $("button#upload").on('click', function() {
+        console.log("Files uploading...")
+        uploadFile();
+    })
+
 })
 
 //function that gets curriculum
-function getCurriculum() {
-    
+function load_filter_options() {
+    get_filter_options().then(function(response){
+        var jsonResponse = JSON.parse(response)
+        $("div#curriculum").html(jsonResponse.response.curriculum_dropdown)
+        $("div#class_standings").html(jsonResponse.response.class_standing_dropdown)
+        $("#get_response").html(response.errors)
+    })
 }
 
 
@@ -47,27 +57,69 @@ function getEmailAttributes(){
     var just_html = quill_editor.root.innerHTML;
     json_form_data["body"] = just_html;
 
+    //get selected options for curriculum
+    var curriculum = []
+    $("select#select_curriculum option:selected").each(function()
+    {
+        console.log($(this).val())
+        curriculum.push($(this).val())
+    });
+    json_form_data["curriculum"] = JSON.stringify(curriculum);
+
+    //get selected options for class standing
+    var class_standing = []
+    $("select#select_class_standing option:selected").each(function()
+    {
+        console.log($(this).val())
+        class_standing.push($(this).val())
+    });
+    json_form_data["class_standing"] = JSON.stringify(class_standing);
+    
+    // Enable file upload after sprint 1
+    /*
     //add file attachments to "attachments" property of json
-    //json_form_data["attachments"] = $('#email_attachments').prop('files');
-    
-    
+    var files = $('#email_attachments').prop('files')[0];
+
+    if (files != null) {
+        uploadFile()
+    }
+    json_form_data["attachments"] = file_path;
+    */
     console.log(json_form_data)
+
     send_email(json_form_data).then(function(response) {
         console.log(response);
-        if (response.startsWith("ERROR")) {
-            var error_message = response.split(/:(.*)/s)[1];
-
-            $("#send_email_response").attr("style", "color:red")
-            $("#send_email_response").html(error_message);
-        }
-        else if (response.startsWith("SUCCESS")){
-            var success_message = response.split(/:(.*)/s)[1];
+        var responseHTML = "";
+        var errorHTML = "";
+        response = JSON.parse(response);
+        console.log(response);
+        if (response) {
+            for (item in response.response) {
+                responseHTML += response.response[item] + "<br>";
+            }
+            for (item in response.errors) {
+                errorHTML += response.errors[item] + "<br>";
+            }
             $("#send_email_response").attr("style", "color:black");
-            $("#send_email_response").html(success_message);
+            $("#send_email_response").html(responseHTML);
+            $("#send_email_errors").attr("style", "color:red");
+            $("#send_email_errors").html(errorHTML);
         }
     })
+    
 }
 
+async function uploadFile() {
+    let formData = new FormData(); 
+    formData.append("file", $("#email_attachments").prop("files")[0]);
+    await fetch('upload_attachments.php', {
+      method: "POST",
+      body: formData
+    }).then(data => {
+            console.log(data);
+    })
+}
+  
 function send_email(email_data){
     return new Promise(function(resolve) {
         $.ajax({
@@ -75,6 +127,24 @@ function send_email(email_data){
             dataType: 'text',
             type: 'POST',
             data: email_data,
+            success: function (response, status) {
+                console.log('AJAX Success.');
+                resolve(response);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('AJAX Error:' + textStatus);
+                resolve("Error " . textStatus);
+            }
+        })
+    });
+}
+
+function get_filter_options(){
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: 'get_filter_options.php',
+            dataType: 'text',
+            type: 'GET',
             success: function (response, status) {
                 console.log('AJAX Success.');
                 resolve(response);
