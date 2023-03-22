@@ -176,7 +176,7 @@
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
-            insert_into_tracking_table($recipient['ID'], $email_id);
+            insert_into_tracking_table($email_id, $recipient['ID']);
             
             //attach tracking link
             $new_body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
