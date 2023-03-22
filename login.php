@@ -19,6 +19,7 @@ if(mysqli_num_rows($result)){
             $_SESSION["user"] = $user;
             $_SESSION['account_type'] = $row['Account_Type'];
             $_SESSION['id'] = $row['ID'];
+            $_SESSION["login_time_stamp"] = time(); 
             if($_SESSION['account_type']=="FA"){
                 header("Location: Faculty_Home.php");
             }
