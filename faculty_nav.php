@@ -3,7 +3,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/x-icon" href="assets/Kean_University_Logo_Nav.ico">
+<link rel="icon" type="image/x-icon" href="/dailyroar/assets/Kean_University_Logo_Nav.ico">
 <title><?php echo ($title); ?></title>
 
 <!-- CSS Only -->
@@ -15,19 +15,18 @@
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<script src= "libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
-  <script src="uploadCSV/uploadCSV.js"></script>
-  <link rel="stylesheet" href="CSS/faculty_home_page.css">
-  <script src= "../libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
-  <script src="uploadCSV.js"></script>
+<script src= "/dailyroar/libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
+  <script src="/dailyroar/uploadCSV/uploadCSV.js"></script>
+  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
+  <script src= "/dailyroar/libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
 
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid">
       <a class="navbar-brand" style="cursor: pointer;">
-        <img id="logo" src="../assets/Kean_University_Logo_Nav.ico" alt="Kean Logo" height="50" width="50" href="../Faculty_Home.php">
+        <img id="logo" src="/dailyroar/assets/Kean_University_Logo_Nav.ico" alt="Kean Logo" height="50" width="50" href="/dailyroar/Faculty_Home.php">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,10 +35,10 @@
         <ul class="navbar-nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="../Faculty_Home.php">Home</a>
+            <a class="nav-link" href="/dailyroar/Faculty_Home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../send_email/email.php">Email</a>
+            <a class="nav-link" href="/dailyroar/send_email/email.php">Email</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -47,9 +46,9 @@
               Modify Data
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../insert_student/insert_student.php">Manually Insert Student</a></li>
-              <li><a class="dropdown-item" href="../update_students/update_student.php">Update Student Information</a></li>
-              <li><a class="dropdown-item" href="../uploadCSV/upload_csv.php">Upload Students CSV</a></li>
+              <li><a class="dropdown-item" href="/dailyroar/insert_student/insert_student.php">Manually Insert Student</a></li>
+              <li><a class="dropdown-item" href="/dailyroar/update_students/update_student.php">Update Student Information</a></li>
+              <li><a class="dropdown-item" href="/dailyroar/uploadCSV/upload_csv.php">Upload Students CSV</a></li>
             </ul>
           </li>
 
