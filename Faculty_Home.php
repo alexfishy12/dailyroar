@@ -88,10 +88,6 @@ elseif($_SESSION['account_type']=="GA"){
             <h3 class = "navTitle"> <a href = "uploadCSV/upload_csv.php"> Upload Students CSV </a></h3>
         </div>
 
-        <div class="navOption">
-            <h3 class="navTitle"><a href="logout.php">Log out </a></h3>
-    </div>
-
     </div>
 </body>
 </html>

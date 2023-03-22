@@ -51,11 +51,6 @@
               <li><a class="dropdown-item" href="../update_students/update_student.php">Update Student Information</a></li>
               <li><a class="dropdown-item" href="../uploadCSV/upload_csv.php">Upload Students CSV</a></li>
             </ul>
-
-            <li class="nav-item">
-            <a class="nav-link" href="../logout.php">log out </a>
-          </li>
-          
           </li>
 
 
