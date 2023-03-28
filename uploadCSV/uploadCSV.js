@@ -35,7 +35,7 @@ function readCSV()
         function upload_csv(csv){
             return new Promise(function(resolve) {
                 $.ajax({
-                    url: 'uploadCSV2.php',
+                    url: 'uploadCSV.php',
                     dataType: 'text',
                     type: 'POST',
                     data: csv,
