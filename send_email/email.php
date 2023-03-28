@@ -11,7 +11,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 $now=time();
 if($now > $_SESSION['expire']) {
     session_destroy();
-    header("Location: index.php");  
+    header("Location: ../index.php");  
 }
 ?>
 <!DOCTYPE html>
