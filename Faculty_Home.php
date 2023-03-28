@@ -8,6 +8,11 @@ elseif($_SESSION['account_type']=="GA"){
     header("Location: GA_Home.php");
     exit;
 }
+$now=time();
+if($now > $_SESSION['expire']) {
+    session_destroy();
+    header("Location: index.php");  
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" >
