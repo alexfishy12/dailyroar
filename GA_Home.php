@@ -8,8 +8,12 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="FA"){
     header("Location: Faculty_Home.php");
     exit;
 }
+$now=time();
+if($now > $_SESSION['expire']) {
+    session_destroy();
+    header("Location: index.php");  
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>

@@ -32,9 +32,9 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 		<p>To begin sending out opportunities, Please enter your log in credentials. </p>
 		<form name="input" action="login.php" method="post">
 		<div class="inputs">
-			<input type="text" placeholder="user name" name ="login_id" required="required">
+			<input type="text" placeholder="User Name" name ="login_id" required="required">
 			<br>
-			<input type="password" placeholder="password" name="password" required="required">
+			<input type="password" placeholder="Password" name="password" required="required">
 		</div>
 			<br><br>
 		<div class="remember-me--forget-password">
