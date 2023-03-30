@@ -61,6 +61,7 @@ function get_students(search_text) {
         else
         {
             html = response;
+            console.log(response)
             display_students_table(html, false);
         }
         initialize_input_change_detection();
@@ -124,7 +125,7 @@ function display_students_table(html, isError) {
 function request_students(search_text){
     return new Promise(function(resolve) {
         $.ajax({
-            url: 'get_students.php',
+            url: '/dailyroar/update_students/get_students.php',
             dataType: 'text',
             type: 'POST',
             data: {search_text: search_text},
