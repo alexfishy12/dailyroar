@@ -1,13 +1,17 @@
 <?php
-include ("../faculty_nav.php");
 session_start();
 if(!isset($_SESSION['account_type'])){
-    header("Location: index.php");
+    header("Location: ../index.php");
 	exit;
 }
 elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
-    header("Location: GA_Home.php");
+    header("Location: ../GA_Home.php");
     exit;
+}
+$now=time();
+if($now > $_SESSION['expire']) {
+    session_destroy();
+    header("Location: ../index.php");  
 }
 include("../dbconfig.php");
 
@@ -25,8 +29,9 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 
    
 
-  
-echo `<link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css"><body class="retro">`;
+    
+echo "<a href='../Faculty_Home.php' class='btn'>Home</a><br>";   
+
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
 echo "<br> First Name: <input type='text' name='first_name' required='required'>";
@@ -92,7 +97,7 @@ else {
 echo '<br>You are not logged in with a Faculty Account. Please Login with a Faculty account!';
 }
 
-echo "</body>";
+
 
 
 
