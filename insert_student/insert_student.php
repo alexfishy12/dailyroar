@@ -1,12 +1,17 @@
 <?php
 session_start();
 if(!isset($_SESSION['account_type'])){
-    header("Location: index.php");
+    header("Location: ../index.php");
 	exit;
 }
 elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
-    header("Location: GA_Home.php");
+    header("Location: ../GA_Home.php");
     exit;
+}
+$now=time();
+if($now > $_SESSION['expire']) {
+    session_destroy();
+    header("Location: ../index.php");  
 }
 include("../dbconfig.php");
 
