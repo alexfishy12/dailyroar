@@ -1,7 +1,10 @@
 
 <?php include("../faculty_nav.php");  ?>
 
-<body>
+
+<link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
+
+<body class="retro">
 
     <div class="title">Daily Roar - Upload CSV</div>
 

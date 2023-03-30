@@ -16,6 +16,8 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 <head>
     <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="update_student.js"></script>
+    
+  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +43,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
         }
     </style>
 </head>
-<body>
+<body class="retro">
 
     <form id="search">
         <label for="student_name">Search for student by first name, last name, or email address: </label>

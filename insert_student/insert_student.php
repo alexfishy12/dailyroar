@@ -26,7 +26,7 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
    
 
   
-
+echo `<link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css"><body class="retro">`;
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
 echo "<br> First Name: <input type='text' name='first_name' required='required'>";
@@ -92,7 +92,7 @@ else {
 echo '<br>You are not logged in with a Faculty Account. Please Login with a Faculty account!';
 }
 
-
+echo "</body>";
 
 
 

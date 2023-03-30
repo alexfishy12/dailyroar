@@ -14,12 +14,15 @@ elseif($_SESSION['account_type']=="GA"){
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <link rel="icon" type="image/x-icon" href="assets/Kean_University_Logo_Nav.ico">
   
   <title>Faculty Home Page</title>
 
   <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
 
+  <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
@@ -61,33 +64,16 @@ elseif($_SESSION['account_type']=="GA"){
 
 </head>
 
-<body>
+<body class="retro" style="margin-top:40vh;margin-bottom:40vh;">
 
-    <h2 class="title" >Welcome Faculty Member </h2>
-    <br>
-    <div class = "squareGrid">
-
-        <div class = "navOption" href = "google.com">
-           <h3 class = "navTitle"><a href = "Faculty_Home.php"> Home </a></h3>
-        </div>
-
-        <div class="navOption">
-            <h3 class = "navTitle"><a href = "send_email/email.php"> Email </a> </h3>
-        </div>
-
-        <div class="navOption">
-            <h3 class = "navTitle"><a href = "insert_student/insert_student.php"> Manually Insert </a> </h3>
-        </div>
-
-
-        <div class="navOption">
-            <h3 class = "navTitle"><a href = "update_students/update_student.php"> Update a Student </h3>
-        </div>
-
-        <div class="navOption">
-            <h3 class = "navTitle"> <a href = "uploadCSV/upload_csv.php"> Upload Students CSV </a></h3>
-        </div>
-
-    </div>
+<div class="nes-container with-title is-centered" style="margin-left: 5vw; margin-right: 5vw;">
+    <p class="title">The Daily Roar</p>
+    <a class="nes-btn" href = "Faculty_Home.php"> Home </a>
+    <a class="nes-btn" href = "send_email/email.php"> Email </a>
+    <a class="nes-btn" href = "insert_student/insert_student.php"> Manually Insert </a>
+    <a class="nes-btn" href = "update_students/update_student.php"> Update a Student</a>
+    <a class="nes-btn" href = "uploadCSV/upload_csv.php"> Upload Students CSV </a>
+</div>
+        
 </body>
 </html>
