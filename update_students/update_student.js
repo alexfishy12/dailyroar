@@ -2,8 +2,9 @@ var changed_students = [];
 
 $(document).ready(function() {
     console.log("Document ready.");
-    $("button#search").on("click", function(){
-        console.log("Search button clicked.");
+    $("form#search").submit(function(e) {
+        e.preventDefault();
+        console.log("Search form submitted.");
         get_students($("#search_box").val());
     });
     $("button#done").on("click", function(){
@@ -14,16 +15,40 @@ $(document).ready(function() {
         console.log("Confirm button clicked.");
         confirm_update_students();
     });
+    $("button#make_changes").on("click", function(){
+        console.log("Make changes button clicked.");
+        make_changes();
+    })
     
 });
+
+function make_changes() {
+    // hide the review options
+    $("div#review_options").hide()
+    $("div#form_options").show()
+    // show the done button
+    // enable all inputs so further actions can be done in the make changes stage
+    $("#students_table input").each(function () {
+        $(this).removeAttr("readonly");
+    });
+    $("#students_table select").each(function () {
+        $(this).removeAttr("disabled");
+    });
+    $("#students_table input[type='checkbox']").each(function () {
+        $(this).removeAttr("disabled");
+    });
+}
 
 function confirm_update_students() {
     var html = "";
     update_students().then(function(response){
         console.log(response);
-        html = response;
+        response = JSON.parse(response)
+        html = response.response;
         $("div#update_response").html(html);
     })
+    $("div#review_options").hide();
+    $("div#finished_options").show();
 }
 
 function get_students(search_text) {
@@ -46,9 +71,11 @@ function review_students() {
     if (changed_students.length < 1) {
         return;
     }
-    $("button#done").hide();
-    $("button#make_changes").show();
-    $("button")
+
+    //hide search form
+    $("form#search").hide();
+    //hide form_options
+    $("div#form_options").hide();
 
     // disable all inputs so no further actions can be done in the review stage
     $("#students_table input").each(function () {
@@ -78,6 +105,7 @@ function review_students() {
 
     // show review options
     $("div#review_options").show()
+    $("div#info").html("<b>Review the students you have made changes to, then click \"Confirm\" to push changes to the database.</b>");
 }
 
 function display_students_table(html, isError) {
@@ -85,8 +113,10 @@ function display_students_table(html, isError) {
         $("#students_table_error").html(html)
     }
     else {
-        html = "<br><b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b><br>" + html;
+        $("#info").show();
+        $("#info").html("<b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b>");
         $("#students_table").html(html);
+        $("#students_table").show();
         $("#form_options").show();
     }
 }
@@ -143,6 +173,7 @@ function initialize_input_change_detection() {
                 elem.attr("class", "new_value")
                 push_changed_student_attr(elem);
                 $("button#done").attr("disabled", false);
+                $("form#search").hide();
             }
             else {
                 //remove change from changed_student_attributes array
@@ -157,6 +188,7 @@ function initialize_input_change_detection() {
                 }
                 else {
                     $("button#done").attr("disabled", false);
+                    $("form#search").hide();
                 }
             }
             
@@ -239,7 +271,7 @@ function get_changed_student_index(elem) {
 function update_students(){
     return new Promise(function(resolve) {
         $.ajax({
-            url: 'update_students.php',
+            url: 'send_updates.php',
             dataType: 'text',
             type: 'POST',
             data: {changed_students: changed_students},
@@ -282,5 +314,6 @@ function remove_student(index) {
     changed_students.splice(index, 1);
     if (changed_students.length < 1) {
         $("button#done").attr("disabled", true)
+        $("form#search").show();
     }
 }

@@ -1,5 +1,6 @@
 <?php 
-include("../dbconfig.php");
+    
+    include("../dbconfig.php");
 
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
@@ -23,17 +24,26 @@ include("../dbconfig.php");
 
     function get_students($search_text) {
         Global $pdo;
+
         // Define the query to retrieve the students
         $query = "";
-        if ($search_text == "") {
+        if ($search_text == "" || $search_text == null) {
             $query = "SELECT * FROM csemaildb.Students;";
+        }
+        else {
+            $search_text = "%" . $search_text . "%";
+            $query = "SELECT * from Students where (FirstName like :first_name) OR (LastName like :last_name) OR (EmailAddress like :email)";
         }
         // Prepare the query
         $stmt = $pdo->prepare($query);
         
-        // Bind the email parameter
+        // Bind the search parameters
         //$stmt->bindParam(":name", $search_text);
-        //$stmt->bindParam(":email", $search_text);
+        if ($search_text != "" && $search_text != null) {
+            $stmt->bindParam(":first_name", $search_text, PDO::PARAM_STR);
+            $stmt->bindParam(":last_name", $search_text, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $search_text, PDO::PARAM_STR);
+        }
         
         // Execute the query
         $stmt->execute();
@@ -65,6 +75,8 @@ include("../dbconfig.php");
                     "<th>Class Standing" .
                     "<th>Email Address".
                     "<th>Delete?";
+            
+            $count = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $html = $html . "<tr id='". $row['ID'] ."'>" .
                     "<td>".$row['ID'].
@@ -77,6 +89,7 @@ include("../dbconfig.php");
                     "<td>".generate_dropdown($class_standings, $row['ClassStanding'], "ClassStanding").
                     "<td><input type='text' name='EmailAddress' value='".$row['EmailAddress'] . "'>".
                     "<td><input type='checkbox' name='Delete'>";
+                $count++;
             }
             $html = $html . "</table>";
             return $html;
@@ -151,6 +164,12 @@ include("../dbconfig.php");
 
         $html = "<select name='". $col_name ."' form='update_student'>";
 
+        if ($default_choice_id == null) {
+            $html = $html . "<option class='original_value' value='null' selected></option>";
+        }
+        else {
+            $html = $html . "<option value='null'></option>";
+        }
         foreach ($choices as &$choice){
             if ($choice["ID"] == $default_choice_id && $default_choice_id !== null) {
                 $html = $html . "<option class='original_value' value='". $choice["ID"] ."' selected>". $choice["name"] ."</option>";
@@ -158,9 +177,23 @@ include("../dbconfig.php");
             else {
                 $html = $html . "<option value='". $choice["ID"] ."'>". $choice["name"] ."</option>";
             }
+            unset($choice);
         }
         $html = $html . "</select>";
 
         return $html;
     }
+
+    // prints response to webpage
+    function print_response($response = "", $errors = []) {
+        $string = "";
+
+        // Convert response to JSON string:
+        $string = "{\"errors\" : ". json_encode($errors) . ",".
+                "\"response\" : ". json_encode($response) ."}";
+
+        echo $string;
+    }
+
+
 ?>
