@@ -26,12 +26,13 @@ if($now > $_SESSION['expire']) {
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
   <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
+  <link href="/dailyroar/CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 
-<body class="retro">
+<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
     
-    <div class="body">
+    <div class="body" style="text-align: center">
         <p>Welcome to the Daily Roar!</p>
     </div>
     <div class="logout">
@@ -40,11 +41,11 @@ if($now > $_SESSION['expire']) {
 
 <div class="nes-container with-title is-centered">
   <p class="title">Select an Option</p>
-  <a href="javascript:void(0)" class="nes-btn">Home</a>
-  <a href="send_email/email.php" class="nes-btn">Email</a>
-  <a href="insert_student/insert_student.php" class="nes-btn">Manually Insert a Student</a>
-  <a href="update_students/update_student.php" class="nes-btn">Update a Student</a>
-  <a href="uploadCSV/uploadCSV.html" class="nes-btn">Upload Students CSV</a>
+  <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
+  <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
+  <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
+  <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
+  <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
 </div>
 
 </body>
