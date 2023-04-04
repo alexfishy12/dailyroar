@@ -1,6 +1,6 @@
 <?php
 
-include("../faculty_nav.php");
+include("/dailyroar/faculty_nav.php");
 session_start();
 if(!isset($_SESSION['account_type'])){
     header("Location: index.php");
@@ -16,7 +16,8 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 <head>
     <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="update_student.js"></script>
-    
+    <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
