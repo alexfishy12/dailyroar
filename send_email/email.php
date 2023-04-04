@@ -41,7 +41,7 @@ if($now > $_SESSION['expire']) {
 
 </head>
 <title id="title">Daily Roar - Email</title>
-<body class="retro">
+<body>
     <div class="title">Daily Roar - Email</div>
     <div class="menu">
         <ul>

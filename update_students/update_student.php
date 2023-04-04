@@ -3,12 +3,17 @@
 include("/dailyroar/faculty_nav.php");
 session_start();
 if(!isset($_SESSION['account_type'])){
-    header("Location: index.php");
+    header("Location: ../index.php");
 	exit;
 }
 elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
-    header("Location: GA_Home.php");
+    header("Location: ../GA_Home.php");
     exit;
+}
+$now=time();
+if($now > $_SESSION['expire']) {
+    session_destroy();
+    header("Location: ../index.php");  
 }
 ?>
 <!DOCTYPE html>
@@ -44,8 +49,8 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
         }
     </style>
 </head>
-<body class="retro">
-
+<body>
+    <a href="../Faculty_Home.php">Go Home (Cancels changes)</a><br><br>
     <form id="search">
         <label for="student_name">Search for student by first name, last name, or email address: </label>
         <input type="text" name="student_name" id="search_box" form="search">
