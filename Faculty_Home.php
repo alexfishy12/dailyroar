@@ -25,8 +25,8 @@ if($now > $_SESSION['expire']) {
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
-  <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
-  <link href="/dailyroar/CSS/faculty_home_page.css" rel="stylesheet">
+  <link href="CSS/font_family.css" rel="stylesheet">
+  <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 
@@ -47,6 +47,26 @@ if($now > $_SESSION['expire']) {
   <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
   <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
 </div>
+
+<style> 
+.background {
+  width: 100vh;
+  height: 100vw;
+  background-color: red;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 3;
+}
+
+@keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+</style>
 
 </body>
 </html>

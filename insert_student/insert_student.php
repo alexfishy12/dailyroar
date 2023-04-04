@@ -31,7 +31,7 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 	
 	
     
-echo '<link href="/dailyroar/CSS/font_family.css" rel="stylesheet">';
+echo '<link href="../CSS/font_family.css" rel="stylesheet">';
 echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
 echo "<body class='retro'>";
 
