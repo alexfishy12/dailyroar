@@ -18,8 +18,6 @@ if($now > $_SESSION['expire']) {
 <head>
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
-    
-  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
 
     <!-- Quill -->
     <!-- Main Quill library -->
@@ -39,7 +37,7 @@ if($now > $_SESSION['expire']) {
 
 </head>
 <title id="title">Daily Roar - Email</title>
-<body class="retro">
+<body>
     <div class="title">Daily Roar - Email</div>
     <div class="menu">
         <ul>
