@@ -20,6 +20,8 @@ if($now > $_SESSION['expire']) {
     <script type="text/javascript" src="email.js"></script>
     
   <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
+  <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
     <!-- Quill -->
     <!-- Main Quill library -->
@@ -39,15 +41,11 @@ if($now > $_SESSION['expire']) {
 
 </head>
 <title id="title">Daily Roar - Email</title>
+<?php 
+include("../faculty_nav.php"); 
+?>
 <body class="retro">
     <div class="title">Daily Roar - Email</div>
-    <div class="menu">
-        <ul>
-            <li class="option">
-                <a href="../Faculty_Home.php" class="btn">Home</a>
-            </li>
-        </ul>
-    </div>
     <hr>
     <h2>Compose Email</h2>
 

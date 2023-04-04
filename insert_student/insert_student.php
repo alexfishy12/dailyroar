@@ -14,6 +14,7 @@ if($now > $_SESSION['expire']) {
     header("Location: ../index.php");  
 }
 include("../dbconfig.php");
+include("../faculty_nav.php");
 
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
@@ -27,10 +28,12 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
     $result4 = mysqli_query($con, $sql2);
     $count = mysqli_num_rows($result);
 
-   
-
+	
+	
     
-echo "<a href='../Faculty_Home.php' class='btn'>Home</a><br>";   
+echo '<link href="/dailyroar/CSS/font_family.css" rel="stylesheet">';
+echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
+echo "<body class='retro'>";
 
 echo "<br><font size=4><b>Add a Student</b></font>";
 echo "<form name='input' action='enter_student.php' method='post' >";
@@ -98,9 +101,7 @@ echo '<br>You are not logged in with a Faculty Account. Please Login with a Facu
 }
 
 
-
-
-
+echo "</body>";
 
 
 
