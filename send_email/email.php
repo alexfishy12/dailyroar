@@ -19,8 +19,8 @@ if($now > $_SESSION['expire']) {
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
     
-  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
-  <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/faculty_home_page.css">
+  <link href="../CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
     <!-- Quill -->
