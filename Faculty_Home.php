@@ -25,8 +25,8 @@ if($now > $_SESSION['expire']) {
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
-  <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
-  <link href="/dailyroar/CSS/faculty_home_page.css" rel="stylesheet">
+  <link href="CSS/font_family.css" rel="stylesheet">
+  <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 
@@ -47,6 +47,8 @@ if($now > $_SESSION['expire']) {
   <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
   <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
 </div>
+
+
 
 </body>
 </html>

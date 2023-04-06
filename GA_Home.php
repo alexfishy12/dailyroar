@@ -20,12 +20,12 @@ if($now > $_SESSION['expire']) {
 
   
   <title>GA Home Page </title>
-
+  <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
   <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" /> 
 
 </head>
 
