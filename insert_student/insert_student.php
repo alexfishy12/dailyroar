@@ -140,7 +140,7 @@ echo "<body class='retro'>"; ?>
 
 			<div class="nes-select">
 			<label for="nes_field"> Class Standing: </label>
-			<select  id="default_select" name='class_standing' required >
+			<select  id="default_select" name='class_stand' required >
 				<option value="" </option>
 
 						<?php
