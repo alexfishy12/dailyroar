@@ -15,95 +15,167 @@ if($now > $_SESSION['expire']) {
 }
 include("../dbconfig.php");
 include("../faculty_nav.php");
+echo '<link href="../CSS/font_family.css" rel="stylesheet">';
+echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
 
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
-    $sql = "SELECT * FROM csemaildb.Curriculum";
-    $sql2 = "SELECT * FROM csemaildb.ClassStanding";
-    $sqlactive = "SELECT * FROM csemaildb.ActiveProgram";
-    $resultactive = mysqli_query($con, $sqlactive);
-    $result = mysqli_query($con, $sql);
-    $result2 = mysqli_query($con, $sql);
-    $result3 = mysqli_query($con, $sql);
-    $result4 = mysqli_query($con, $sql2);
-    $count = mysqli_num_rows($result);
+
+	$sqlActive = "SELECT * FROM csemaildb.ActiveProgram";
+	$sqlCurriculum = "SELECT * FROM csemaildb.Curriculum ";
+    $sqlClassStanding = "SELECT * FROM csemaildb.ClassStanding";
+  
+
+	$resultActive = mysqli_query($con, $sqlActive);
+	$resultCurriculum = mysqli_query($con, $sqlCurriculum);
+    $resultClassStanding = mysqli_query($con, $sqlClassStanding);
+
+ 
+
+
+    $countCurriculum = mysqli_num_rows($resultCurriculum);
+	$countActiveProgram = mysqli_num_rows($resultActive);
+	$countClassStanding = mysqli_num_rows($resultClassStanding);
 
 	
+
+
+
+echo "<body class='retro'>"; ?>
+
+<div class="nes-container with-title is-centered">
+	<p class="title"> Manually Insert a Student </p>
 	
-    
-echo '<link href="../CSS/font_family.css" rel="stylesheet">';
-echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
-echo "<body class='retro'>";
+		<form name = "input" action = "enter_student.php" method = "post" >
 
-echo "<br><font size=4><b>Add a Student</b></font>";
-echo "<form name='input' action='enter_student.php' method='post' >";
-echo "<br> First Name: <input type='text' name='first_name' required='required'>";
-echo "<br> Last Name: <input type='text' name='last_name' required='required'>";
-echo "<br> Active Program: <select name='active_program' required='required'>";
-if ($count > 0){
-	
-	echo "<option value = ''></option>";
-	while ($Active = mysqli_fetch_array($resultactive)){
-		echo '<option value = "' .$Active["ID"]. '">' .$Active["ActiveProgram"].'</option>';
-	}
+			<div class="nes-field is-inline">
+				<label for="inline_field">First Name: </label>
+				<input type="text" id="inline_field" class="nes-input is-success" name = "first_name" required>
+			</div>
+
+
+			<div class="nes-field is-inline">
+			<label for="inline_field">Last Name: </label>
+			<input type="text" id="inline_field" class="nes-input is-success" name = "last_name" required>
+			</div>
+
+		
+			<div class="nes-select">
+			<label for="inline_field"> Active Program: </label>
+			<select required id="default_select" name = "active_program" >
+				<option value=""</option>
+
+						<?php
+
+							if ($countActiveProgram > 0)
+							{
+								while ($activePorgramRow = mysqli_fetch_array($resultActive))
+								{
+									echo '<option value = "' .$activePorgramRow["ID"]. '">' .$activePorgramRow["ActiveProgram"].'</option>';
+								}
+							}
+						?>
+			</select>
+			</div>
+
+
+			<div class="nes-select">
+			<label for="inline_field"> Major One: </label>
+			<select  id="default_select" name='major1' required >
+				<option value="" </option>
+
+						<?php
+							if ($countCurriculum > 0)
+							{
+								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+								{
+									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+								}
+							}
+													
+						?>
+			</select>
+			</div>
+
+
+			<div class="nes-select">
+			<label for="nes_field"> Major Two: </label>
+			<select  id="default_select" name='major2' required >
+				<option value="" </option>
+
+						<?php
+							mysqli_data_seek($resultCurriculum,0);
+							if ($countCurriculum > 0)
+							{
+								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+								{
+									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+								}
+							}
+														
+						?>
+			</select>
+			</div>
+
+
+
+			<div class="nes-select">
+			<label for="nes_field"> Minor: </label>
+			<select  id="default_select" name='minor' required >
+				<option value="" </option>
+
+						<?php
+							mysqli_data_seek($resultCurriculum,0);
+							if ($countCurriculum > 0)
+							{
+								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+								{
+									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+								}
+							}					
+						?>
+			</select>
+			</div>
+
+
+			<div class="nes-select">
+			<label for="nes_field"> Class Standing: </label>
+			<select  id="default_select" name='class_standing' required >
+				<option value="" </option>
+
+						<?php
+							if ($countClassStanding > 0)
+							{
+								while ($classStandingRow= mysqli_fetch_array($resultClassStanding))
+								{
+									echo '<option value = "' .$classStandingRow["ID"]. '">' .$classStandingRow["Standing"].'</option>';
+								}
+							}
+													
+						?>
+			</select>
+			</div>
+
+
+			<div class="nes-field is-inline">
+			<label for="nes_field"> Email Address: </label>
+			<input type="email" id="inline_field" class="nes-input is-success" name='email' required>
+			</div>
+
+
+			<br>
+			<br>
+			<input type='submit' value='Submit'>
+			
+			<br>
+		</form>
+</div>
+
+
+<?php
 }
-echo "</select>";
-
-echo "<br> Major 1: <select name='major1' required='required'>";
-if ($count > 0){
-	
-	echo "<option value = ''></option>";
-	while ($Major1 = mysqli_fetch_array($result)){
-		echo '<option value = "' .$Major1["ID"]. '">' .$Major1["Curriculum"].'</option>';
-	}
-}
-echo "</select>";
-
-echo "<br> Major 2: <select name='major2'>";
-if ($count > 0){
-	
-	echo "<option value = ''></option>";
-	while ($Major2 = mysqli_fetch_array($result2)){
-		echo '<option value = "' .$Major2["ID"]. '">' .$Major2["Curriculum"].'</option>';
-	}
-}
-echo "</select>";
-
-echo "<br> Minor: <select name='minor'>";
-if ($count > 0){
-	
-	echo "<option value = ''></option>";
-	while ($Minor = mysqli_fetch_array($result3)){
-		echo '<option value = "' .$Minor["ID"]. '">' .$Minor["Curriculum"].'</option>';
-	}
-}
-echo "</select>";
-
-
-echo "<br> Class Standing: <select name='class_stand' required='required'>";
-if ($count > 0){
-	
-	echo "<option value = ''></option>";
-	while ($Standing = mysqli_fetch_array($result4)){
-		echo '<option value = "' .$Standing["ID"]. '">' .$Standing["Standing"].'</option>';
-	}
-}
-echo "</select>";
-
-echo "<br> Email Address: <input type='text' name='email' required='required'>";
-echo "<br><input type='submit' value='Submit'>";
-echo "</form>";
-}
-    
-    
-else {
-echo '<br>You are not logged in with a Faculty Account. Please Login with a Faculty account!';
-}
-
-
-echo "</body>";
-
-
-
-
+else
+	echo '<br> Please Login with a Faculty account!';
 ?>
+
+</body>
