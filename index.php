@@ -15,38 +15,41 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 
   <meta charset="UTF-8">
   <title>Daily Roar Login</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
-<link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
+  <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
+<link href="CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+	<link href="CSS/font_family.css" rel="stylesheet">
+  <link href="CSS/home.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class='retro'>
-<div class="box-form">
-	<div class="left">
-		<div class="overlay">
-		<h1>Daily Roar</h1>
-		<h3>"Onward and Upward!"</h3>
-		</div>
-	</div>
-		<div class="right">
-		<h5>Login</h5>
-		<p>To begin sending out opportunities, Please enter your log in credentials. </p>
-		<form name="input" action="login.php" method="post">
-		<div class="inputs">
-			<input type="text" placeholder="User Name" name ="login_id" required="required">
-			<br>
-			<input type="password" placeholder="Password" name="password" required="required">
-		</div>
-			<br><br>
-		<div class="remember-me--forget-password">
-				<a href="forgotPassword.php">Forgot Password?</a>
-		</div>
-			<br>
-			<button type="submit" value="login">Login</button>
-		</form>
-	</div>
-</div>
+  <div class="wrapper fadeInDown" style="">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Sign In </h2>
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="70" width="70"/>
+      </div>
+      <!-- Login Form -->
+      <form name="input" action="login.php" method="post">
+        <input type="text" class="fadeIn second" name="login_id" placeholder="Username" required="required">
+        <input type="password" class="fadeIn third" name="password" placeholder="Password" required="required">
+        <input type="submit" class="fadeIn fourth" value="login">
+      </form>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="forgot_password.php">Forgot Password?</a>
+      </div>
 
+    </div>
+  </div>
+  <div class="background_parent">
+    <img class='pixel_perfect keanu ' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+    <img class='pixel_perfect foreground primary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect foreground secondary' src='assets/Foreground_2.png'></img>
+    <img class='pixel_perfect foreground tertiary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect background' src='assets/Background.png'></img>
+  </div>
 </body>
 </html>
