@@ -26,27 +26,22 @@ if($now > $_SESSION['expire']) {
   <script src="uploadCSV/uploadCSV.js"></script>
   <link href="/dailyroar/CSS/font_family.css" rel="stylesheet">
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" /> 
-
+  <link href="CSS/faculty_home_page.css" rel="stylesheet">
+  <link href="CSS/font_family.css" rel="stylesheet">
 </head>
 
-<body>
-
-    <div class="title">Welcome Graduate Assistant!</div>
-    <div class="menu">
-        <ul>
-            <li class="option">
-                <a href="javascript:void(0)" class="btn">Home</a>
-            </li>
-            <li class="option">
-                <a href="uploadCSV/uploadCSV.html" class="btn">Upload Students CSV</a>
-            </li>
-        </ul>
-    </div>
-    <div class="body">
+<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
+    
+    <div class="body" style="text-align: center">
         <p>Welcome to the Daily Roar!</p>
     </div>
     <div class="logout">
         <a href="logout.php">logout</a>
     </div>
+
+<div class="nes-container with-title is-centered">
+  <p class="title">Select an Option</p>
+  <a href="uploadCSV/upload_GA.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
+</div>
 </body>
 </html>
