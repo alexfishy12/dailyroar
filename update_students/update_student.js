@@ -2,6 +2,13 @@ var changed_students = [];
 
 $(document).ready(function() {
     console.log("Document ready.");
+    
+    $("div#info").hide();
+    $("div#students_table").hide();
+    $("div#form_options").hide();
+    $("div#review_options").hide();
+    $("div#finished_options").hide();
+
     $("form#search").submit(function(e) {
         e.preventDefault();
         console.log("Search form submitted.");
@@ -61,7 +68,6 @@ function get_students(search_text) {
         else
         {
             html = response;
-            console.log(response)
             display_students_table(html, false);
         }
         initialize_input_change_detection();
@@ -111,21 +117,22 @@ function review_students() {
 
 function display_students_table(html, isError) {
     if (isError) {
+        $("div#info").show();
         $("#students_table_error").html(html)
     }
     else {
-        $("#info").show();
-        $("#info").html("<b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b>");
-        $("#students_table").html(html);
-        $("#students_table").show();
-        $("#form_options").show();
+        $("div#info").show();
+        $("div#info").html("<b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b>");
+        $("div#students_table").html(html);
+        $("div#students_table").show();
+        $("div#form_options").show();
     }
 }
 
 function request_students(search_text){
     return new Promise(function(resolve) {
         $.ajax({
-            url: '/dailyroar/update_students/get_students.php',
+            url: 'get_students.php',
             dataType: 'text',
             type: 'POST',
             data: {search_text: search_text},
