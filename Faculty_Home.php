@@ -27,7 +27,7 @@ if($now > $_SESSION['expire']) {
   <script src="uploadCSV/uploadCSV.js"></script>
   <link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 
 <body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
