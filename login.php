@@ -1,36 +1,62 @@
 <?php
-$user=strtolower($_POST['login_id']);
-$pass=$_POST['password'];
-include "dbconfig.php";
-session_start();
+    include "dbconfig.php";
+    session_start();
 
-$sql = "SELECT * FROM csemaildb.Login WHERE Email_Address = '$user' ";
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
-$result = mysqli_query($con,$sql);
+    $user=strtolower($_POST['login_id']);
+    $pass=$_POST['password'];
 
-if(mysqli_num_rows($result)){
-    $row = mysqli_fetch_array($result);
-    if(strtolower($row['Email_Address'])== $user){
-        if($row['Password']!=$pass){
-            echo "Password incorrect <br> Login Failed!";
-            header("refresh:2;url=index.php");
+    $query = "CALL Try_Login(:email, :password);";
+
+    // Prepare the query
+    $stmt = $pdo->prepare($query);
+            
+    // Bind the login parameters
+    $stmt->bindParam(":email", $user, PDO::PARAM_STR);
+    $stmt->bindParam(":password", $pass, PDO::PARAM_STR);
+
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch the result
+    if ($stmt->errorCode() === '00000') {
+        $response = $stmt->fetch()[0];
+        if (str_contains($response, "Success")) {
+            echo "Login successful! Getting user data...<br>";
+            $query = "select * from Login where Email_Address = :email;";
+            $stmt = $pdo ->prepare($query);
+            $stmt->bindParam(":email", $user, PDO::PARAM_STR);
+            $stmt->execute();
+            if ($stmt->errorCode() === '00000') {
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                $_SESSION["user"] = $user;
+                $_SESSION['account_type'] = $response['Account_Type'];
+                $_SESSION['id'] = $response['ID'];
+                $_SESSION["start"] = time();
+                $_SESSION['expire'] = $_SESSION['start'] + (60 * 10) ; 
+                if($_SESSION['account_type']=="FA"){
+                    header("Location: Faculty_Home.php");
+                }
+                else{
+                    header("location: GA_Home.php");
+                }
+            }
+            else {
+                echo "Error getting account information.";
+            }
+
+            
         }
-        else{
-            $_SESSION["user"] = $user;
-            $_SESSION['account_type'] = $row['Account_Type'];
-            $_SESSION['id'] = $row['ID'];
-            $_SESSION["start"] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (60 * 10) ; 
-            if($_SESSION['account_type']=="FA"){
-                header("Location: Faculty_Home.php");
-            }
-            else{
-                header("location: GA_Home.php");
-            }
+        else {
+            echo $response;
+            //header("refresh:2;url=index.php");
         }
     }
-}
-else{
-    echo "Authentication Error";
-}
+    else {
+        echo $pdo->errorInfo()[2];
+        echo "Authentication error";
+        die();
+    }
 ?>
