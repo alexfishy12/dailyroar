@@ -24,17 +24,30 @@
     if ($stmt->errorCode() === '00000') {
         $response = $stmt->fetch()[0];
         if (str_contains($response, "Success")) {
-            $_SESSION["user"] = $user;
-            $_SESSION['account_type'] = $row['Account_Type'];
-            $_SESSION['id'] = $row['ID'];
-            $_SESSION["start"] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (60 * 10) ; 
-            if($_SESSION['account_type']=="FA"){
-                header("Location: Faculty_Home.php");
+            echo "Login successful! Getting user data...<br>";
+            $query = "select * from Login where Email_Address = :email;";
+            $stmt = $pdo ->prepare($query);
+            $stmt->bindParam(":email", $user, PDO::PARAM_STR);
+            $stmt->execute();
+            if ($stmt->errorCode() === '00000') {
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                $_SESSION["user"] = $user;
+                $_SESSION['account_type'] = $response['Account_Type'];
+                $_SESSION['id'] = $response['ID'];
+                $_SESSION["start"] = time();
+                $_SESSION['expire'] = $_SESSION['start'] + (60 * 10) ; 
+                if($_SESSION['account_type']=="FA"){
+                    header("Location: Faculty_Home.php");
+                }
+                else{
+                    header("location: GA_Home.php");
+                }
             }
-            else{
-                header("location: GA_Home.php");
+            else {
+                echo "Error getting account information.";
             }
+
+            
         }
         else {
             echo $response;
