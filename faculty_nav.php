@@ -38,10 +38,10 @@
         <ul class="navbar-nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="/dailyroar/Faculty_Home.php">Home</a>
+            <a class="nav-link" href="../Faculty_Home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dailyroar/send_email/email.php">Email</a>
+            <a class="nav-link" href="../send_email/email.php">Email</a>
           </li>
 
           <li class="nav-item dropdown">
