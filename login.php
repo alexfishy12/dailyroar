@@ -57,7 +57,7 @@
         }
         else {
             echo $response;
-            //header("refresh:2;url=index.php");
+            header("refresh:2;url=index.php");
         }
     }
     else {
