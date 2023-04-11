@@ -63,5 +63,3 @@
     </div>
   </nav>
 </header>
-
-</html>

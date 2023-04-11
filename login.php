@@ -41,7 +41,7 @@
                 $_SESSION['account_type'] = $response['Account_Type'];
                 $_SESSION['id'] = $response['ID'];
                 $_SESSION["start"] = time();
-                $_SESSION['expire'] = $_SESSION['start'] + (60 * 10) ; 
+                $_SESSION['expire'] = $_SESSION['start'] + (3600) ; 
                 if($_SESSION['account_type']=="FA"){
                     header("Location: Faculty_Home.php");
                 }
@@ -57,7 +57,7 @@
         }
         else {
             echo $response;
-            //header("refresh:2;url=index.php");
+            header("refresh:2;url=index.php");
         }
     }
     else {
