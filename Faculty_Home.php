@@ -20,7 +20,6 @@ if($now > $_SESSION['expire']) {
 
   
   <title>Faculty Home Page</title>
-
   <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
@@ -28,9 +27,17 @@ if($now > $_SESSION['expire']) {
   <link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="CSS/background.css" rel="stylesheet" type="text/css"/>
 </head>
-
-<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
+<body>
+<div class="background_parent">
+    <img class='pixel_perfect keanu ' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+    <img class='pixel_perfect foreground primary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect foreground secondary' src='assets/Foreground_2.png'></img>
+    <img class='pixel_perfect foreground tertiary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect background' src='assets/Background.png'></img>
+  </div>
+    <div class="retro" style="margin-top:10vh; margin: bottom 30vh; margin-left:20vw; margin-right:20vw;">
     
     <div class="body" style="text-align: center">
         <p>Welcome to the Daily Roar!</p>
@@ -48,7 +55,6 @@ if($now > $_SESSION['expire']) {
   <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
 </div>
 
-
-
+</div>
 </body>
 </html>

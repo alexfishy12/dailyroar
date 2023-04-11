@@ -13,6 +13,7 @@ if($now > $_SESSION['expire']) {
     session_destroy();
     header("Location: ../index.php");  
 }
+echo "<title id='title'>Daily Roar - Insert Student</title>";
 include("../dbconfig.php");
 include("../faculty_nav.php");
 echo '<link href="../CSS/font_family.css" rel="stylesheet">';
@@ -40,9 +41,9 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 	
 
 
-
 echo "<body class='retro'>"; ?>
-
+<hr>
+<div class="retro" style="margin-top:10vh margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
 <div class="nes-container with-title is-centered">
 	<p class="title"> Manually Insert a Student </p>
 	
@@ -52,7 +53,7 @@ echo "<body class='retro'>"; ?>
 				<label for="inline_field">First Name: </label>
 				<input type="text" id="inline_field" class="nes-input is-success" name = "first_name" required>
 			</div>
-
+			<br>
 
 			<div class="nes-field is-inline">
 			<label for="inline_field">Last Name: </label>
@@ -156,7 +157,7 @@ echo "<body class='retro'>"; ?>
 			</select>
 			</div>
 
-
+			<br>
 			<div class="nes-field is-inline">
 			<label for="nes_field"> Email Address: </label>
 			<input type="email" id="inline_field" class="nes-input is-success" name='email' required>
@@ -170,6 +171,7 @@ echo "<body class='retro'>"; ?>
 			<br>
 		</form>
 </div>
+						</div>
 
 
 <?php
