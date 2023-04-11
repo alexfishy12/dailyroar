@@ -17,6 +17,7 @@ include("../dbconfig.php");
 include("../faculty_nav.php");
 echo '<link href="../CSS/font_family.css" rel="stylesheet">';
 echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
+echo '<link href = "../CSS/insert_student.css" rel = "stylesheet" />';
 
 
 if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
@@ -60,7 +61,7 @@ echo "<body class='retro'>"; ?>
 			</div>
 
 		
-			<div class="nes-select">
+			<div class="nes-select is-inline" >
 			<label for="inline_field"> Active Program: </label>
 			<select required id="default_select" name = "active_program" >
 				<option value=""</option>
@@ -78,10 +79,10 @@ echo "<body class='retro'>"; ?>
 			</select>
 			</div>
 
-
-			<div class="nes-select">
+							
+			<div class="nes-select" >
 			<label for="inline_field"> Major One: </label>
-			<select  id="default_select" name='major1' required >
+			<select   id="default_select" name='major1' required >
 				<option value="" </option>
 
 						<?php
