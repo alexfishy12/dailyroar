@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-<title>Forgot Password</title>
+<title>Reset Password</title>
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
@@ -17,7 +17,7 @@
   
 
 <div class="nes-container with-title is-centered">
-  <p class="title">Enter your Email Address</p>
+  <p class="title">Reset Password</p>
 
     <?php
     include "dbconfig.php";

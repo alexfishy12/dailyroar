@@ -45,10 +45,13 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     </div>
   </div>
   <div class="background_parent">
-    <img class='pixel_perfect keanu ' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
-    <img class='pixel_perfect foreground primary' src='assets/Foreground_1.png'></img>
-    <img class='pixel_perfect foreground secondary' src='assets/Foreground_2.png'></img>
-    <img class='pixel_perfect foreground tertiary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect keanu' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+    <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect foreground secondary-fg' src='assets/Foreground_2.png'></img>
+    <img class='pixel_perfect foreground tertiary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect middleground primary-mg' src='assets/middleground_2.png'></img>
+    <img class='pixel_perfect middleground secondary-mg' src='assets/middleground_2.png'></img>
+    <img class='pixel_perfect middleground tertiary-mg' src='assets/middleground_2.png'></img>
     <img class='pixel_perfect background' src='assets/Background.png'></img>
   </div>
 </body>
