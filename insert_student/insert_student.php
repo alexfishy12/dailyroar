@@ -44,25 +44,26 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 
 echo "<body class='retro'>"; ?>
 
-<div class="nes-container with-title is-centered">
+<div class="nes-container with-title is-centered" id = "container">
 	<p class="title"> Manually Insert a Student </p>
 	
 		<form name = "input" action = "enter_student.php" method = "post" >
 
 			<div class="nes-field is-inline">
 				<label for="inline_field">First Name: </label>
-				<input type="text" id="inline_field" class="nes-input is-success" name = "first_name" required>
+				<input type="text" id="inline_field" class="nes-input" name = "first_name" required>
 			</div>
 
 
 			<div class="nes-field is-inline">
 			<label for="inline_field">Last Name: </label>
-			<input type="text" id="inline_field" class="nes-input is-success" name = "last_name" required>
+			<input type="text" id="inline_field" class="nes-input is-primary" name = "last_name" required>
 			</div>
 
 		
-			<div class="nes-select is-inline" >
+			<div class="nes-field is-inline">
 			<label for="inline_field"> Active Program: </label>
+			<div class="nes-select">
 			<select required id="default_select" name = "active_program" >
 				<option value=""</option>
 
@@ -78,11 +79,13 @@ echo "<body class='retro'>"; ?>
 						?>
 			</select>
 			</div>
+			</div>
 
-							
+
+			<div class="nes-field is-inline title">
+			<label for="inline_field"> Major One: </label> 
 			<div class="nes-select" >
-			<label for="inline_field"> Major One: </label>
-			<select   id="default_select" name='major1' required >
+			<select  id="default_select" name='major1' required >
 				<option value="" </option>
 
 						<?php
@@ -97,10 +100,12 @@ echo "<body class='retro'>"; ?>
 						?>
 			</select>
 			</div>
+			</div>
 
 
-			<div class="nes-select">
+			<div class="nes-field is-inline title ">
 			<label for="nes_field"> Major Two: </label>
+			<div class="nes-select">
 			<select  id="default_select" name='major2' required >
 				<option value="" </option>
 
@@ -117,11 +122,13 @@ echo "<body class='retro'>"; ?>
 						?>
 			</select>
 			</div>
+			</div>
 
 
 
-			<div class="nes-select">
+			<div class="nes-field is-inline">
 			<label for="nes_field"> Minor: </label>
+			<div class="nes-select">
 			<select  id="default_select" name='minor' required >
 				<option value="" </option>
 
@@ -137,10 +144,13 @@ echo "<body class='retro'>"; ?>
 						?>
 			</select>
 			</div>
+			</div>
 
 
-			<div class="nes-select">
+
+			<div class="nes-field is-inline">
 			<label for="nes_field"> Class Standing: </label>
+			<div class="nes-select">
 			<select  id="default_select" name='class_stand' required >
 				<option value="" </option>
 
@@ -156,17 +166,18 @@ echo "<body class='retro'>"; ?>
 						?>
 			</select>
 			</div>
+			</div>
 
 
 			<div class="nes-field is-inline">
 			<label for="nes_field"> Email Address: </label>
-			<input type="email" id="inline_field" class="nes-input is-success" name='email' required>
+			<input type="email" id="inline_field" class="nes-input" name='email' required>
 			</div>
 
 
 			<br>
 			<br>
-			<input type='submit' value='Submit'>
+			<input class = "nes-btn is-primary" type='submit' value='Submit'>
 			
 			<br>
 		</form>

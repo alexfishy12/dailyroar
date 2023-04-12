@@ -1,5 +1,32 @@
 .nes-select{
 
-    width: 50vw;
+    width: 70vw;
+    
 
 }
+
+.nes-field{
+
+    width: 50vw;
+    margin: 3vh;
+    
+}
+
+.nes-container{
+
+    margin-top: 10vh;
+    margin-bottom: 30vh;
+    margin-left:20vw; 
+    margin-right:20vw;
+
+}
+
+.inline-field{
+
+    justify-content: left;
+}
+
+.nes-input {
+    background-color: black;
+    color: blue;
+  }
