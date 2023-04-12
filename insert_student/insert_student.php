@@ -73,7 +73,7 @@ include("../dbconfig.php");
 						<div class="nes-select">
 						<label for="inline_field"> Active Program: </label>
 						<select required id="default_select" name = "active_program" >
-							<option value=""</option>
+							<option value=""></option>
 
 									<?php
 
@@ -92,7 +92,7 @@ include("../dbconfig.php");
 						<div class="nes-select">
 						<label for="inline_field"> Major One: </label>
 						<select  id="default_select" name='major1' required >
-							<option value="" </option>
+							<option value=""> </option>
 
 									<?php
 										if ($countCurriculum > 0)
@@ -111,7 +111,7 @@ include("../dbconfig.php");
 						<div class="nes-select">
 						<label for="nes_field"> Major Two: </label>
 						<select  id="default_select" name='major2' required >
-							<option value="" </option>
+							<option value=""> </option>
 
 									<?php
 										mysqli_data_seek($resultCurriculum,0);
@@ -132,7 +132,7 @@ include("../dbconfig.php");
 						<div class="nes-select">
 						<label for="nes_field"> Minor: </label>
 						<select  id="default_select" name='minor' required >
-							<option value="" </option>
+							<option value=""> </option>
 
 									<?php
 										mysqli_data_seek($resultCurriculum,0);
@@ -151,7 +151,7 @@ include("../dbconfig.php");
 						<div class="nes-select">
 						<label for="nes_field"> Class Standing: </label>
 						<select  id="default_select" name='class_stand' required >
-							<option value="" </option>
+							<option value=""> </option>
 
 									<?php
 										if ($countClassStanding > 0)
@@ -186,7 +186,7 @@ include("../dbconfig.php");
     <div class="background_parent">
         <img class='pixel_perfect keanu' src='../assets/Keanu_Walk_FULLSCREEN.gif'></img>
         <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
-        <img class='pixel_perfect middleground primary-mg' src='../assets/middleground_2.png'></img>
+        <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
         <img class='pixel_perfect background' src='../assets/Background.png'></img>
     </div>
 </body>
