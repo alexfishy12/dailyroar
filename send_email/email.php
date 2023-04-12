@@ -41,15 +41,15 @@ if($now > $_SESSION['expire']) {
     <!-- End of Quill -->
 </head>
 <title id="title">Daily Roar - Email</title>
-<header class= "retro">
+<nav class= "retro">
 <?php 
 include("../faculty_nav.php"); 
 ?>
-</header>
-
-<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
-    <div class="title">Daily Roar - Email</div>
+</nav>
+<body>
+   <!-- <div class="retro" style="margin-left:37vw; margin-right:20vw;">Daily Roar - Email</div> -->
     <hr>
+    <div class="retro" style="margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
     <div class="nes-container with-title is-centered">
     <h2>Compose Email</h2>
 
@@ -86,6 +86,7 @@ include("../faculty_nav.php");
        <!-- <button id='upload'>Upload attachments</button>-->
         <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
     </div>
+</div>
 </div>
     <div id="get_response"></div>
     <br>
