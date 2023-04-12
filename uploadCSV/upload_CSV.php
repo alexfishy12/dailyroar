@@ -19,7 +19,7 @@ if($now > $_SESSION['expire']) {
 <head>
 
   
-  <title>Daily Roar</title>
+  <title>Daily Roar - Upload CSV</title>
 
 
   <script src= "../libraries/papaparse.min.js" ></script>

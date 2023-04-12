@@ -41,7 +41,7 @@ if($now > $_SESSION['expire']) {
     <!-- End of Quill -->
 </head>
 <title id="title">Daily Roar - Email</title>
-<header class= "retro">
+<nav class= "retro">
 <?php 
 include("../faculty_nav.php"); 
 ?>

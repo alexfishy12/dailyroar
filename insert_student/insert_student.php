@@ -13,6 +13,7 @@ if($now > $_SESSION['expire']) {
     session_destroy();
     header("Location: ../index.php");  
 }
+echo "<title id='title'>Daily Roar - Insert Student</title>";
 include("../dbconfig.php");
 ?>
 
@@ -50,6 +51,7 @@ include("../dbconfig.php");
 <div class="title">
 	Manually Insert a Student
 </div>
+						</div>
 
 	<div class="scroll">
 		<div class="content">
