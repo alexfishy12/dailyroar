@@ -1,9 +1,9 @@
-html,
 body {
   background-color: #0c5eb3;
   z-index: -10;
   position: relative;
   margin: 0;
+  height: 100vh;
   overflow-x:hidden;
   overflow-y:hidden; 
 }
@@ -16,7 +16,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100vh;
-  bottom: 0;
+  bottom: 0%;
   object-fit: cover;
   height: auto;
 }
@@ -31,6 +31,54 @@ body {
   z-index: -4;
 }
 
+.middleground {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  z-index: -3;
+}
+
+.primary-mg {
+  animation: primary-mg 120s infinite linear;
+}
+
+.secondary-mg {
+  animation: secondary-mg 120s infinite linear;
+}
+
+.tertiary-mg {
+  animation: tertiary-mg 120s infinite linear;
+}
+
+@keyframes primary-mg {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -200%;
+  }
+}
+
+@keyframes secondary-mg {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes tertiary-mg {
+  from {
+    left: 200%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
 .foreground {
   width: inherit;
   height: inherit;
@@ -40,15 +88,15 @@ body {
   z-index: -2;
 }
 
-.primary {
+.primary-fg {
   animation: primary 40s infinite linear;
 }
 
-.secondary {
+.secondary-fg {
   animation: secondary 40s infinite linear;
 }
 
-.tertiary {
+.tertiary-fg {
   animation: tertiary 40s infinite linear;
 }
 

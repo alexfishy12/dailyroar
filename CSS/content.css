@@ -1,0 +1,26 @@
+.title {
+  padding-top:3vh;
+  padding-bottom:3vh;
+  margin-left:20vw;
+  margin-right:20vw;
+  text-align:center;
+}
+
+.content {
+  margin-left:20vw; 
+  margin-right:20vw;
+  height:fit-content;
+}
+
+.scroll {
+  overflow-y:scroll;
+  height:60vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+

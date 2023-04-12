@@ -16,10 +16,9 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
   <meta charset="UTF-8">
   <title>Daily Roar Login</title>
   <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
-<link href="CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
-  <link href="CSS/background.css" rel="stylesheet" type="text/css"/>
+  <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover">
@@ -45,10 +44,13 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     </div>
   </div>
   <div class="background_parent">
-    <img class='pixel_perfect keanu ' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
-    <img class='pixel_perfect foreground primary' src='assets/Foreground_1.png'></img>
-    <img class='pixel_perfect foreground secondary' src='assets/Foreground_2.png'></img>
-    <img class='pixel_perfect foreground tertiary' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect keanu' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+    <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect foreground secondary-fg' src='assets/Foreground_2.png'></img>
+    <img class='pixel_perfect foreground tertiary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect middleground primary-mg' src='assets/middleground_2.png'></img>
+    <img class='pixel_perfect middleground secondary-mg' src='assets/middleground_2.png'></img>
+    <img class='pixel_perfect middleground tertiary-mg' src='assets/middleground_2.png'></img>
     <img class='pixel_perfect background' src='assets/Background.png'></img>
   </div>
 </body>
