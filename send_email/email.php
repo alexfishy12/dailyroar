@@ -18,8 +18,8 @@ if($now > $_SESSION['expire']) {
 <head>
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
-    
-  <link rel="stylesheet" href="../CSS/faculty_home_page.css">
+    <link rel="stylesheet" href="../CSS/background_static.css">
+  <link rel="stylesheet" href="../CSS/content.css">
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
@@ -47,51 +47,64 @@ include("../faculty_nav.php");
 ?>
 </header>
 
-<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
-    <div class="title">Daily Roar - Email</div>
-    <hr>
-    <div class="nes-container with-title is-centered">
-    <h2>Compose Email</h2>
-
-    <div class="email_form">       
-        <label for="curriculum"><b>Curriculum:</b></label>
-        <div name="curriculum" id="curriculum" class="nes-select" multiple>
-            
-        </div>
-        <label for="class_standing"><b>Class Standings:</b></label>
-        <div name="class_standing" id="class_standings" class="nes-select" multiple>
-            
-        </div>
-        <div class="nes-field">
-        <label for="subject">Subject:</label>
-        <input type="text" name="subject" id="email_subject" class="nes-input" required><br> 
-        </div>
-        <!-- EXAMPLE QUILL CODE -->
-            <!-- Create the toolbar container -->
-            <div id="toolbar">
-            <button class="ql-bold">Bold</button>
-            <button class="ql-italic">Italic</button>
-            </div>
-    
-            <!-- Create the editor container -->
-            <div form="email" name="body" id="email_editor">
-                <p>Welcome to The Daily Roar!</p>
-            </div>
-            <br>
-        <!-- END OF EXAMPLE QUILL CODE -->
-        <label class="nes-btn is-primary">
-        <span> Select Your File</span>
-        <input type="file" id="email_attachments" name="attachments">
-        </label>
-       <!-- <button id='upload'>Upload attachments</button>-->
-        <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
-    </div>
+<body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
+  <div class='title'>
+    Compose Email
 </div>
-    <div id="get_response"></div>
-    <br>
-    <div id="send_email_response"></div>
-    <br>
-    <div id="send_email_errors"></div>
+<div class="scroll">
+  <div class="content">
+        <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+            
+                <label for="curriculum"><b>Curriculum:</b></label>
+                <div name="curriculum" id="curriculum" class="nes-select" multiple>
+                    
+                </div>
+                <label for="class_standing"><b>Class Standings:</b></label>
+                <div name="class_standing" id="class_standings" class="nes-select" multiple>
+                    
+                </div>
+                <div class="nes-field">
+                <label for="subject">Subject:</label>
+                <input type="text" name="subject" id="email_subject" class="nes-input" required><br> 
+                </div>
+                <!-- EXAMPLE QUILL CODE -->
+                    <!-- Create the toolbar container -->
+                    <div id="toolbar">
+                    <button class="ql-bold">Bold</button>
+                    <button class="ql-italic">Italic</button>
+                    </div>
+            
+                    <!-- Create the editor container -->
+                    <div form="email" name="body" id="email_editor">
+                        <p>Welcome to The Daily Roar!</p>
+                    </div>
+                    <br>
+                <!-- END OF EXAMPLE QUILL CODE -->
+                <label class="nes-btn is-primary">
+                <span> Select Your File</span>
+                <input type="file" id="email_attachments" name="attachments">
+                </label>
+                <!-- <button id='upload'>Upload attachments</button>-->
+                <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
+            
+            
+            <div id="get_response"></div>
+            <br>
+            <div id="send_email_response"></div>
+            <br>
+            <div id="send_email_errors"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="background_parent">
+      <img class='pixel_perfect keanu' src='../assets/Keanu_Walk_FULLSCREEN.gif'></img>
+      <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
+      <img class='pixel_perfect middleground primary-mg' src='../assets/middleground_2.png'></img>
+      <img class='pixel_perfect background' src='../assets/Background.png'></img>
+  </div>
 </body>
 
 </html>

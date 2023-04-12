@@ -26,6 +26,8 @@ if($now > $_SESSION['expire']) {
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV.js"></script>
   <link href="../CSS/font_family.css" rel="stylesheet">
+  <link href="../CSS/content.css" rel="stylesheet">
+  <link href="../CSS/background_static.css" rel="stylesheet">
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 
@@ -33,16 +35,28 @@ if($now > $_SESSION['expire']) {
 include("../faculty_nav.php");
 ?>
 
-<body class="retro">
-
-    <div class="title">Upload Students CSV</div>
-
-    <div>
-        <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
+<body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
+  
+<div class="title">
+    Upload Students CSV
+</div>
+<div class="scroll">
+    <div class="content">
+            <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+                <div>
+                    <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
+                </div>
+                <div id="responseMessage"></div>
+            </div>
     </div>
-    <div id="responseMessage"></div>
+</div>
 
 
-
+  <div class="background_parent">
+      <img class='pixel_perfect keanu' src='../assets/Keanu_Walk_FULLSCREEN.gif'></img>
+      <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
+      <img class='pixel_perfect middleground primary-mg' src='../assets/middleground_2.png'></img>
+      <img class='pixel_perfect background' src='../assets/Background.png'></img>
+  </div>
 </body>
 </html>

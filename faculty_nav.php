@@ -19,7 +19,7 @@
 <script src= "/dailyroar/libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
   <script src="/dailyroar/uploadCSV/uploadCSV.js"></script>
-  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
+  <link rel="stylesheet" href="/dailyroar/CSS/content.css">
   <script src= "/dailyroar/libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
 
