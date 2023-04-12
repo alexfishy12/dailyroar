@@ -18,40 +18,40 @@ if($now > $_SESSION['expire']) {
 <html lang="en" >
 <head>
 
-  
+  <meta charset="UTF-8">
   <title>Faculty Home Page</title>
-  <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
-  <script src= "libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
-  <script src="uploadCSV/uploadCSV.js"></script>
-  <link href="CSS/font_family.css" rel="stylesheet">
-  <link href="CSS/faculty_home_page.css" rel="stylesheet">
-  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-  <link href="CSS/background_home.css" rel="stylesheet">
-  <link href="" rel="">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+	<link href="CSS/font_family.css" rel="stylesheet">
+    <link href="CSS/background_static.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/content.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body>
-    <div class="retro" style="margin-top:10vh; margin: bottom 30vh; margin-left:20vw; margin-right:20vw;">
-    
-    <div class="body" style="text-align: center">
-        <p>Welcome to the Daily Roar!</p>
+<body class='retro' background-image="assets/Background.png"  background-size="cover">
+  
+    <div class="title">
+        Welcome to the Daily Roar!
     </div>
-    <div class="logout">
-        <a href="logout.php">logout</a>
+    <div class="content">
+        <div class="logout">
+            <a href="logout.php">logout</a>
+        </div>
+            
+            <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+                <p class="title" style='background:rgba(0,0,0,1); color:white'>Select an Option</p>
+                <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
+                <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
+                <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
+                <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
+                <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
+            </div>
     </div>
 
 
-<div class="nes-container with-title is-centered">
-  <p class="title">Select an Option</p>
-  <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
-  <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
-  <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
-  <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
-  <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
-</div>
-
-</div>
-
+    <div class="background_parent">
+        <img class='pixel_perfect keanu' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+        <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
+        <img class='pixel_perfect middleground primary-mg' src='assets/middleground_2.png'></img>
+        <img class='pixel_perfect background' src='assets/Background.png'></img>
+    </div>
 </body>
 </html>
