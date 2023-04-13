@@ -1,16 +1,33 @@
 var quill_editor;
 
 $(document).ready(function(){
-    //initialize curriculum options
     load_filter_options()
-    $("#email_curriculum").innerHTML
 
-    //initialize class standing options
+
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+      
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+      
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+      
+        ['clean']                                         // remove formatting button
+      ];
 
 
     //initialize quill editor
     quill_editor = new Quill('#email_editor', {
-        modules: { toolbar: '#toolbar' },
+        modules: { toolbar: toolbarOptions },
         theme: 'snow'
     });
     
@@ -24,14 +41,61 @@ $(document).ready(function(){
         uploadFile();
     })
 
+    //on select filter
+    
+    $("select#curriculum").change(function() {
+        var selected_option = $("select#curriculum option:selected, this");
+        console.log(selected_option)
+        $("select#selected_curriculum").append(selected_option);
+    })
+    
+    $("select#selected_curriculum").change(function() {
+        var selected_option = $("select#selected_curriculum option:selected, this");
+        console.log(selected_option)
+        $("select#curriculum").append(selected_option);
+    })
+
+    $("select#class_standing").change(function() {
+        var selected_option = $("select#class_standing option:selected, this");
+        console.log(selected_option)
+        $("select#selected_class_standing").append(selected_option);
+    })
+
+    $("select#selected_class_standing").change(function() {
+        var selected_option = $("select#selected_class_standing option:selected, this");
+        console.log(selected_option)
+        $("select#class_standing").append(selected_option);
+    })
+
+    // select all curriculum
+
+    $("button#curriculum_select_all").on("click", function() {
+        var options = $("select#curriculum option, this");
+        $("select#selected_curriculum").append(options);
+    })
+
+    $("button#curriculum_remove_all").on("click", function() {
+        var options = $("select#selected_curriculum option, this");
+        $("select#curriculum").append(options);
+    })
+
+    $("button#standing_select_all").on("click", function() {
+        var options = $("select#class_standing option, this");
+        $("select#selected_class_standing").append(options);
+    })
+
+    $("button#standing_remove_all").on("click", function() {
+        var options = $("select#selected_class_standing option, this");
+        $("select#class_standing").append(options);
+    })
 })
 
 //function that gets curriculum
 function load_filter_options() {
     get_filter_options().then(function(response){
         var jsonResponse = JSON.parse(response)
-        $("div#curriculum").html(jsonResponse.response.curriculum_dropdown)
-        $("div#class_standings").html(jsonResponse.response.class_standing_dropdown)
+        $("select#curriculum").html(jsonResponse.response.curriculum_dropdown)
+        $("select#class_standing").html(jsonResponse.response.class_standing_dropdown)
         $("#get_response").html(response.errors)
     })
 }
@@ -39,17 +103,11 @@ function load_filter_options() {
 
 //Onclick send email button
 function getEmailAttributes(){
-    //only gets simple inputs that have name ad value attribute
-    var formData = $("div.email_form [id^='email']").serializeArray()
-    console.log(formData)
     
-    //for each simple input attribute, add to json
     var json_form_data = {}
-    formData.forEach(getAttribute)
-    function getAttribute(attribute){
-        json_form_data[attribute.name] = attribute.value
-    }
+    
 
+    json_form_data["subject"] = $("input#email_subject").val();
     // var delta = quill_editor.getContents();
     // var text = quill_editor.getText();
 
@@ -59,7 +117,7 @@ function getEmailAttributes(){
 
     //get selected options for curriculum
     var curriculum = []
-    $("select#select_curriculum option:selected").each(function()
+    $("select#selected_curriculum option").each(function()
     {
         console.log($(this).val())
         curriculum.push($(this).val())
@@ -68,7 +126,7 @@ function getEmailAttributes(){
 
     //get selected options for class standing
     var class_standing = []
-    $("select#select_class_standing option:selected").each(function()
+    $("select#selected_class_standing option").each(function()
     {
         console.log($(this).val())
         class_standing.push($(this).val())
@@ -100,7 +158,6 @@ function getEmailAttributes(){
             for (item in response.errors) {
                 errorHTML += response.errors[item] + "<br>";
             }
-            $("#send_email_response").attr("style", "color:black");
             $("#send_email_response").html(responseHTML);
             $("#send_email_errors").attr("style", "color:red");
             $("#send_email_errors").html(errorHTML);

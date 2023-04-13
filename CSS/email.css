@@ -1,0 +1,13 @@
+.editor_container {
+    background-color: white;
+    color: black;
+}
+
+.editor_toolbar {
+    background-color: rgb(202, 202, 202);
+}
+
+.quill_editor {
+    background-color: rgb(202, 202, 202);
+    color: black;
+}

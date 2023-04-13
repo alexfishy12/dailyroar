@@ -20,6 +20,7 @@ if($now > $_SESSION['expire']) {
 
   <meta charset="UTF-8">
   <title>Faculty Home Page</title>
+  <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
     <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
@@ -29,7 +30,7 @@ if($now > $_SESSION['expire']) {
 <body class='retro' background-image="assets/Background.png"  background-size="cover">
   
     <div class="title">
-        Welcome to the Daily Roar!
+         Welcome to the Daily Roar!
     </div>
     <div class="scroll">
         <div class="content">
@@ -38,7 +39,6 @@ if($now > $_SESSION['expire']) {
             </div>
                 
                 <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
-                    <p class="title" style='background:rgba(0,0,0,1); color:white'>Select an Option</p>
                     <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
                     <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
                     <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
