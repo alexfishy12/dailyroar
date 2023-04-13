@@ -101,16 +101,16 @@ include("../faculty_nav.php");
                 <input type="text" name="subject" id="email_subject" class="nes-input" required><br> 
                 </div>
                 <!-- EXAMPLE QUILL CODE -->
+                <div class="quill_editor">
                     <!-- Create the toolbar container -->
-                    <div id="toolbar" class='editor_toolbar'>
-                    <button class="ql-bold">Bold</button>
-                    <button class="ql-italic">Italic</button>
+                    <div id="toolbar">
                     </div>
             
                     <!-- Create the editor container -->
                     <div form="email" name="body" id="email_editor" class='editor_container'>
                         <p>Welcome to The Daily Roar!</p>
                     </div>
+                </div>
                     <br>
                 <!-- END OF EXAMPLE QUILL CODE -->
                 <label class="nes-btn is-primary">

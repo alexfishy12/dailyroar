@@ -1,16 +1,33 @@
 var quill_editor;
 
 $(document).ready(function(){
-    //initialize curriculum options
     load_filter_options()
-    $("#email_curriculum").innerHTML
 
-    //initialize class standing options
+
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+      
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+      
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+      
+        ['clean']                                         // remove formatting button
+      ];
 
 
     //initialize quill editor
     quill_editor = new Quill('#email_editor', {
-        modules: { toolbar: '#toolbar' },
+        modules: { toolbar: toolbarOptions },
         theme: 'snow'
     });
     
@@ -80,25 +97,17 @@ function load_filter_options() {
         $("select#curriculum").html(jsonResponse.response.curriculum_dropdown)
         $("select#class_standing").html(jsonResponse.response.class_standing_dropdown)
         $("#get_response").html(response.errors)
-
-        console.log(jsonResponse.response.curriculum_dropdown)
     })
 }
 
 
 //Onclick send email button
 function getEmailAttributes(){
-    //only gets simple inputs that have name ad value attribute
-    var formData = $("div.email_form [id^='email']").serializeArray()
-    console.log(formData)
     
-    //for each simple input attribute, add to json
     var json_form_data = {}
-    formData.forEach(getAttribute)
-    function getAttribute(attribute){
-        json_form_data[attribute.name] = attribute.value
-    }
+    
 
+    json_form_data["subject"] = $("input#email_subject").val();
     // var delta = quill_editor.getContents();
     // var text = quill_editor.getText();
 
@@ -149,7 +158,6 @@ function getEmailAttributes(){
             for (item in response.errors) {
                 errorHTML += response.errors[item] + "<br>";
             }
-            $("#send_email_response").attr("style", "color:black");
             $("#send_email_response").html(responseHTML);
             $("#send_email_errors").attr("style", "color:red");
             $("#send_email_errors").html(errorHTML);
