@@ -20,6 +20,7 @@ if($now > $_SESSION['expire']) {
 
   <meta charset="UTF-8">
   <title>Faculty Home Page</title>
+  <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
     <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
