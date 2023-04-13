@@ -22,12 +22,10 @@
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <nav class="navbar navbar-expand-lg navbar-light" >
     <div class="container-fluid">
-      <a class="navbar-brand" style="cursor: pointer;">
-
-        <img id="logo" src="../assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="50" width="50" href="../Faculty_Home.php">
-
+      <a class="navbar-brand" style="cursor: pointer;" href="../Faculty_Home.php">
+        <img id="logo" src="../assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="50" width="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -24,15 +24,42 @@ $(document).ready(function(){
         uploadFile();
     })
 
+    //on select filter
+    
+    $("select#curriculum").change(function() {
+        var selected_option = $("select#curriculum option:selected, this");
+        console.log(selected_option)
+        $("select#selected_curriculum").append(selected_option);
+    })
+    
+    $("select#selected_curriculum").change(function() {
+        var selected_option = $("select#selected_curriculum option:selected, this");
+        console.log(selected_option)
+        $("select#curriculum").append(selected_option);
+    })
+
+    $("select#class_standing").change(function() {
+        var selected_option = $("select#class_standing option:selected, this");
+        console.log(selected_option)
+        $("select#selected_class_standing").append(selected_option);
+    })
+
+    $("select#selected_class_standing").change(function() {
+        var selected_option = $("select#selected_class_standing option:selected, this");
+        console.log(selected_option)
+        $("select#class_standing").append(selected_option);
+    })
 })
 
 //function that gets curriculum
 function load_filter_options() {
     get_filter_options().then(function(response){
         var jsonResponse = JSON.parse(response)
-        $("div#curriculum").html(jsonResponse.response.curriculum_dropdown)
-        $("div#class_standings").html(jsonResponse.response.class_standing_dropdown)
+        $("select#curriculum").html(jsonResponse.response.curriculum_dropdown)
+        $("select#class_standing").html(jsonResponse.response.class_standing_dropdown)
         $("#get_response").html(response.errors)
+
+        console.log(jsonResponse.response.curriculum_dropdown)
     })
 }
 
@@ -59,7 +86,7 @@ function getEmailAttributes(){
 
     //get selected options for curriculum
     var curriculum = []
-    $("select#select_curriculum option:selected").each(function()
+    $("select#selected_curriculum option").each(function()
     {
         console.log($(this).val())
         curriculum.push($(this).val())
@@ -68,7 +95,7 @@ function getEmailAttributes(){
 
     //get selected options for class standing
     var class_standing = []
-    $("select#select_class_standing option:selected").each(function()
+    $("select#selected_class_standing option").each(function()
     {
         console.log($(this).val())
         class_standing.push($(this).val())

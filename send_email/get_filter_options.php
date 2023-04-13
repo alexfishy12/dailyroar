@@ -105,7 +105,7 @@
             die();
         }
 
-        $html = "<select name='". $col_name ."' id='select_$col_name' multiple>";
+        $html = "";
 
         foreach ($choices as &$choice){
             if ($choice["ID"] == $default_choice_id && $default_choice_id !== null) {
@@ -115,7 +115,6 @@
                 $html = $html . "<option value='". $choice["ID"] ."'>". $choice["name"] ."</option>";
             }
         }
-        $html = $html . "</select>";
 
         return $html;
     }
