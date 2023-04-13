@@ -48,9 +48,9 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
     <img class='pixel_perfect foreground secondary-fg' src='assets/Foreground_2.png'></img>
     <img class='pixel_perfect foreground tertiary-fg' src='assets/Foreground_1.png'></img>
-    <img class='pixel_perfect middleground primary-mg' src='assets/middleground_2.png'></img>
-    <img class='pixel_perfect middleground secondary-mg' src='assets/middleground_2.png'></img>
-    <img class='pixel_perfect middleground tertiary-mg' src='assets/middleground_2.png'></img>
+    <img class='pixel_perfect middleground primary-mg' src='assets/Middleground_2.png'></img>
+    <img class='pixel_perfect middleground secondary-mg' src='assets/Middleground_2.png'></img>
+    <img class='pixel_perfect middleground tertiary-mg' src='assets/Middleground_2.png'></img>
     <img class='pixel_perfect background' src='assets/Background.png'></img>
   </div>
 </body>
