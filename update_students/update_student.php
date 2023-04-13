@@ -93,7 +93,7 @@ include("../faculty_nav.php");
     <div class="background_parent">
         <img class='pixel_perfect keanu' src='../assets/Keanu_Walk_FULLSCREEN.gif'></img>
         <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
-        <img class='pixel_perfect middleground primary-mg' src='../assets/middleground_2.png'></img>
+        <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
         <img class='pixel_perfect background' src='../assets/Background.png'></img>
     </div>
     </body>
