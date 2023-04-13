@@ -153,7 +153,7 @@
             }
         }
         else {
-            array_push($errorList, "ERROR: ". $stmt->errorInfo()[2]);
+            array_push($errorList, "ERROR: ". $stmt->errorInfo()[2] . ":: LINE 156");
             print_response($responseList, $errorList);
             die();
         }
@@ -209,7 +209,7 @@
         $sqlbody = htmlspecialchars($body, ENT_QUOTES);
 
         //insert email into email table
-        $query = "insert into Email values(null, CURRENT_TIMESTAMP(), :sender_id, :subject, :body, 0, 0, :recipient_count);";
+        $query = "insert into Email values(null, CURRENT_TIMESTAMP(), :sender_id, :subject, :body, 0, 0, :recipient_count, null);";
 
         $stmt = $pdo->prepare($query);
 
@@ -226,7 +226,7 @@
             return $email_id;
         }
         else {
-            array_push($errorList, $stmt->errorInfo()[2]);
+            array_push($errorList, $stmt->errorInfo()[2] . ":: LINE 229");
             print_response($responseList, $errorList);
             die();
         }
@@ -297,7 +297,7 @@
             //success
         }
         else {
-            array_push($errorList, $pdo->errorInfo()[2]);
+            array_push($errorList, $pdo->errorInfo()[2] . ":: LINE 300");
             print_response([], $errorList);
             die();
         }
@@ -343,7 +343,7 @@
             //success
         }
         else {
-            array_push($errorList, $pdo->errorInfo()[2]);
+            array_push($errorList, $pdo->errorInfo()[2] . ":: LINE 346");
             print_response([], $errorList);
             die();
         }
@@ -389,7 +389,7 @@
             //success
         }
         else {
-            array_push($errorList, $pdo->errorInfo()[2]);
+            array_push($errorList, $pdo->errorInfo()[2] . "::LINE 392");
             print_response([], $errorList);
             die();
         }

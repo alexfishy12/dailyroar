@@ -122,7 +122,7 @@ function display_students_table(html, isError) {
     }
     else {
         $("div#info").show();
-        $("div#info").html("<b>Make any changes to students in the table, then click \"Done\" to review. Original values in drop-down lists are highlighted in blue. Changed values are highlighted in yellow.</b>");
+        $("div#info").html("Make any changes to students in the table, then click \"Done\" to review. <br><br><u>Key</u><br>Original values: <span class='original_value' style='color:aquamarine;'>____</span><br>New Values: <span class='new_value' style='color:yellow;'>____</span>");
         $("div#students_table").html(html);
         $("div#students_table").show();
         $("div#form_options").show();
