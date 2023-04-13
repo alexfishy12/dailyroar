@@ -62,7 +62,7 @@ include("../faculty_nav.php");
                       
                     </select>
                   </div>
-                  <div class="column middle">
+                  <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
                       <button id='curriculum_select_all' class='nes-btn is-primary'>Select All</button><br>
                       <button id='curriculum_remove_all' class='nes-btn is-error'>Remove All</button><br>
                   </div>  
@@ -83,7 +83,7 @@ include("../faculty_nav.php");
                     
                     </select>
                   </div>
-                  <div class="column middle">
+                  <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
                       <button id='standing_select_all' class='nes-btn is-primary'>Select All</button><br>
                       <button id='standing_remove_all' class='nes-btn is-error'>Remove All</button><br>
                   </div>  

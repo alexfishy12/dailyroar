@@ -49,6 +49,28 @@ $(document).ready(function(){
         console.log(selected_option)
         $("select#class_standing").append(selected_option);
     })
+
+    // select all curriculum
+
+    $("button#curriculum_select_all").on("click", function() {
+        var options = $("select#curriculum option, this");
+        $("select#selected_curriculum").append(options);
+    })
+
+    $("button#curriculum_remove_all").on("click", function() {
+        var options = $("select#selected_curriculum option, this");
+        $("select#curriculum").append(options);
+    })
+
+    $("button#standing_select_all").on("click", function() {
+        var options = $("select#class_standing option, this");
+        $("select#selected_class_standing").append(options);
+    })
+
+    $("button#standing_remove_all").on("click", function() {
+        var options = $("select#selected_class_standing option, this");
+        $("select#class_standing").append(options);
+    })
 })
 
 //function that gets curriculum
