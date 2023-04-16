@@ -62,7 +62,7 @@ include("../dbconfig.php");
 							<label for="inline_field">First Name: </label>
 							<input type="text" id="inline_field" class="nes-input is-success" name = "first_name" required>
 						</div>
-
+						<br>
 
 						<div class="nes-field is-inline">
 						<label for="inline_field">Last Name: </label>
@@ -166,7 +166,7 @@ include("../dbconfig.php");
 						</select>
 						</div>
 
-
+						<br>
 						<div class="nes-field is-inline">
 						<label for="nes_field"> Email Address: </label>
 						<input type="email" id="inline_field" class="nes-input is-success" name='email' required>

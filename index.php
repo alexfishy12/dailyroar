@@ -22,7 +22,11 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 </head>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover">
-  <div class="wrapper fadeInDown" style="">
+  <div class="wrapper fadeInDown">
+  <h1>The Daily Roar</h1>
+  <br>
+  <h3>"Onward and Upward!"</h3>
+  <br>
     <div id="formContent">
       <!-- Tabs Titles -->
       <h2 class="active"> Sign In </h2>
