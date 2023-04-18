@@ -5,6 +5,7 @@
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
+  <script src="checkPasswordMatch.js"></script>
   <link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />

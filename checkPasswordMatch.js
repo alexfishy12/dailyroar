@@ -1,28 +1,33 @@
-// Add change event handler to the input elements
-/*
-$('#password1, #password2').on('change', function() {
-    // Extract the values of the input elements
-    var string1 = $('#password1').val();
-    var string2 = $('#password2').val();
+document.addEventListener('DOMContentLoaded', function() {
+// Get the input elements for password fields
+var password1 = document.getElementById('password1');
+var password2 = document.getElementById('password2');
 
-    console.log(string1);
-    console.log(string2);
+// Get the message element for displaying password match message
+var passwordMatchMessage = document.getElementById('passwordMatchMessage');
+
+// Add event listener for "input" event on password1 field
+password1.addEventListener('input', checkPasswordsMatch);
+
+// Add event listener for "input" event on password2 field
+password2.addEventListener('input', checkPasswordsMatch);
+
+// Function to check password match
+function checkPasswordsMatch() {
+ 
   
-    // Compare the extracted strings
-    if (string1 === string2) {
-      console.log('Strings match.');
+  // Retrieve the values of both password fields
+  var password1Value = password1.value;
+  var password2Value = password2.value;
+
+  // Compare the password values
+
+    if (password1Value === password2Value) {
+      passwordMatchMessage.textContent = 'Passwords match';
     } else {
-      console.log('Strings do not match.');
+      passwordMatchMessage.textContent = 'Passwords do not match';
     }
-  });
 
+}
 
-*/
-
-  $(document).ready(function() {
-    // Get the text from the input field when its value changes
-    $('.password1').on('change', function() {
-      var inputValue = this.value;
-      console.log('Input value:', inputValue);
-    });
-  });
+})
