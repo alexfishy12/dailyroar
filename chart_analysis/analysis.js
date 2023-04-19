@@ -1,5 +1,7 @@
 var quill_editor;
 
+google.charts.load('current', {packages: ['corechart']});
+
 $(document).ready(function(){
     //show email analysis by default
     $("div#email_analysis").show();
@@ -7,7 +9,6 @@ $(document).ready(function(){
 
     load_filter_options()      
     load_emails().then(function(response){
-        console.log(response);
         $("#email_table").html(response);
 
         $("div#email_table table tr, this").click(function(){
@@ -21,17 +22,22 @@ $(document).ready(function(){
             else
             {
                 get_email_data(email_id).then(function(response){
-                    console.log(response);
-
                     var email_data = response.response;
 
                     var email_data_html = "";
 
                     for (attr in email_data) {
-                        email_data_html += attr + ": " + email_data[attr] + "<br>"
+                        email_data[attr] = parseInt(email_data[attr])
                     }
+
+                    var percentage_opened = 100 * (email_data['total_opened'] / email_data['total_recipients'])
+                    var percentage_link_clicks = 100 * email_data['total_clicked'] / email_data['total_recipients']
                     
+                    email_data_html += "Percentage opened: " + percentage_opened + "%<br>"
+                    email_data_html += "Percentage clicked through: " + percentage_link_clicks + "%<br>"
                     $("div#email_data").html(email_data_html);
+
+                    drawEmailChart(email_data)
                 })
             }
             
@@ -235,4 +241,22 @@ function get_email_data(email_id){
             }
         })
     });
+}
+
+
+
+function drawEmailChart(email_data){ 
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Attribute')
+      data.addColumn('number', 'Count');
+      data.addRows([
+        ['Total Recipients', email_data['total_recipients']],
+        ['Total Opens', email_data['total_opened']],
+        ['Total Link Clicks', email_data['total_clicked']]
+      ]);
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.BarChart(document.getElementById('data_chart'));
+      chart.draw(data, null);
 }
