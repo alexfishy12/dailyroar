@@ -9,7 +9,6 @@ $(document).ready(function(){
 
     load_filter_options()      
     load_emails().then(function(response){
-        console.log(response);
         $("#email_table").html(response);
 
         $("div#email_table table tr, this").click(function(){
@@ -23,18 +22,22 @@ $(document).ready(function(){
             else
             {
                 get_email_data(email_id).then(function(response){
-                    console.log(response);
-
                     var email_data = response.response;
 
                     var email_data_html = "";
 
                     for (attr in email_data) {
-                        email_data_html += attr + ": " + email_data[attr] + "<br>"
+                        email_data[attr] = parseInt(email_data[attr])
                     }
+
+                    var percentage_opened = 100 * (email_data['total_opened'] / email_data['total_recipients'])
+                    var percentage_link_clicks = 100 * email_data['total_clicked'] / email_data['total_recipients']
                     
+                    email_data_html += "Percentage opened: " + percentage_opened + "%<br>"
+                    email_data_html += "Percentage clicked through: " + percentage_link_clicks + "%<br>"
                     $("div#email_data").html(email_data_html);
-                    drawEmailChart(response.response)
+
+                    drawEmailChart(email_data)
                 })
             }
             
@@ -248,12 +251,12 @@ function drawEmailChart(email_data){
       data.addColumn('string', 'Attribute')
       data.addColumn('number', 'Count');
       data.addRows([
-        ['Total Recipients', parseInt(email_data['total_recipients'])],
-        ['Total Opens', parseInt(email_data['Opens'])],
-        ['Total Link Clicks', parseInt(email_data['Clicks'])]
+        ['Total Recipients', email_data['total_recipients']],
+        ['Total Opens', email_data['total_opened']],
+        ['Total Link Clicks', email_data['total_clicked']]
       ]);
 
       // Instantiate and draw the chart.
-      var chart = new google.visualization.PieChart(document.getElementById('data_chart'));
+      var chart = new google.visualization.BarChart(document.getElementById('data_chart'));
       chart.draw(data, null);
 }

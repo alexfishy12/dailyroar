@@ -98,7 +98,7 @@ include("../faculty_nav.php");
                 <br><hr>
                 <b>Data:</b><br>
             <div id="charts_response">
-                <div id="data_chart"></div>
+                <div id="data_chart" style='text-align:center;width:75%;margin-right:12.5%;margin-left:12.5%;'></div>
             </div>
             <div id="email_data"></div>
             <div id="chart_errors"></div>

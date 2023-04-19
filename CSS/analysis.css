@@ -20,3 +20,7 @@ table tr td, th{
 table tr:hover{  
     background: #f1f1f1;
 }
+
+table tr:focus{
+    background: #bbbbbb;
+}
