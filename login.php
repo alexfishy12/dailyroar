@@ -30,7 +30,6 @@
     if ($stmt->errorCode() === '00000') {
         $response = $stmt->fetch()[0];
         if (str_contains($response, "Success")) {
-            echo "Login successful! Getting user data...<br>";
             $query = "select * from Login where Email_Address = :email;";
             $stmt = $pdo ->prepare($query);
             $stmt->bindParam(":email", $user, PDO::PARAM_STR);
@@ -43,26 +42,27 @@
                 $_SESSION["start"] = time();
                 $_SESSION['expire'] = $_SESSION['start'] + (3600) ; 
                 if($_SESSION['account_type']=="FA"){
-                    header("Location: Faculty_Home.php");
+                    echo "Location:Faculty_Home.php";
+                    die();
                 }
                 else{
-                    header("location: GA_Home.php");
+                    echo "Location:GA_Home.php";
+                    die();
                 }
             }
             else {
-                echo "Error getting account information.";
+                echo "ERROR:Unable to retrieve account information.";
+                die();
             }
-
-            
         }
         else {
             echo $response;
-            header("refresh:2;url=index.php");
+            die();
         }
     }
     else {
-        echo $pdo->errorInfo()[2];
-        echo "Authentication error";
+        echo "ERROR:Authentication error";
+
         die();
     }
 ?>

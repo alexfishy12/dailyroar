@@ -41,8 +41,9 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 	
 
 
+?>
 
-echo "<body class='retro'>"; ?>
+<body class='retro'>
 
 <div class="nes-container with-title is-centered" id = "container">
 	<p class="title"> Manually Insert a Student </p>
@@ -60,130 +61,127 @@ echo "<body class='retro'>"; ?>
 			<input type="text" id="inline_field" class="nes-input is-primary" name = "last_name" required>
 			</div>
 
-		
-			<div class="nes-field is-inline">
-			<label for="inline_field"> Active Program: </label>
-			<div class="nes-select">
-			<select required id="default_select" name = "active_program" >
-				<option value=""</option>
 
-						<?php
+						<div class="nes-select">
+						<label for="inline_field"> Active Program: </label>
+						<select required id="default_select" name = "active_program" >
+							<option value=""></option>
 
-							if ($countActiveProgram > 0)
-							{
-								while ($activePorgramRow = mysqli_fetch_array($resultActive))
-								{
-									echo '<option value = "' .$activePorgramRow["ID"]. '">' .$activePorgramRow["ActiveProgram"].'</option>';
-								}
-							}
-						?>
-			</select>
-			</div>
-			</div>
+									<?php
+
+										if ($countActiveProgram > 0)
+										{
+											while ($activePorgramRow = mysqli_fetch_array($resultActive))
+											{
+												echo '<option value = "' .$activePorgramRow["ID"]. '">' .$activePorgramRow["ActiveProgram"].'</option>';
+											}
+										}
+									?>
+						</select>
+						</div>
 
 
-			<div class="nes-field is-inline title">
-			<label for="inline_field"> Major One: </label> 
-			<div class="nes-select" >
-			<select  id="default_select" name='major1' required >
-				<option value="" </option>
+						<div class="nes-select">
+						<label for="inline_field"> Major One: </label>
+						<select  id="default_select" name='major1' required >
+							<option value=""> </option>
 
-						<?php
-							if ($countCurriculum > 0)
-							{
-								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
-								{
-									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
-								}
-							}
-													
-						?>
-			</select>
-			</div>
-			</div>
+									<?php
+										if ($countCurriculum > 0)
+										{
+											while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+											{
+												echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+											}
+										}
+																
+									?>
+						</select>
+						</div>
 
 
-			<div class="nes-field is-inline title ">
-			<label for="nes_field"> Major Two: </label>
-			<div class="nes-select">
-			<select  id="default_select" name='major2' required >
-				<option value="" </option>
+						<div class="nes-select">
+						<label for="nes_field"> Major Two: </label>
+						<select  id="default_select" name='major2' required >
+							<option value=""> </option>
 
-						<?php
-							mysqli_data_seek($resultCurriculum,0);
-							if ($countCurriculum > 0)
-							{
-								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
-								{
-									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
-								}
-							}
-														
-						?>
-			</select>
-			</div>
-			</div>
+									<?php
+										mysqli_data_seek($resultCurriculum,0);
+										if ($countCurriculum > 0)
+										{
+											while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+											{
+												echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+											}
+										}
+																	
+									?>
+						</select>
+						</div>
 
 
 
-			<div class="nes-field is-inline">
-			<label for="nes_field"> Minor: </label>
-			<div class="nes-select">
-			<select  id="default_select" name='minor' required >
-				<option value="" </option>
+						<div class="nes-select">
+						<label for="nes_field"> Minor: </label>
+						<select  id="default_select" name='minor' required >
+							<option value=""> </option>
 
-						<?php
-							mysqli_data_seek($resultCurriculum,0);
-							if ($countCurriculum > 0)
-							{
-								while ($MajorRow= mysqli_fetch_array($resultCurriculum))
-								{
-									echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
-								}
-							}					
-						?>
-			</select>
-			</div>
-			</div>
+									<?php
+										mysqli_data_seek($resultCurriculum,0);
+										if ($countCurriculum > 0)
+										{
+											while ($MajorRow= mysqli_fetch_array($resultCurriculum))
+											{
+												echo '<option value = "' .$MajorRow["ID"]. '">' .$MajorRow["Curriculum"].'</option>';
+											}
+										}					
+									?>
+						</select>
+						</div>
 
 
+						<div class="nes-select">
+						<label for="nes_field"> Class Standing: </label>
+						<select  id="default_select" name='class_stand' required >
+							<option value=""> </option>
 
-			<div class="nes-field is-inline">
-			<label for="nes_field"> Class Standing: </label>
-			<div class="nes-select">
-			<select  id="default_select" name='class_stand' required >
-				<option value="" </option>
+									<?php
+										if ($countClassStanding > 0)
+										{
+											while ($classStandingRow= mysqli_fetch_array($resultClassStanding))
+											{
+												echo '<option value = "' .$classStandingRow["ID"]. '">' .$classStandingRow["Standing"].'</option>';
+											}
+										}
+																
+									?>
+						</select>
+						</div>
 
-						<?php
-							if ($countClassStanding > 0)
-							{
-								while ($classStandingRow= mysqli_fetch_array($resultClassStanding))
-								{
-									echo '<option value = "' .$classStandingRow["ID"]. '">' .$classStandingRow["Standing"].'</option>';
-								}
-							}
-													
-						?>
-			</select>
-			</div>
-			</div>
-
-
-			<div class="nes-field is-inline">
-			<label for="nes_field"> Email Address: </label>
-			<input type="email" id="inline_field" class="nes-input" name='email' required>
-			</div>
+						<br>
+						<div class="nes-field is-inline">
+						<label for="nes_field"> Email Address: </label>
+						<input type="email" id="inline_field" class="nes-input is-success" name='email' required>
+						</div>
 
 
-			<br>
-			<br>
-			<input class = "nes-btn is-primary" type='submit' value='Submit'>
-			
-			<br>
-		</form>
-</div>
+						<br>
+						<br>
+						<input class="nes-btn is-primary"type='submit' value='Submit'>
 
+						<br>
+					</form>
+				</div>
+		</div>
+	</div>
 
+    <div class="background_parent">
+        <img class='pixel_perfect keanu' src='../assets/Keanu_Idle_FULLSCREEN.gif'></img>
+        <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
+        <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
+        <img class='pixel_perfect background' src='../assets/Background.png'></img>
+    </div>
+</body>
 <?php
 }
 else
