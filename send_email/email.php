@@ -113,10 +113,15 @@ include("../faculty_nav.php");
                 </div>
                     <br>
                 <!-- END OF EXAMPLE QUILL CODE -->
+                
+                <!-- attachments button 
+                
                 <label class="nes-btn is-primary">
                 <span> Select Your File</span>
                 <input type="file" id="email_attachments" name="attachments">
                 </label>
+
+                -->
                 <!-- <button id='upload'>Upload attachments</button>-->
                 <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
             

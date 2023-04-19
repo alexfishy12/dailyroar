@@ -1,72 +1,61 @@
 var quill_editor;
 
 $(document).ready(function(){
-    load_filter_options()
+    //show email analysis by default
+    $("div#email_analysis").show();
+    $("div#filtered_analysis").hide();
 
+    load_filter_options()      
+    load_emails().then(function(response){
+        console.log(response);
+        $("#email_table").html(response);
 
-    var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-        ['link'], 
-      
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-      
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-      
-        ['clean']                                         // remove formatting button
-      ];
+        $("div#email_table table tr, this").click(function(){
+            console.log("Clicked on row.")
+            var email_id = $(this).attr("id");
 
+            if (email_id == "header" || email_id == "" || email_id == null)
+            {
+                return;
+            }
+            else
+            {
+                get_email_data(email_id).then(function(response){
+                    console.log(response);
 
-    //initialize quill editor
-    quill_editor = new Quill('#editor', {
-        modules: { 
-            toolbar: toolbarOptions,
+                    var email_data = response.response;
+
+                    var email_data_html = "";
+
+                    for (attr in email_data) {
+                        email_data_html += attr + ": " + email_data[attr] + "<br>"
+                    }
+                    
+                    $("div#email_data").html(email_data_html);
+                })
+            }
             
-        },
-        theme: 'snow'
-    });
+        })
+    })
 
-    // var LinkInsert = (function() {
-    //     function LinkInsert(quill, options) {
-    //       this.quill = quill;
-    //       this.options = options;
-    //       this.toolbar = quill.getModule('toolbar');
-    //       if (typeof this.toolbar !== 'undefined') {
-    //         this.toolbar.addHandler('link', this.handleClick.bind(this));
-    //       }
-    //     }
-      
-    //     LinkInsert.prototype.handleClick = function() {
-    //       var range = this.quill.getSelection();
-    //       var url = prompt('Enter the URL');
-    //       if (url) {
-    //         this.quill.formatText(range.index, range.length, 'link', url);
-    //       }
-    //     };
-      
-    //     return LinkInsert;
-    //   })();
-     
-      
-    
-    $("#form_submit").on("click", function(){
+    //on email analysis button click
+    $("button#select_email_analysis").click(function(){
+        $("div#email_analysis").show();
+        $("div#filtered_analysis").hide();
+    })
+
+    //on filtered analysis button click
+    $("button#select_filtered_analysis").click(function(){
+        $("div#filtered_analysis").show();
+        $("div#email_analysis").hide();
+    })
+
+    $("#form_submit").click(function(){
         console.log("Clicked submit.")
-        getEmailAttributes()
+        getFilteredAnalysis();
     })
 
-    $("button#upload").on('click', function() {
-        console.log("Files uploading...")
-        uploadFile();
-    })
+
 
     //on select filter
     
@@ -192,25 +181,13 @@ function getEmailAttributes(){
     })
     
 }
-
-async function uploadFile() {
-    let formData = new FormData(); 
-    formData.append("file", $("#email_attachments").prop("files")[0]);
-    await fetch('upload_attachments.php', {
-      method: "POST",
-      body: formData
-    }).then(data => {
-            console.log(data);
-    })
-}
   
-function send_email(email_data){
+function load_emails(){
     return new Promise(function(resolve) {
         $.ajax({
-            url: 'send_email.php',
+            url: 'get_emails.php',
             dataType: 'text',
-            type: 'POST',
-            data: email_data,
+            type: 'GET',
             success: function (response, status) {
                 console.log('AJAX Success.');
                 resolve(response);
@@ -229,6 +206,25 @@ function get_filter_options(){
             url: '../get_filter_options.php',
             dataType: 'text',
             type: 'GET',
+            success: function (response, status) {
+                console.log('AJAX Success.');
+                resolve(response);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('AJAX Error:' + textStatus);
+                resolve("Error " . textStatus);
+            }
+        })
+    });
+}
+
+function get_email_data(email_id){
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: 'get_email_data.php',
+            dataType: 'json',
+            type: 'POST',
+            data: {email_id: email_id},
             success: function (response, status) {
                 console.log('AJAX Success.');
                 resolve(response);
