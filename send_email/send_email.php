@@ -167,7 +167,7 @@
         Global $errorList;
 
         // Set the email headers
-        $headers = "From: ". $sender_email. "\r\n";
+        $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
         $headers .= "Reply-To: ". $sender_email. "\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 

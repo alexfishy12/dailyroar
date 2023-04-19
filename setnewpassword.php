@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-<title>Reset Password</title>
+<title>Your Password Has Been Reset</title>
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
-  <script src="checkPasswordMatch.js"></script>
   <link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
@@ -18,17 +17,21 @@
   
 
 <div class="nes-container with-title is-centered">
-  <p class="title">Reset Password</p>
-  <form action="newpassword.php" method="post">
+  <p class="title">Your Password Has Been Reset</p>
 
-    <div class="nes-field">
-    <label for="name_field">Reset Code</label>
-    <input type="text" name="code" class="nes-input" required>
-    </div>
-  <button type= submit class="nes-btn button_format" style="margin:20px">Submit</a>
-</form> 
+  <?php
+    include "dbconfig.php";
+        if (isset($_POST['password2'])){
+            $newpassword=$_POST['password2'];
+            $email=$_POST['Email'];
 
 
+            $sql = "UPDATE Customers FROM csemaildb.Login SET Password = '$newpassword' WHERE Email_Address = '$email';";
+            $result = mysqli_query($con, $sql);
+
+        }
+  
+?>
 </div>
 
 

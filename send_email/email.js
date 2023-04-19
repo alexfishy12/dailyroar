@@ -7,6 +7,7 @@ $(document).ready(function(){
     var toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['blockquote', 'code-block'],
+        ['link'], 
       
         [{ 'header': 1 }, { 'header': 2 }],               // custom button values
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -26,10 +27,36 @@ $(document).ready(function(){
 
 
     //initialize quill editor
-    quill_editor = new Quill('#email_editor', {
-        modules: { toolbar: toolbarOptions },
+    quill_editor = new Quill('#editor', {
+        modules: { 
+            toolbar: toolbarOptions,
+            
+        },
         theme: 'snow'
     });
+
+    // var LinkInsert = (function() {
+    //     function LinkInsert(quill, options) {
+    //       this.quill = quill;
+    //       this.options = options;
+    //       this.toolbar = quill.getModule('toolbar');
+    //       if (typeof this.toolbar !== 'undefined') {
+    //         this.toolbar.addHandler('link', this.handleClick.bind(this));
+    //       }
+    //     }
+      
+    //     LinkInsert.prototype.handleClick = function() {
+    //       var range = this.quill.getSelection();
+    //       var url = prompt('Enter the URL');
+    //       if (url) {
+    //         this.quill.formatText(range.index, range.length, 'link', url);
+    //       }
+    //     };
+      
+    //     return LinkInsert;
+    //   })();
+     
+      
     
     $("#form_submit").on("click", function(){
         console.log("Clicked submit.")
