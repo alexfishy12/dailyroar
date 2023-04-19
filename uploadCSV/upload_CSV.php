@@ -9,6 +9,13 @@ if($now > $_SESSION['expire']) {
     session_destroy();
     header("Location: ../index.php");  
 }
+
+if(isset($_SESSION['account_type'])&& $_SESSION['account_type']=="FA"){
+    include("../faculty_nav.php");
+}
+else{
+    include("../GA_Nav.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -26,16 +33,6 @@ if($now > $_SESSION['expire']) {
   <link href="../CSS/background_static.css" rel="stylesheet">
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
-
-<?php 
-
-if(isset($_SESSION['account_type'])&& $_SESSION['account_type']=="FA"){
-    include("../faculty_nav.php");
-}
-else{
-    include("../GA_Nav.php");
-}
-?>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
   
