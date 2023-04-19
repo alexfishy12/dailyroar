@@ -1,7 +1,12 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-<title>Your Password Has Been Reset</title>
+<title>Forgot Password</title>
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
@@ -17,21 +22,17 @@
   
 
 <div class="nes-container with-title is-centered">
-  <p class="title">Your Password Has Been Reset</p>
-
-  <?php
-    include "dbconfig.php";
-        if (isset($_POST['password2'])){
-            $newpassword=$_POST['password2'];
-            $email=$_POST['Email'];
-
-
-            $sql = "UPDATE Customers FROM csemaildb.Login SET Password = '$newpassword' WHERE Email_Address = '$email';";
-            $result = mysqli_query($con, $sql);
-
-        }
+  <p class="title">Enter your Email Address</p>
   
-?>
+  <form action="sendpasswordemail.php" method="post">
+
+    <div class="nes-field">
+    <label for="name_field">Email Address</label>
+    <input type="email" name="name_field" class="nes-input" required>
+    </div>
+  <button type= submit class="nes-btn button_format" style="margin:20px">Submit</a>
+</form> 
+
 </div>
 
 
