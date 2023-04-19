@@ -47,7 +47,7 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
       </div>
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="forgot_password.php">Forgot Password?</a>
+        <a class="underlineHover" href="forgot_passowrd/forgot_password.php">Forgot Password?</a>
       </div>
 
     </div>

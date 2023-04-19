@@ -20,11 +20,8 @@ else{
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-
-  
+    <meta charset="UTF-8">
   <title>Daily Roar - Upload CSV</title>
-
-
   <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV.js"></script>
