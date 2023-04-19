@@ -17,20 +17,32 @@
   
 
 <div class="nes-container with-title is-centered">
-  <p class="title">Your Password Has Been Reset</p>
+  <p class="title">Reset Password</p>
 
-  <?php
-    include "dbconfig.php";
-        if (isset($_POST['password2'])){
-            $newpassword=$_POST['password2'];
-            $email=$_POST['Email'];
+<?php
+  include "dbconfig.php";
 
+if (isset($_POST['password2'])){
+    $newpassword = $_POST['password2'];
+    $email = $_POST['Email'];
 
-            $sql = "UPDATE Customers FROM csemaildb.Login SET Password = '$newpassword' WHERE Email_Address = '$email';";
-            $result = mysqli_query($con, $sql);
+    // create a prepared statement
+    $stmt = $con->prepare("CALL Change_Password(?, ?)");
 
-        }
-  
+    // bind the parameters
+    $stmt->bind_param("ss", $email, $newpassword);
+
+    // execute the statement
+    if ($stmt->execute()) {
+        echo "Your new password has been set.";
+    } else {
+        echo "Could not succesfully change your password: " . $stmt->error;
+    }
+
+    // close the statement and database connection
+    $stmt->close();
+    $con->close();
+}
 ?>
 </div>
 

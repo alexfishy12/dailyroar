@@ -37,7 +37,7 @@
 
                 $to = $email;
                 $subject = "Daily Roar Password Reset For " .$email. "";
-                $txt = "This email has been sent to reset your password. Here is your temporary reset code and link: ".$code.".";
+                $txt = "This email has been sent to reset your password. Here is your temporary reset code and link: ".$code." https://obi.kean.edu/~fisheral/dailyroar/resetpassword.php .";
                 $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
 
                 mail($to,$subject,$txt,$headers);
