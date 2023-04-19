@@ -175,7 +175,7 @@ include("../dbconfig.php");
 
 						<br>
 						<br>
-						<input type='submit' value='Submit'>
+						<input class="nes-btn is-primary"type='submit' value='Submit'>
 
 						<br>
 					</form>
