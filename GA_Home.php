@@ -28,20 +28,33 @@ if($now > $_SESSION['expire']) {
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" /> 
   <link href="CSS/faculty_home_page.css" rel="stylesheet">
   <link href="CSS/font_family.css" rel="stylesheet">
+  <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
+  <link href="CSS/content.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
+<body class="retro" background-image="assets/Background.png"  background-size="cover">
     
-    <div class="body" style="text-align: center">
+    <div class="title" style="text-align: center">
         <p>Welcome to the Daily Roar!</p>
     </div>
+    <div class="content">
     <div class="logout">
         <a href="logout.php">logout</a>
     </div>
 
-<div class="nes-container with-title is-centered">
-  <p class="title">Select an Option</p>
-  <a href="uploadCSV/upload_GA.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
+<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5);">
+  <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format">Upload Students CSV</a>
 </div>
+</div>
+<div class="background_parent">
+    <img class='pixel_perfect keanu' src='assets/Keanu_Walk_FULLSCREEN.gif'></img>
+    <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect foreground secondary-fg' src='assets/Foreground_2.png'></img>
+    <img class='pixel_perfect foreground tertiary-fg' src='assets/Foreground_1.png'></img>
+    <img class='pixel_perfect middleground primary-mg' src='assets/Middleground_2.png'></img>
+    <img class='pixel_perfect middleground secondary-mg' src='assets/Middleground_2.png'></img>
+    <img class='pixel_perfect middleground tertiary-mg' src='assets/Middleground_2.png'></img>
+    <img class='pixel_perfect background' src='assets/Background.png'></img>
+    </div>
 </body>
 </html>
