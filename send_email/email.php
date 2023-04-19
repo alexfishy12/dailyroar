@@ -63,8 +63,8 @@ include("../faculty_nav.php");
                     </select>
                   </div>
                   <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
-                      <button id='curriculum_select_all' class='nes-btn is-primary'>Select All</button><br>
-                      <button id='curriculum_remove_all' class='nes-btn is-error'>Remove All</button><br>
+                      <button id='curriculum_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
+                      <button id='curriculum_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
                   </div>  
                   <div class="column side">
                     Selected
@@ -84,8 +84,8 @@ include("../faculty_nav.php");
                     </select>
                   </div>
                   <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
-                      <button id='standing_select_all' class='nes-btn is-primary'>Select All</button><br>
-                      <button id='standing_remove_all' class='nes-btn is-error'>Remove All</button><br>
+                      <button id='standing_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
+                      <button id='standing_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
                   </div>  
                   <div class="column side">
                     Selected
@@ -107,7 +107,7 @@ include("../faculty_nav.php");
                     </div>
             
                     <!-- Create the editor container -->
-                    <div form="email" name="body" id="email_editor" class='editor_container'>
+                    <div form="email" name="body" id="editor" class='editor_container'>
                         <p>Welcome to The Daily Roar!</p>
                     </div>
                 </div>
