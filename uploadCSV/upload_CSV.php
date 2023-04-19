@@ -4,10 +4,6 @@ if(!isset($_SESSION['account_type'])){
     header("Location: ../index.php");
 	exit;
 }
-elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
-    header("Location: ../GA_Home.php");
-    exit;
-}
 $now=time();
 if($now > $_SESSION['expire']) {
     session_destroy();
@@ -32,7 +28,13 @@ if($now > $_SESSION['expire']) {
 </head>
 
 <?php 
-include("../faculty_nav.php");
+
+if(isset($_SESSION['account_type'])&& $_SESSION['account_type']=="FA"){
+    include("../faculty_nav.php");
+}
+else{
+    include("../GA_Nav.php");
+}
 ?>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
