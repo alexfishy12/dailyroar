@@ -42,11 +42,11 @@
 
 
             echo "<form action='setnewpassword.php' method='post' required='required'>";
-            echo "<br>Enter your new password: <input type='password' name='password1' id = 'password1'  required >";
+            echo "<br>Enter your new password: <input type='password' name='password1' id = 'password1'  required ><br>";
             echo "<br>Confirm your password: <input type='password' name='password2' id='password2' required>";
             echo "<p id = 'passwordMatchMessage'> </p>";
             echo "<input type='hidden' name='Email' value='$Email'>\n";
-            echo "<input type='submit' value='Submit'>";
+            echo "<input type='submit' value='Submit' id = 'submit-button'>";
             echo "</form>";
 
             echo "<br>" .$ID."";

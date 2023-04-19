@@ -13,61 +13,53 @@ if($now > $_SESSION['expire']) {
     session_destroy();
     header("Location: ../index.php");  
 }
-echo "<title id='title'>Daily Roar - Insert Student</title>";
 include("../dbconfig.php");
+include("../faculty_nav.php");
+echo '<link href="../CSS/font_family.css" rel="stylesheet">';
+echo '<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />';
+echo '<link href = "../CSS/insert_student.css" rel = "stylesheet" />';
+
+
+if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
+
+	$sqlActive = "SELECT * FROM csemaildb.ActiveProgram";
+	$sqlCurriculum = "SELECT * FROM csemaildb.Curriculum ";
+    $sqlClassStanding = "SELECT * FROM csemaildb.ClassStanding";
+  
+
+	$resultActive = mysqli_query($con, $sqlActive);
+	$resultCurriculum = mysqli_query($con, $sqlCurriculum);
+    $resultClassStanding = mysqli_query($con, $sqlClassStanding);
+
+ 
+
+
+    $countCurriculum = mysqli_num_rows($resultCurriculum);
+	$countActiveProgram = mysqli_num_rows($resultActive);
+	$countClassStanding = mysqli_num_rows($resultClassStanding);
+
+	
+
+
 ?>
 
-<link href="../CSS/font_family.css" rel="stylesheet">
-<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-<link href="../CSS/background_static.css" rel="stylesheet">
-<link href="../CSS/content.css" rel="stylesheet">
+<body class='retro'>
 
-<?php
-	if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
-		
-		$sqlActive = "SELECT * FROM csemaildb.ActiveProgram";
-		$sqlCurriculum = "SELECT * FROM csemaildb.Curriculum ";
-		$sqlClassStanding = "SELECT * FROM csemaildb.ClassStanding";
-		
+<div class="nes-container with-title is-centered" id = "container">
+	<p class="title"> Manually Insert a Student </p>
+	
+		<form name = "input" action = "enter_student.php" method = "post" >
 
-		$resultActive = mysqli_query($con, $sqlActive);
-		$resultCurriculum = mysqli_query($con, $sqlCurriculum);
-		$resultClassStanding = mysqli_query($con, $sqlClassStanding);
-		
-		
-		
-		
-		$countCurriculum = mysqli_num_rows($resultCurriculum);
-		$countActiveProgram = mysqli_num_rows($resultActive);
-		$countClassStanding = mysqli_num_rows($resultClassStanding);
-		
-		
-		include("../faculty_nav.php");
-?>
+			<div class="nes-field is-inline">
+				<label for="inline_field">First Name: </label>
+				<input type="text" id="inline_field" class="nes-input" name = "first_name" required>
+			</div>
 
 
-<body class='retro' style="background-color:#0c5eb3;">
-    
-<div class="title">
-	Manually Insert a Student
-</div>
-						</div>
-
-	<div class="scroll">
-		<div class="content">
-				<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
-					<form name = "input" action = "enter_student.php" method = "post" >
-
-						<div class="nes-field is-inline">
-							<label for="inline_field">First Name: </label>
-							<input type="text" id="inline_field" class="nes-input is-success" name = "first_name" required>
-						</div>
-						<br>
-
-						<div class="nes-field is-inline">
-						<label for="inline_field">Last Name: </label>
-						<input type="text" id="inline_field" class="nes-input is-success" name = "last_name" required>
-						</div>
+			<div class="nes-field is-inline">
+			<label for="inline_field">Last Name: </label>
+			<input type="text" id="inline_field" class="nes-input is-primary" name = "last_name" required>
+			</div>
 
 
 						<div class="nes-select">
@@ -195,4 +187,5 @@ include("../dbconfig.php");
 else
 	echo '<br> Please Login with a Faculty account!';
 ?>
-</html>
+
+</body>
