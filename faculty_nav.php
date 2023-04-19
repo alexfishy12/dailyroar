@@ -49,8 +49,12 @@
               <li><a class="dropdown-item" href="../insert_student/insert_student.php">Manually Insert Student</a></li>
               <li><a class="dropdown-item" href="../update_students/update_student.php">Update Student Information</a></li>
               <li><a class="dropdown-item" href="../uploadCSV/upload_CSV.php">Upload Students CSV</a></li>
+              <li><a class="dropdown-item" href="../chart_analysis/analysis.php">Chart Analysis</a></li>
 
             </ul>
+            <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
+          </li>
           </li>
 
 

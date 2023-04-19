@@ -6,18 +6,18 @@
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
   <link href="CSS/font_family.css" rel="stylesheet">
-  <link href="CSS/content.css" rel="stylesheet">
-  <link href="CSS/background_static.css" rel="stylesheet">
+  <link href="CSS/faculty_home_page.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
-<body class="retro" background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
-
-<div class="title" style="text-align: center">
-        Forgot Password?
+<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
+    
+    <div class="body" style="text-align: center">
+        <p>Welcome to the Daily Roar!</p>
     </div>
-    <div class="content">
-<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
-  <p class="label">Enter your Email Address</p>
+  
+
+<div class="nes-container with-title is-centered">
+  <p class="title">Enter your Email Address</p>
 
     <?php
     include "dbconfig.php";
@@ -37,7 +37,7 @@
 
                 $to = $email;
                 $subject = "Daily Roar Password Reset For " .$email. "";
-                $txt = "This email has been sent to reset your password. Here is your temporary reset code and link: ".$code.".";
+                $txt = "This email has been sent to reset your password. Here is your temporary reset code and link: ".$code." https://obi.kean.edu/~fisheral/dailyroar/resetpassword.php .";
                 $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
 
                 mail($to,$subject,$txt,$headers);
@@ -54,13 +54,8 @@
   
 
 </div>
-    </div>
-<div class="background_parent">
-      <img class='pixel_perfect keanu' src='assets/Keanu_Idle_FULLSCREEN.gif'></img>
-      <img class='pixel_perfect foreground primary-fg' src='assets/Foreground_1.png'></img>
-      <img class='pixel_perfect middleground primary-mg' src='assets/Middleground_2.png'></img>
-      <img class='pixel_perfect background' src='assets/Background.png'></img>
-  </div>
+
+
 
 </body>
 </html>
