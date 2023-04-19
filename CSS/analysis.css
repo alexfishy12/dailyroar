@@ -1,0 +1,15 @@
+.filter_button {
+    width:100%;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.email_table {
+    max-height:50vh;
+    max-width:80vw;
+    overflow: scroll;
+}
+
+table tr :hover {
+    background-color:rgb(225, 255, 0);
+}
