@@ -1,5 +1,7 @@
 var quill_editor;
 
+google.charts.load('current', {packages: ['corechart']});
+
 $(document).ready(function(){
     //show email analysis by default
     $("div#email_analysis").show();
@@ -32,6 +34,7 @@ $(document).ready(function(){
                     }
                     
                     $("div#email_data").html(email_data_html);
+                    drawEmailChart(response.response)
                 })
             }
             
@@ -235,4 +238,22 @@ function get_email_data(email_id){
             }
         })
     });
+}
+
+
+
+function drawEmailChart(email_data){ 
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Attribute')
+      data.addColumn('number', 'Count');
+      data.addRows([
+        ['Total Recipients', parseInt(email_data['total_recipients'])],
+        ['Total Opens', parseInt(email_data['Opens'])],
+        ['Total Link Clicks', parseInt(email_data['Clicks'])]
+      ]);
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('data_chart'));
+      chart.draw(data, null);
 }

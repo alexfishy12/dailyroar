@@ -17,6 +17,7 @@ if($now > $_SESSION['expire']) {
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="analysis.js"></script>
     <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">
@@ -96,7 +97,9 @@ include("../faculty_nav.php");
                 </div>
                 <br><hr>
                 <b>Data:</b><br>
-            <div id="charts_response"></div>
+            <div id="charts_response">
+                <div id="data_chart"></div>
+            </div>
             <div id="email_data"></div>
             <div id="chart_errors"></div>
         </div>
