@@ -20,7 +20,7 @@
   <p class="title">Enter your Email Address</p>
 
     <?php
-    include "dbconfig.php";
+    include "../dbconfig.php";
         if (isset($_POST['name_field'])){
 
             $email=$_POST['name_field'];
