@@ -24,6 +24,7 @@ if($now > $_SESSION['expire']) {
   <script src= "libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV/uploadCSV.js"></script>
+
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
     <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
@@ -56,7 +57,6 @@ if($now > $_SESSION['expire']) {
         <img class='pixel_perfect middleground tertiary-mg' src='assets/Middleground_2.png'></img>
         <img class='pixel_perfect background' src='assets/Background.png'></img>
     </div>
-
 </body>
 
 
