@@ -6,16 +6,12 @@ var password2 = document.getElementById('password2');
 // Get the message element for displaying password match message
 var passwordMatchMessage = document.getElementById('passwordMatchMessage');
 
-// Add event listener for "input" event on password1 field
-password1.addEventListener('input', checkPasswordsMatch);
-
 // Add event listener for "input" event on password2 field
 password2.addEventListener('input', checkPasswordsMatch);
 
 // Function to check password match
 function checkPasswordsMatch() {
  
-  
   // Retrieve the values of both password fields
   var password1Value = password1.value;
   var password2Value = password2.value;
