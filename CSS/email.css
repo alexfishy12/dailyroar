@@ -11,3 +11,10 @@
     background-color: rgb(202, 202, 202);
     color: black;
 }
+
+.filter_button {
+    width:100%;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
