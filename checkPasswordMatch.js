@@ -9,7 +9,6 @@ var passwordMatchMessage = document.getElementById('passwordMatchMessage');
 // Get the submit button element 
 var submitButton = document.getElementById("submit-button");
 
-
 // Add event listener for "input" event on password2 field
 password2.addEventListener('input', checkPasswordsMatch);
 
