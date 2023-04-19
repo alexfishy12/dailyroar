@@ -50,7 +50,7 @@
             
             $count = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $html = $html . "<tr id='". $row['ID'] ."'>" .
+                $html = $html . "<tr id='". $row['ID'] ."' tab-index='0'>" .
                     "<td>".$row['ID'].
                     "<td>".$row['Created'].
                     "<td>".$row['Sender'].
