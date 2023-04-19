@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="icon" type="image/x-icon" href="/dailyroar/assets/Kean_University_Logo_Nav.svg.png">
+<link rel="icon" type="image/x-icon" href="../assets/Kean_University_Logo_Nav.svg.png">
 
 <title><?php echo ($title); ?></title>
 
@@ -14,22 +14,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<script src= "/dailyroar/libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
-  <script src="/dailyroar/uploadCSV/uploadCSV.js"></script>
-  <link rel="stylesheet" href="/dailyroar/CSS/faculty_home_page.css">
-  <script src= "/dailyroar/libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="/dailyroar/libraries/jquery-3.6.0.min.js"></script>
+<script src= "../libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
+  <script src="../uploadCSV/uploadCSV.js"></script>
+  <link rel="stylesheet" href="../CSS/content.css">
+  <script src= "../libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <nav class="navbar navbar-expand-lg navbar-light" >
     <div class="container-fluid">
-      <a class="navbar-brand" style="cursor: pointer;">
-
-        <img id="logo" src="../assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="50" width="50" href="../Faculty_Home.php">
-
+      <a class="navbar-brand" style="cursor: pointer;" href="../Faculty_Home.php">
+        <img id="logo" src="../assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="50" width="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -29,11 +29,22 @@
             $count = mysqli_num_rows($result);
 
             if ($count > 0) {
-                echo "That email is here in the system";
+                echo "A message with a reset code will be sent to your email.";
+                $code = sprintf("%06d", mt_rand(1, 999999));
+                echo "<br>";
+                $sqlcode = "INSERT INTO csemaildb.PasswordCode VALUES (NULL, '$email', '$code', CURRENT_TIMESTAMP()) ";
+                $resultcode = mysqli_query($con, $sqlcode);
+
+                $to = $email;
+                $subject = "Daily Roar Password Reset For " .$email. "";
+                $txt = "This email has been sent to reset your password. Here is your temporary reset code and link: ".$code.".";
+                $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
+
+                mail($to,$subject,$txt,$headers);
             }
-            
+
             if ($count == 0){
-                echo "That email is not here";
+                echo "The email you have entered is not in the system. Please enter a viable email.";
             }
 
             
