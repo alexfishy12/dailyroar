@@ -21,7 +21,7 @@
   <p class="title">Reset Password</p>
 
     <?php
-    include "dbconfig.php";
+    include "../dbconfig.php";
         if (isset($_POST['code'])){
             
             $enteredcode=$_POST['code'];
