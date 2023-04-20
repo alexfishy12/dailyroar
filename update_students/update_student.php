@@ -73,12 +73,12 @@ include("../faculty_nav.php");
                     <div class="error" id="students_table_error"></div>
                     <br>
                     <div id="form_options">
-                        <button id="done" disabled>Done</button><br>
-                        <button id="cancel" onclick="location.reload()">Cancel Edits and Refresh Page</button>
+                        <button  id="done" disabled>Done</button><br>
+                        <button  id="cancel" onclick="location.reload()">Cancel Edits and Refresh Page</button>
                     </div>
                     <div id="review_options">
                         <button id="confirm">Confirm</button><br>
-                        <button id="make_changes">Make changes</button>
+                        <button id="make_changes">Make more changes</button>
                     </div>
                     <div id="finished_options">
                         <button id="refresh" onclick="location.reload()">Update more students</button><br>

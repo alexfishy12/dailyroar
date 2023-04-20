@@ -18,23 +18,23 @@ else{
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-  <title>Daily Roar - Upload CSV</title>
+    <title>Daily Roar - Upload CSV</title>
   <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV.js"></script>
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link href="../CSS/content.css" rel="stylesheet">
   <link href="../CSS/background_static.css" rel="stylesheet">
-  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet"/>
 </head>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
   
 <div class="title">
-    Upload Students CSV
+    <p>Upload Students CSV</P>
 </div>
 <div class="scroll">
     <div class="content">
