@@ -22,7 +22,7 @@
 
         // Define the query to retrieve the emails
         
-        $query = "SELECT E.ID, Created, Email_Address as Sender, Subject FROM csemaildb.Email E join csemaildb.Login L on (E.SenderID = L.ID);";
+        $query = "SELECT E.ID, Created, Email_Address as Sender, Subject, Body FROM csemaildb.Email E join csemaildb.Login L on (E.SenderID = L.ID);";
         
         // Prepare the query
         $stmt = $pdo->prepare($query);
@@ -46,7 +46,8 @@
                     "<th>ID" .
                     "<th>Created".
                     "<th>Sender" .
-                    "<th>Subject</tr>";
+                    "<th>Subject".
+                    "<th>Message</tr>";
             
             $count = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -54,10 +55,13 @@
                     "<td>".$row['ID'].
                     "<td>".$row['Created'].
                     "<td>".$row['Sender'].
-                    "<td>".$row['Subject']."</tr>";
+                    "<td>".$row['Subject'].
+                    "<td>".$row['Body']."</tr>";
                 $count++;
             }
             $html = $html . "</table>";
+            $decodedContent = html_entity_decode($html);
+            return $decodedContent;
             return $html;
         }
         else {

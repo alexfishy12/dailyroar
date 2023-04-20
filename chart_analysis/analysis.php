@@ -96,6 +96,8 @@ include("../faculty_nav.php");
                     <button type="button" class="nes-btn is-primary" id="form_submit">Retrieve Analysis</button>
                 </div>
                 <br><hr>
+                <b> Message: </b>
+                <br><hr>
                 <b>Data:</b><br>
             <div id="charts_response">
                 <div id="data_chart" style='text-align:center;width:75%;margin-right:12.5%;margin-left:12.5%;'></div>
