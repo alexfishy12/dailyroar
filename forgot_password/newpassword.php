@@ -2,26 +2,30 @@
 <html lang="en" >
 <head>
 <title>Reset Password</title>
-  <script src= "libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
-  <script src="uploadCSV/uploadCSV.js"></script>
+  <script src= "../libraries/papaparse.min.js" ></script>
+  <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
+  <script src="../uploadCSV/uploadCSV.js"></script>
   <script src="checkPasswordMatch.js"></script>
-  <link href="CSS/font_family.css" rel="stylesheet">
-  <link href="CSS/faculty_home_page.css" rel="stylesheet">
+  <link href="../CSS/font_family.css" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/background_static.css">
+  <link rel="stylesheet" href="../CSS/content.css">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
-<body class="retro" style="margin-top:10vh; margin-bottom:30vh; margin-left:20vw; margin-right:20vw;">
+<body class="retro" background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
     
-    <div class="body" style="text-align: center">
-        <p>Welcome to the Daily Roar!</p>
+    <div class="title" style="text-align: center">
+        <p>Forgot Password?</p>
     </div>
   
-
-<div class="nes-container with-title is-centered">
-  <p class="title">Reset Password</p>
+<div class="content">
+<div class="logout">
+                <a href="../index.php">Back To Login</a>
+            </div>
+<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+  <p class="label">Reset Password</p>
 
     <?php
-    include "dbconfig.php";
+    include "../dbconfig.php";
         if (isset($_POST['code'])){
             
             $enteredcode=$_POST['code'];
@@ -49,7 +53,7 @@
                     $DateOfCode = $row["DateOfCode"]; 
 
                     echo "<form action='setnewpassword.php' method='post' required='required'>";
-                    echo "<br>Enter your new password: <input type='password' name='password1' id = 'password1'  required ><br>";
+                    echo "<br>Enter your new password:<br> <input type='password' name='password1' id = 'password1'  required ><br>";
                     echo "<br>Confirm your password:";
                     echo "<br> <input type='password' name='password2' id='password2' required>";
                     echo "<p id = 'passwordMatchMessage'> </p>";
@@ -79,8 +83,14 @@
   
 
 </div>
+</div>
 
-
+<div class="background_parent">
+      <img class='pixel_perfect keanu' src='../assets/Keanu_Idle_FULLSCREEN.gif'></img>
+      <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
+      <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
+      <img class='pixel_perfect background' src='../assets/Background.png'></img>
+  </div>
 
 </body>
 </html>
