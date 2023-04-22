@@ -175,11 +175,10 @@
 
         array_push($responseList, $attachments);
         // Attachment file path and name
-        $file_path = "..uploads/".$attachments;
-
+        $file_path = "dailyroar/uploads/".$attachments;
 
         // Read the file content into a variable
-        $file_content = file_get_contents($file_path);
+        $file_content = file_get_contents($file_path,true);
 
         if (!file_exists($file_path)) {
             array_push($responseList, error_get_last());

@@ -10,7 +10,7 @@ echo "file is not retrived";
 //Choose where to save the uploaded file 
 $targetFilePath = "../uploads/".$file_name;
 $tempFilePath = $_FILES['file']['tmp_name'];
-echo $tempFilePath;
+
 
 // Save the uploaded file to the local filesystem 
 if ( move_uploaded_file($tempFilePath, $targetFilePath) ) 
