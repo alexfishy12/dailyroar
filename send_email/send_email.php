@@ -32,7 +32,7 @@
         $class_standing = $_POST['class_standing'];
    
 
-        echo "\n" . $attachments;
+     
         $curriculum = json_decode($curriculum, true);
         $class_standing = json_decode($class_standing, true);
 
@@ -173,12 +173,17 @@
         $headers .= "Reply-To: ". $sender_email. "\r\n";
         $headers .= "Content-Type: multipart/mixed; charset=UTF-8\r\n";
 
+        array_push($responseList, $attachments);
         // Attachment file path and name
-        $file_path = '../uploads/'.$attachments;
-        $file_name = $attachments;
+        $file_path = "..uploads/".$attachments;
+
 
         // Read the file content into a variable
         $file_content = file_get_contents($file_path);
+
+        if (!file_exists($file_path)) {
+            array_push($responseList, error_get_last());
+        }
 
         // Encode the file content in base64 format
         $file_content_encoded = base64_encode($file_content);

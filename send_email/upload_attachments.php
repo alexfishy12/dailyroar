@@ -14,9 +14,9 @@ echo $tempFilePath;
 
 // Save the uploaded file to the local filesystem 
 if ( move_uploaded_file($tempFilePath, $targetFilePath) ) 
-  echo 'File Upload Success';  
+  echo 'Success';  
 else  
-  echo 'File Upload Failure'; 
+  echo 'Failure'; 
 
 
 ?>
