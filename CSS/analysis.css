@@ -1,0 +1,23 @@
+.filter_button {
+    width:100%;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.email_table {
+    max-height:50vh;
+    max-width:80vw;
+    overflow: scroll;
+}
+
+table{
+	border-collapse:collapse;  
+}
+table tr td, th{
+	border:1px solid #ccc;
+  	padding:5px;
+}
+table tr:hover{  
+    background: #f1f1f1;
+}
+

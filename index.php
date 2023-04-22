@@ -19,6 +19,9 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript" src="libraries/jquery-3.6.0.min.js"></script>
+  <script src="index.js" type="text/javascript"></script>
 </head>
 
 <body class='retro' background-image="assets/Background.png"  background-size="cover">
@@ -35,14 +38,16 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
         <img src="assets/Kean_University_Logo.svg.png" alt="Kean Logo" height="70" width="70"/>
       </div>
       <!-- Login Form -->
-      <form name="input" action="login.php" method="post">
-        <input type="text" class="fadeIn second" name="login_id" placeholder="Username" required="required">
-        <input type="password" class="fadeIn third" name="password" placeholder="Password" required="required">
+      <form name="input" id="login" method="POST">
+        <input id="login_id" type="text" class="fadeIn second" name="login_id" placeholder="Username" required="required">
+        <input id="password" type="password" class="fadeIn third" name="password" placeholder="Password" required="required">
         <input type="submit" class="fadeIn fourth" value="login">
       </form>
+      <div id="errorMessage" style='color:red'>
+      </div>
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="forgot_password.php">Forgot Password?</a>
+        <a class="underlineHover" href="forgot_password/forgot_password.php">Forgot Password?</a>
       </div>
 
     </div>

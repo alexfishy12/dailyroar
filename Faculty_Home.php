@@ -43,7 +43,7 @@ if($now > $_SESSION['expire']) {
                     <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
                     <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
                     <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
-                    <a href="#" class="nes-btn" style="margin:20px">Chart Analysis</a>
+                    <a href="chart_analysis/analysis.php" class="nes-btn button_format" style="margin:20px">Data Analysis</a>
                 </div>
         </div>
     </div>  
