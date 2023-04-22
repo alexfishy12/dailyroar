@@ -175,15 +175,15 @@
 
         array_push($responseList, $attachments);
         // Attachment file path and name
-        $file_path = "..uploads/".$attachments;
+        $file_path = "../uploads/".$attachments;
 
 
+        if (!file_exists($file_path)) {
+            array_push($errorList, error_get_last());
+        }
         // Read the file content into a variable
         $file_content = file_get_contents($file_path);
 
-        if (!file_exists($file_path)) {
-            array_push($responseList, error_get_last());
-        }
 
         // Encode the file content in base64 format
         $file_content_encoded = base64_encode($file_content);
