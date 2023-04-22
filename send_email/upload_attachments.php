@@ -1,16 +1,22 @@
 <?php
-
-/* Get the name of the uploaded file */
-$filename = $_FILES['file']['name'];
-
-/* Choose where to save the uploaded file */
-$location = "upload/".$filename;
-
-/* Save the uploaded file to the local filesystem */
-if ( move_uploaded_file($_FILES['file']['tmp_name'], $location) ) { 
-  echo 'Success'; 
-} else { 
-  echo 'Failure'; 
+ //Get the name of the uploaded file 
+ if(isset($_FILES['file'])) {
+  $file_name = $_FILES['file']['name'];
+  echo $file_name;
 }
+else 
+echo "file is not retrived";
+
+//Choose where to save the uploaded file 
+$targetFilePath = "../uploads/".$file_name;
+$tempFilePath = $_FILES['file']['tmp_name'];
+echo $tempFilePath;
+
+// Save the uploaded file to the local filesystem 
+if ( move_uploaded_file($tempFilePath, $targetFilePath) ) 
+  echo 'File Upload Success';  
+else  
+  echo 'File Upload Failure'; 
+
 
 ?>

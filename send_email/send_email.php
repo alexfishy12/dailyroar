@@ -25,12 +25,14 @@
     // Create a new PDO connection
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $attachments = $_POST['attachments'];
         $subject = $_POST['subject'];
         $body = $_POST['body'];
         $curriculum = $_POST['curriculum'];
         $class_standing = $_POST['class_standing'];
-        //$attachments = $_POST['attachments'];
+   
 
+        echo "\n" . $attachments;
         $curriculum = json_decode($curriculum, true);
         $class_standing = json_decode($class_standing, true);
 
@@ -39,7 +41,7 @@
        // insert_into_attachments_table($email_id, $attachments);
         insert_into_emailCurriculum_table($email_id, $curriculum);
         insert_into_emailClassStandings_table($email_id, $class_standing);
-        sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body);
+        sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments);
         
     }
 
@@ -69,7 +71,7 @@
             echo "ERROR: ". $stmt->errorInfo()[2];
             die();
         }
-    }
+    } // end of function
 
     function getRecipients($curriculum, $class_standing) {
         Global $pdo;
@@ -157,9 +159,9 @@
             print_response($responseList, $errorList);
             die();
         }
-    }
+    } // end of get recipient function
 
-    function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body) {
+    function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
 
         //access global variables inside function
         Global $pdo;
@@ -169,7 +171,17 @@
         // Set the email headers
         $headers = "From: ". $sender_email. "\r\n";
         $headers .= "Reply-To: ". $sender_email. "\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "Content-Type: multipart/mixed; charset=UTF-8\r\n";
+
+        // Attachment file path and name
+        $file_path = '../uploads/'.$attachments;
+        $file_name = $attachments;
+
+        // Read the file content into a variable
+        $file_content = file_get_contents($file_path);
+
+        // Encode the file content in base64 format
+        $file_content_encoded = base64_encode($file_content);
 
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
