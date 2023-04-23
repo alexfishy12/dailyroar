@@ -246,7 +246,7 @@
                 . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
                 . "$attachment_data\r\n\r\n";
 
-                $finalized_attachments = array_push($finalized_attachments, $embedded_attachment_data);
+                array_push($finalized_attachments, $embedded_attachment_data);
             }
         }
             
