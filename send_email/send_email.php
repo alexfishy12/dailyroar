@@ -210,77 +210,88 @@
   
     function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
 
-        //access global variables inside function
-        Global $pdo;
-        Global $responseList;
-        Global $errorList;
-        Global $successful_recipient_count;
+       //access global variables inside function
+       Global $pdo;
+       Global $responseList;
+       Global $errorList;
+
+       // Set the email headers
+       //$headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
+      // $headers .= "Reply-To: ". $sender_email. "\r\n";
+      // $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 
-        // Define the email headers
-        $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
-        . "Reply-To: sender@example.com\r\n"
-        . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
-
-
+       // Define the email headers
+             // Define the email headers
+             $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
+             . "Reply-To: sender@example.com\r\n"
+             . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
+    
+             $body = "--boundary1\r\n"
+             . "Content-Type: text/html;  charset=UTF-8\r\n"
+             . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+             . "$body\r\n\r\n";
+    
+             // Define the attachment file path and name if file array is not null
+             if($attachments != 'NULL'){
+    
+                 foreach($attachments as $file_name){
+                     $attachment_path = '../uploads/'. $file_name;
+                     $attachment_name = $file_name;
+    
+                     // Read the attachment file contents and base64 encode it
+                     $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
+    
+                    // Define the email body with attachment
+                    // $body = "--boundary1\r\n"
+                    // . "Content-Type: text/html;  charset=UTF-8\r\n"
+                    // . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+                    // . "$body\r\n\r\n";
+    
+                     $body .="--boundary1\r\n"
+                     . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
+                     . "Content-Transfer-Encoding: base64\r\n"
+                     . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
+                     . "$attachment_data\r\n\r\n"
+                     . "--boundary1--";
+    
+                     }
         
-        // Define the attachment file path and name if file array is not null
-        if($attachments != 'NULL'){
-
-            foreach($attachments as $file_name){
-                $attachment_path = '../uploads/'. $file_name;
-                $attachment_name = $file_name;
-                
-                // Read the attachment file contents and base64 encode it
-                $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
-
-                                // Define the email body with attachment
-                $body = "--boundary1\r\n"
-                . "Content-Type: text/html;  charset=UTF-8\r\n"
-                . "Content-Transfer-Encoding: 7bit\r\n\r\n"
-                . "$body\r\n\r\n";
-            
-                $body .="--boundary1\r\n"
-                . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
-                . "Content-Transfer-Encoding: base64\r\n"
-                . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
-                . "$attachment_data\r\n\r\n";
-               
-                }
-
-           
-            }
-        $body .= "--boundary1--";
-
+                 }
+               /* if($attachments == "Null")
+                 {
+                    $body = "--boundary1\r\n"
+                    . "Content-Type: text/html;  charset=UTF-8\r\n"
+                    . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+                    . "$body\r\n\r\n";
+                 } */
+          
+       
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
 
         
-        // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
-
-            $new_link_body = replace_links($body, $email_id, $recipient['ID']);
-
-            //attach tracking link
-            $new_body = $new_link_body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'&tracking_type=open" width="1" height="1" />';
+            insert_into_tracking_table($email_id, $recipient['ID']);
             
+            //attach tracking link
+            $new_body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
+           
             //send the actual email 
             // (the @ symbol suppresses warnings produced by the function)
             // in this case, I am using '@' to supress the mail function's warning about failing to connect to mail server
             $email = @mail($recipient["Email"], $subject, $new_body, $headers);
             if ($email) {
                 array_push($responseList, "Email sent to ". $recipient["Email"] ." successfully.");
-                insert_into_tracking_table($email_id, $recipient['ID']);
-                $successful_recipient_count++;
             } else {
                 array_push($errorList, "An error occurred while sending the email to ". $recipient["Email"] . ".");
             }
-        }
-    }
+         }
+     }
     
     // changes URL hyperlink to go to obi.kean.edu/~fisheral/dailyroar/tracking.php as a man in the middle before then going to the real link
     // this allows hyperlink clicks to be tracked
-    function replace_links($body, $email_id, $recipient_id) {
+    /*function replace_links($body, $email_id, $recipient_id) {
         // Create a new DOMDocument object
         $dom = new DOMDocument();
 
@@ -300,7 +311,7 @@
         // Get the updated HTML content from the DOMDocument object
         $body = $dom->saveHTML();
         return $body;
-    }
+    } */
 
     //inserts email into db, returns email's ID in the db
     function insert_into_email_table($sender_id, $subject, $body, $recipients) {
