@@ -25,6 +25,9 @@ if($now > $_SESSION['expire']) {
   <link href="../CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
+    <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.quilljs.com/1.1.10/quill.min.js"></script>
+
     
 </head>
 <title id="title">Daily Roar - Analysis</title>
@@ -40,14 +43,28 @@ include("../faculty_nav.php");
 </div>
 <div class="scroll">
   <div class="content">
-        <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
-                <button class="nes-btn is-primary" id="select_email_analysis">Email Analysis</button>
-                <button class="nes-btn is-primary" id="select_filtered_analysis">Filtered Analysis</button>
+        <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.7)">
+                <button class="nes-btn is-primary" id="select_email_analysis" hidden>Email Analysis</button>
+                <button class="nes-btn is-primary" id="select_filtered_analysis" hidden>Filtered Analysis</button>
                 <div id="email_analysis">
-                Sent Emails:
-                <div class="email_table" id="email_table">
+                    <div class="email_table" id="email_table">
+                    </div>
+                    <div id="selected_email" class="selected_email">
+                        <button class="nes-btn" id="go_back">Go back</button>
+                        <hr>
+                        <div id="email_metadata" class="email_metadata"></div><br>
+                        <b><u>Body</u></b>
+                        <div form="email" name="body" id="editor" class='editor_container'></div>
+                        <div id="email_data"></div>
+                        <div id="charts_response">
+                            <div id="data_chart" style='text-align:center;width:75%;margin-right:12.5%;margin-left:12.5%;'></div>
+                        </div>
+                        <div id="recipient_filters" style="margin-top:25px;margin-bottom:25px;"></div>
+                        <div id="chart_errors"></div>
+                    </div>
                 </div>
-                </div>
+                <!-- The following code is for filtered analysis -->
+                <!--
                 <div id="filtered_analysis">
                     <b><u>Filtered Analysis:</u></b>
                     <div id="get_response"></div>
@@ -67,7 +84,7 @@ include("../faculty_nav.php");
                     <div class="column side">
                         Selected
                         <select id='selected_curriculum' size='4' multiple>
-                        <!-- This area will be dynamically added with options depending on which ones were chosen -->
+
                         
                         </select>
                     </div>
@@ -88,7 +105,7 @@ include("../faculty_nav.php");
                     <div class="column side">
                         Selected
                         <select id='selected_class_standing' size='5' multiple>
-                        <!-- This area will be dynamically added with options depending on which ones were chosen -->
+
                         
                         </select>
                     </div>
@@ -96,12 +113,7 @@ include("../faculty_nav.php");
                     <button type="button" class="nes-btn is-primary" id="form_submit">Retrieve Analysis</button>
                 </div>
                 <br><hr>
-                <b>Data:</b><br>
-            <div id="charts_response">
-                <div id="data_chart" style='text-align:center;width:75%;margin-right:12.5%;margin-left:12.5%;'></div>
-            </div>
-            <div id="email_data"></div>
-            <div id="chart_errors"></div>
+                    -->
         </div>
     </div>
   </div>

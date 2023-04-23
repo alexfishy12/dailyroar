@@ -26,7 +26,15 @@
     // Create a new PDO connection
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $attachments = $_POST['attachments'];
+        $attachments = null;
+        if (isset($_POST['attachments'])) {
+            $attachments = $_POST['attachments'];
+        }
+        else {
+            array_push($errorList, "ERROR: \$_POST['attachments'] not set.");
+            print_response($responseList, $errorList, 0);
+            die();
+        }
         $subject = $_POST['subject'];
         $body = $_POST['body'];
         $curriculum = $_POST['curriculum'];

@@ -4,7 +4,8 @@
 
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
-    
+    $responseJSON = [];
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($_POST["email_id"]))
@@ -18,9 +19,10 @@
         }
         else {
             $email_id = $_POST["email_id"];
-            $result = get_email_data($email_id);
-            $result = $result;
-            print_response($result, []);
+            $responseJSON["email_metadata"] = get_email_metadata($email_id);
+            $responseJSON["email_data"] = get_email_data($email_id);
+            //$responseJSON = json_encode($responseJSON);
+            print_response($responseJSON, []);
             die();
         }
     }
@@ -61,13 +63,89 @@
         }
     }
 
+    function get_email_metadata($email_id) {
+        Global $pdo;
+
+        $metadata = [];
+        $filters = [];
+
+        // Define the query to retrieve email data       
+        $query = "SELECT E.ID as ID, E.Created as Created, L.Email_Address as Sender, Subject, Body from Email E join Login L on (E.SenderID = L.ID) where E.ID = :email_id;";
+
+        // Prepare the query
+        $stmt = $pdo->prepare($query);
+        
+        // Bind params
+        $stmt->bindParam(":email_id", $email_id);
+
+        // Execute the query
+        $stmt->execute();
+        
+        // Fetch the result
+        if ($stmt->errorCode() === '00000') {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $metadata["email"] = $result;
+        }
+        else {
+            return "ERROR:". $pdo->errorInfo()[2];
+            die();
+        }
+
+        // Define the query to retrieve curriculum filter data       
+        $query = "SELECT C.Curriculum from EmailCurriculum EC join Curriculum C on (EC.CurriculumID = C.ID) where EC.EmailID = :email_id;";
+
+        // Prepare the query
+        $stmt = $pdo->prepare($query);
+        
+        // Bind params
+        $stmt->bindParam(":email_id", $email_id);
+
+        // Execute the query
+        $stmt->execute();
+        
+        // Fetch the result
+        if ($stmt->errorCode() === '00000') {
+            $result = $stmt->fetchall();
+            $filters["curriculum"] = $result;
+        }
+        else {
+            return "ERROR:". $pdo->errorInfo()[2];
+            die();
+        }
+
+        // Define the query to retrieve class standing filter data       
+        $query = "SELECT C.Standing from EmailClassStanding ECS join ClassStanding C on (ECS.ClassStandingID = C.ID) where ECS.EmailID = :email_id;";
+
+        // Prepare the query
+        $stmt = $pdo->prepare($query);
+        
+        // Bind params
+        $stmt->bindParam(":email_id", $email_id);
+
+        // Execute the query
+        $stmt->execute();
+        
+        // Fetch the result
+        if ($stmt->errorCode() === '00000') {
+            $result = $stmt->fetchall();
+            $filters["class_standing"] = $result;
+        }
+        else {
+            return "ERROR:". $pdo->errorInfo()[2];
+            die();
+        }
+
+        $metadata['filters'] = $filters;
+        return $metadata;
+    }
+
     // prints response to webpage
-    function print_response($response = "", $errors = []) {
+    function print_response($response = [], $errors = []) {
         $string = "";
 
         // Convert response to JSON string:
-        $string = "{\"errors\" : ". json_encode($errors) . ",".
-                "\"response\" : ". json_encode($response) ."}";
+        $string = "{\"errors\": ". json_encode($errors) . ", ".
+                "\"response\": ". json_encode($response) ."}";
 
         echo $string;
     }
