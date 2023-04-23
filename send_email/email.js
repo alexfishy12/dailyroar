@@ -1,11 +1,15 @@
-
-var quill_editor;
 var json_form_data = {}
 
 var quill;
 
 
 $(document).ready(function(){
+    $("div#send_response").hide()
+    $("button#view_sent_email").hide()
+    $("div#submit_error").hide()
+    $("#send_email_response").hide();
+    $("#send_email_errors").hide();
+
     load_filter_options()
 
 
@@ -37,9 +41,9 @@ $(document).ready(function(){
             toolbar: toolbarOptions,
             
         },
-        theme: 'snow'
+        theme: 'snow',
+        placeholder: "Welcome to the daily roar!"
     });
-    console.log(quill)
 
     var toolbar = quill.theme.modules.toolbar
     lastLinkRange = null;
@@ -115,30 +119,30 @@ $(document).ready(function(){
         console.log("Files uploading...")
         uploadFile();
     })
+    $("button#view_sent_email").on('click', function() {
+        console.log("Redirecting to email analysis page...")
+        window.location.href = "../chart_analysis/analysis.php"
+    })
 
     //on select filter
     
     $("select#curriculum").change(function() {
         var selected_option = $("select#curriculum option:selected, this");
-        console.log(selected_option)
         $("select#selected_curriculum").append(selected_option);
     })
     
     $("select#selected_curriculum").change(function() {
         var selected_option = $("select#selected_curriculum option:selected, this");
-        console.log(selected_option)
         $("select#curriculum").append(selected_option);
     })
 
     $("select#class_standing").change(function() {
         var selected_option = $("select#class_standing option:selected, this");
-        console.log(selected_option)
         $("select#selected_class_standing").append(selected_option);
     })
 
     $("select#selected_class_standing").change(function() {
         var selected_option = $("select#selected_class_standing option:selected, this");
-        console.log(selected_option)
         $("select#class_standing").append(selected_option);
     })
 
@@ -205,7 +209,7 @@ function load_filter_options() {
 //Onclick send email button
 function getEmailAttributes(){
     
-  
+    var submit_error = false
 
     json_form_data["subject"] = $("input#email_subject").val();
     // var delta = quill.getContents();
@@ -213,14 +217,12 @@ function getEmailAttributes(){
 
     //add html content from QuillJS to "body" property of json
     var just_html = quill.root.innerHTML;
-    console.log(just_html)
     json_form_data["body"] = just_html;
 
     //get selected options for curriculum
     var curriculum = []
     $("select#selected_curriculum option").each(function()
     {
-        console.log($(this).val())
         curriculum.push($(this).val())
     });
     json_form_data["curriculum"] = JSON.stringify(curriculum);
@@ -229,15 +231,28 @@ function getEmailAttributes(){
     var class_standing = []
     $("select#selected_class_standing option").each(function()
     {
-        console.log($(this).val())
         class_standing.push($(this).val())
     });
     json_form_data["class_standing"] = JSON.stringify(class_standing);
 
-
-
-    console.log(json_form_data);
+    $("div#submit_error").html("")
+    if (json_form_data["curriculum"] == "[]") {
+        $("div#submit_error").append("You must select curriculum options!<br>")
+        submit_error = true
+    }
+    if (json_form_data["class_standing"] == "[]") {
+        $("div#submit_error").append("You must select class standing options!<br>")
+        submit_error = true
+    }
     
+    if (submit_error) {
+        $("div#submit_error").show()
+        return;
+    }
+    else {
+        $("div#submit_error").hide()
+    }
+
     
     // Enable file upload after sprint 1
     
@@ -251,11 +266,17 @@ function getEmailAttributes(){
 
 
     */
-
+    console.log(json_form_data)
+    $("#send_response").show()
+    $("#send_email_response").show()
+    $("#send_email_response").html("<hr>Sending email...<hr>");
+    $("div#compose_email_form").hide()
     send_email(json_form_data).then(function(response) {
         console.log(response);
         var responseHTML = "";
         var errorHTML = "";
+        $("#send_email_response").html(responseHTML);
+        $("#send_email_errors").html(errorHTML);
         response = JSON.parse(response);
         console.log(response);
         if (response) {
@@ -265,9 +286,28 @@ function getEmailAttributes(){
             for (item in response.errors) {
                 errorHTML += response.errors[item] + "<br>";
             }
-            $("#send_email_response").html(responseHTML);
-            $("#send_email_errors").attr("style", "color:red");
-            $("#send_email_errors").html(errorHTML);
+            $("#total_recipient_count").html("<hr>Total recipient count: <span id='recipient_number'></span>")
+            if (responseHTML != "") {
+                $("#send_email_response").show();
+                $("#send_email_response").html("<hr>" + responseHTML);
+            }
+            if (errorHTML != "") {
+                $("#send_email_errors").show();
+                $("#send_email_errors").html("<hr style='color:#25a0ff'>" + errorHTML);
+            }
+            $("button#view_sent_email").show();
+            var finalNumber = response.recipients; // Change this to the final number you want to count up to
+            var currentNumber = 0;
+            var interval = setInterval(function() {
+                if (currentNumber >= finalNumber) {
+                clearInterval(interval);
+                $('#recipient_number').text(finalNumber);
+                } else {
+                currentNumber++;
+                $('#recipient_number').text(currentNumber);
+                }
+            }, 75); // Change the interval to make the counter go faster/slower
+              
         }
     })
     

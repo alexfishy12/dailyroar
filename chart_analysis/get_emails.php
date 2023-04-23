@@ -22,7 +22,7 @@
 
         // Define the query to retrieve the emails
         
-        $query = "SELECT E.ID, Created, Email_Address as Sender, Subject FROM csemaildb.Email E join csemaildb.Login L on (E.SenderID = L.ID);";
+        $query = "SELECT E.ID, Created, Email_Address as Sender, Subject FROM csemaildb.Email E join csemaildb.Login L on (E.SenderID = L.ID) ORDER BY E.ID DESC;";
         
         // Prepare the query
         $stmt = $pdo->prepare($query);
