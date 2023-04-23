@@ -26,14 +26,21 @@
     // Create a new PDO connection
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $attachments = $_POST['attachments'];
+        if(isset ($_POST['attachments'])){
+            $attachments = $_POST["attachments"]; 
+        }
+        else 
+        {
+            $attachments = "NULL";
+        }
+       
         $subject = $_POST['subject'];
         $body = $_POST['body'];
         $curriculum = $_POST['curriculum'];
         $class_standing = $_POST['class_standing'];
    
 
-     
+       // $attachments = json_decode($attachments,true);
         $curriculum = json_decode($curriculum, true);
         $class_standing = json_decode($class_standing, true);
 
@@ -199,6 +206,8 @@
             }
         }
     } */
+
+  
     function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
 
         //access global variables inside function
@@ -207,37 +216,42 @@
         Global $errorList;
         Global $successful_recipient_count;
 
-        // Set the email headers
-        //$headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
-       // $headers .= "Reply-To: ". $sender_email. "\r\n";
-       // $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-
-        // Define the attachment file path and name
-        $attachment_path = '../uploads/'. $attachments;
-        $attachment_name = $attachments;
-
-        // Read the attachment file contents and base64 encode it
-        $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
 
         // Define the email headers
         $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
-                . "Reply-To: sender@example.com\r\n"
-                . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
+        . "Reply-To: sender@example.com\r\n"
+        . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
 
-        // Define the email body with attachment
-        $body = "--boundary1\r\n"
-            . "Content-Type: text/html; charset=us-ascii\r\n"
-            . "Content-Transfer-Encoding: 7bit\r\n\r\n"
-            . "$body\r\n\r\n"
-            . "--boundary1\r\n"
-            . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
-            . "Content-Transfer-Encoding: base64\r\n"
-            . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
-            . "$attachment_data\r\n\r\n"
-            . "--boundary1--";
 
-   
+        
+        // Define the attachment file path and name if file array is not null
+        if($attachments != 'NULL'){
+
+            foreach($attachments as $file_name){
+                $attachment_path = '../uploads/'. $file_name;
+                $attachment_name = $file_name;
+                
+                // Read the attachment file contents and base64 encode it
+                $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
+
+                                // Define the email body with attachment
+                $body = "--boundary1\r\n"
+                . "Content-Type: text/html;  charset=UTF-8\r\n"
+                . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+                . "$body\r\n\r\n";
+            
+                $body .="--boundary1\r\n"
+                . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
+                . "Content-Transfer-Encoding: base64\r\n"
+                . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
+                . "$attachment_data\r\n\r\n";
+               
+                }
+
+           
+            }
+        $body .= "--boundary1--";
+
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
 
