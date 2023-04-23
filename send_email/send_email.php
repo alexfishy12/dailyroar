@@ -26,6 +26,7 @@
     // Create a new PDO connection
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
         if(isset ($_POST['attachments'])){
             $attachments = $_POST["attachments"]; 
         }

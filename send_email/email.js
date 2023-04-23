@@ -270,6 +270,9 @@ function getEmailAttributes(){
 
 
     */
+    if (!json_form_data['attachments']) {
+        json_form_data['attachments'] = ""
+    }
     console.log(json_form_data)
     $("#send_response").show()
     $("#send_email_response").show()
