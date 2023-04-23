@@ -32,7 +32,7 @@
         }
         else 
         {
-            $attachments = "NULL";
+            $attachments = null;
         }
        
         $subject = $_POST['subject'];
@@ -217,62 +217,69 @@
         Global $errorList;
         Global $successful_recipient_count;
 
-
+        $finalized_attachments = [];
+        
+        
         // Define the email headers
-             // Define the email headers
-             $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
-             . "Reply-To: sender@example.com\r\n"
-             . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
-    
-             $body = "--boundary1\r\n"
-             . "Content-Type: text/html;  charset=UTF-8\r\n"
-             . "Content-Transfer-Encoding: 7bit\r\n\r\n"
-             . "$body\r\n\r\n";
-    
-             // Define the attachment file path and name if file array is not null
-             if($attachments != 'NULL'){
-    
-                 foreach($attachments as $file_name){
-                     $attachment_path = '../uploads/'. $file_name;
-                     $attachment_name = $file_name;
-    
-                     // Read the attachment file contents and base64 encode it
-                     $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
-    
-                    // Define the email body with attachment
-                    // $body = "--boundary1\r\n"
-                    // . "Content-Type: text/html;  charset=UTF-8\r\n"
-                    // . "Content-Transfer-Encoding: 7bit\r\n\r\n"
-                    // . "$body\r\n\r\n";
-    
-                     $body .="--boundary1\r\n"
-                     . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
-                     . "Content-Transfer-Encoding: base64\r\n"
-                     . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
-                     . "$attachment_data\r\n\r\n"
-                     . "--boundary1--";
-    
-                     }
+        // Define the email headers
+        $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
+        . "Reply-To: sender@example.com\r\n";
         
-                 }
-        
+        if ($attachments == null) {
+            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        }
+        else {
+            $headers .= "Content-Type: multipart/mixed; boundary=boundary1\r\n";
+                        
+            foreach($attachments as $file_name){
+                $embedded_attachment_data = "";
 
+                $attachment_path = '../uploads/'. $file_name;
+                $attachment_name = $file_name;
+
+                // Read the attachment file contents and base64 encode it
+                $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
+
+                $embedded_attachment_data .= "--boundary1\r\n"
+                . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
+                . "Content-Transfer-Encoding: base64\r\n"
+                . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
+                . "$attachment_data\r\n\r\n";
+
+                $finalized_attachments = array_push($finalized_attachments, $embedded_attachment_data);
+            }
+        }
+            
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
 
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
+            $actual_final_body = "";
 
             $new_link_body = replace_links($body, $email_id, $recipient['ID']);
 
             //attach tracking link
-            $new_body = $new_link_body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'&tracking_type=open" width="1" height="1" />';
+            $final_body = $new_link_body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'&tracking_type=open" width="1" height="1" />';
             
+            if ($attachments != null) {
+                $actual_final_body = "--boundary1\r\n"
+                . "Content-Type: text/html; charset=UTF-8\r\n\r\n"
+                . $final_body . "\r\n\r\n";
+
+                foreach((array) $finalized_attachments as &$att) {
+                    $actual_final_body .= $att;
+                }
+                $actual_final_body .= "--boundary1";
+            }
+            else {
+                $actual_final_body = $final_body;
+            }
             //send the actual email 
             // (the @ symbol suppresses warnings produced by the function)
             // in this case, I am using '@' to supress the mail function's warning about failing to connect to mail server
-            $email = @mail($recipient["Email"], $subject, $new_body, $headers);
+            $email = @mail($recipient["Email"], $subject, $actual_final_body, $headers);
             if ($email) {
                 array_push($responseList, "Email sent to ". $recipient["Email"] ." successfully.");
                 insert_into_tracking_table($email_id, $recipient['ID']);
