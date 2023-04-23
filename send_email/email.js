@@ -171,25 +171,19 @@ $(document).ready(function(){
 
     // function gets email attachments 
    $('#email_attachments').on('change', function() {
-        var fileNamesArray = [];
         var fileInput = $(this).get(0);
-        var files= fileInput.files;
+        var file = fileInput.files[0];
+        var file_name = file.name;
         var formData = new FormData();
+        formData.append('file', file);
 
-        for (var i = 0; i < files.length; i++) {
-            formData.append('file[]', files[i]);
-            fileNamesArray.push(files[i].name);
-          }
-       
+
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
-            json_form_data["attachments"] = fileNamesArray;
-          }
-          else {
-            console.log('Error: ' + this.status);
+            json_form_data["attachments"] = file_name;
           }
         };
       
@@ -198,6 +192,8 @@ $(document).ready(function(){
      
       });    // end email onchange function  
 })
+
+
 
 //function that gets curriculum
 function load_filter_options() {
