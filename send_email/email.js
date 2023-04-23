@@ -1,6 +1,9 @@
+
 var quill_editor;
 var json_form_data = {}
-var file_name;
+
+var quill;
+
 
 $(document).ready(function(){
     load_filter_options()
@@ -29,34 +32,77 @@ $(document).ready(function(){
 
 
     //initialize quill editor
-    quill_editor = new Quill('#editor', {
+    quill = new Quill('#editor', {
         modules: { 
             toolbar: toolbarOptions,
             
         },
         theme: 'snow'
     });
+    console.log(quill)
 
-    // var LinkInsert = (function() {
-    //     function LinkInsert(quill, options) {
-    //       this.quill = quill;
-    //       this.options = options;
-    //       this.toolbar = quill.getModule('toolbar');
-    //       if (typeof this.toolbar !== 'undefined') {
-    //         this.toolbar.addHandler('link', this.handleClick.bind(this));
-    //       }
-    //     }
-      
-    //     LinkInsert.prototype.handleClick = function() {
-    //       var range = this.quill.getSelection();
-    //       var url = prompt('Enter the URL');
-    //       if (url) {
-    //         this.quill.formatText(range.index, range.length, 'link', url);
-    //       }
-    //     };
-      
-    //     return LinkInsert;
-    //   })();
+    var toolbar = quill.theme.modules.toolbar
+    lastLinkRange = null;
+
+    /**
+     * Add protocol to link if it is missing. Considers the current selection in Quill.
+     */
+    function updateLink() {
+        var selection = quill.getSelection(),
+            selectionChanged = false;
+        if (selection === null) {
+            var tooltip = quill.theme.tooltip;
+            if (tooltip.hasOwnProperty('linkRange')) {
+                // user started to edit a link
+                lastLinkRange = tooltip.linkRange;
+                return;
+            } else {
+                // user finished editing a link
+                var format = quill.getFormat(lastLinkRange),
+                    link = format.link;
+                quill.setSelection(lastLinkRange.index, lastLinkRange.length, 'silent');
+                selectionChanged = true;
+            }
+        } 
+        else {
+            var format = quill.getFormat();
+            if (!format.hasOwnProperty('link')) {
+                return; // not a link after all
+            }
+            var link = format.link;
+        }
+        // add protocol if not there yet
+        if (!/^https?:/.test(link)) {
+            link = 'http://' + link;
+            quill.format('link', link);
+            // reset selection if we changed it
+            if (selectionChanged) {
+                if (selection === null) {
+                    quill.setSelection(selection, 0, 'silent');
+                } else {
+                    quill.setSelection(selection.index, selection.length, 'silent');
+                }
+            }
+        }
+    }
+
+    // listen for clicking 'save' button
+    editor.addEventListener('click', function(event) {
+        // only respond to clicks on link save action
+        if (event.target === editor.querySelector('.ql-tooltip[data-mode="link"] .ql-action')) {
+            updateLink();
+        }
+    });
+
+    // listen for 'enter' button to save URL
+    editor.addEventListener('keydown', function(event) {
+        // only respond to clicks on link save action
+        var key = (event.which || event.keyCode);
+        if (key === 13 && event.target === editor.querySelector('.ql-tooltip[data-mode="link"] input')) {
+            updateLink();
+        }
+    });
+    
      
       
     
@@ -162,11 +208,12 @@ function getEmailAttributes(){
   
 
     json_form_data["subject"] = $("input#email_subject").val();
-    // var delta = quill_editor.getContents();
-    // var text = quill_editor.getText();
+    // var delta = quill.getContents();
+    // var text = quill.getText();
 
     //add html content from QuillJS to "body" property of json
-    var just_html = quill_editor.root.innerHTML;
+    var just_html = quill.root.innerHTML;
+    console.log(just_html)
     json_form_data["body"] = just_html;
 
     //get selected options for curriculum

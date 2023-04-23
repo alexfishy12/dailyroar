@@ -243,9 +243,11 @@
         foreach ($recipients as $recipient) {
             insert_into_tracking_table($email_id, $recipient['ID']);
             
+            $new_link_body = replace_links($body, $email_id, $recipient['ID']);
+
             //attach tracking link
-            $new_body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
-           
+            $new_body = $new_link_body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'&tracking_type=open" width="1" height="1" />';
+            
             //send the actual email 
             // (the @ symbol suppresses warnings produced by the function)
             // in this case, I am using '@' to supress the mail function's warning about failing to connect to mail server
@@ -256,6 +258,30 @@
                 array_push($errorList, "An error occurred while sending the email to ". $recipient["Email"] . ".");
             }
         }
+    }
+    
+    // changes URL hyperlink to go to obi.kean.edu/~fisheral/dailyroar/tracking.php as a man in the middle before then going to the real link
+    // this allows hyperlink clicks to be tracked
+    function replace_links($body, $email_id, $recipient_id) {
+        // Create a new DOMDocument object
+        $dom = new DOMDocument();
+
+        // Load the HTML content into the DOMDocument object
+        $dom->loadHTML($body);
+
+        // Find all hyperlinks in the HTML content
+        $links = $dom->getElementsByTagName('a');
+
+        // Loop through each hyperlink and replace the link URL
+        foreach ($links as $link) {
+            $url = $link->getAttribute('href');
+            $newUrl = 'https://obi.kean.edu/~fisheral/dailyroar/tracking.php?redirect_url=' . urlencode($url) . '&email_id='. $email_id .'&student_id='.$recipient_id . "&tracking_type=click";;
+            $link->setAttribute('href', $newUrl);
+        }
+
+        // Get the updated HTML content from the DOMDocument object
+        $body = $dom->saveHTML();
+        return $body;
     }
 
     //inserts email into db, returns email's ID in the db
