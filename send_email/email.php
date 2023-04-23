@@ -12,12 +12,34 @@ $now=time();
 if($now > $_SESSION['expire']) {
     session_destroy();
     header("Location: ../index.php");  
+
+
+    $directoryName = "dailyroar/uploads";
+
+    // Check if the directory already exists
+    if(!is_dir($directoryName)){
+    
+      // Create the directory
+      mkdir($directoryName);
+    
+      // Display a success message
+      echo "Directory created successfully.";
+    
+    } else {
+    
+      // Display an error message
+      echo "Directory already exists.";
+    
+    }
+
 }
 ?>
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
+    <script type="text/javascript" src="attachments.js"></script>
+    
     <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">
   <link rel='stylesheet' href="../CSS/email.css">
@@ -105,16 +127,14 @@ include("../faculty_nav.php");
                 </div>
             </div>
                 <br>
-            <!-- END OF EXAMPLE QUILL CODE -->
-            
-            <!-- attachments button 
+             <div class = "file_names">  
+
+              </div>
             
             <label class="nes-btn is-primary">
-            <span> Select Your File</span>
-            <input type="file" id="email_attachments" name="attachments">
-            </label>
-
-            -->
+                <span> Select Your File</span>
+                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg">
+                </label>
             <!-- <button id='upload'>Upload attachments</button>-->
             <div id="submit_error" style="color:red; margin-bottom:25px"></div>
             <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>

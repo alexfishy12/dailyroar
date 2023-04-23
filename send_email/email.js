@@ -1,4 +1,7 @@
+var json_form_data = {}
+
 var quill;
+
 
 $(document).ready(function(){
     $("div#send_response").hide()
@@ -164,7 +167,33 @@ $(document).ready(function(){
         var options = $("select#selected_class_standing option, this");
         $("select#class_standing").append(options);
     })
+
+
+    // function gets email attachments 
+   $('#email_attachments').on('change', function() {
+        var fileInput = $(this).get(0);
+        var file = fileInput.files[0];
+        var file_name = file.name;
+        var formData = new FormData();
+        formData.append('file', file);
+
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+            json_form_data["attachments"] = file_name;
+          }
+        };
+      
+        xhr.open('POST', 'upload_attachments.php', true);
+        xhr.send(formData);
+     
+      });    // end email onchange function  
 })
+
+
 
 //function that gets curriculum
 function load_filter_options() {
@@ -180,7 +209,6 @@ function load_filter_options() {
 //Onclick send email button
 function getEmailAttributes(){
     
-    var json_form_data = {}
     var submit_error = false
 
     json_form_data["subject"] = $("input#email_subject").val();
@@ -227,14 +255,16 @@ function getEmailAttributes(){
 
     
     // Enable file upload after sprint 1
-    /*
+    
     //add file attachments to "attachments" property of json
-    var files = $('#email_attachments').prop('files')[0];
+   /* var files = $('#email_attachments').prop('files')[0];
 
+    
     if (files != null) {
         uploadFile()
     }
-    json_form_data["attachments"] = file_path;
+
+
     */
     console.log(json_form_data)
     $("#send_response").show()
@@ -281,9 +311,13 @@ function getEmailAttributes(){
         }
     })
     
-}
+} // end getemailattribute function
 
-async function uploadFile() {
+
+
+
+/*
+    async function uploadFile() {
     let formData = new FormData(); 
     formData.append("file", $("#email_attachments").prop("files")[0]);
     await fetch('upload_attachments.php', {
@@ -293,7 +327,8 @@ async function uploadFile() {
             console.log(data);
     })
 }
-  
+*/
+
 function send_email(email_data){
     return new Promise(function(resolve) {
         $.ajax({
