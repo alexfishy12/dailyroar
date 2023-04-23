@@ -1,19 +1,6 @@
 <?php
     include("../dbconfig.php");
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    
-    require '..//PHPMailer/src/PHPMailer.php';
-    require '../PHPMailer/src/Exception.php';
-    require '..//PHPMailer/src/SMTP.php';
-    
-
-
-    //Create an instance; passing `true` enables exceptions
-
-
-
     $responseList = [];
     $errorList = [];
     $email_id = null;
@@ -174,7 +161,7 @@
         }
     } // end of get recipient function
 
-    function sendEmailOriginal($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
+    function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
 
         //access global variables inside function
         Global $pdo;
@@ -184,9 +171,22 @@
         // Set the email headers
         $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
         $headers .= "Reply-To: ". $sender_email. "\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "Content-Type: multipart/mixed; charset=UTF-8\r\n";
+
+        array_push($responseList, $attachments);
+        // Attachment file path and name
+        $file_path = "../uploads/".$attachments;
 
 
+        if (!file_exists($file_path)) {
+            array_push($errorList, error_get_last());
+        }
+        // Read the file content into a variable
+        $file_content = file_get_contents($file_path,true);
+
+
+        // Encode the file content in base64 format
+        $file_content_encoded = base64_encode($file_content);
 
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
@@ -209,8 +209,6 @@
             }
         }
     }
-
-
 
     //inserts email into db, returns email's ID in the db
     function insert_into_email_table($sender_id, $subject, $body, $recipients) {
