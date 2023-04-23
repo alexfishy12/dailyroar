@@ -26,10 +26,18 @@ if($now > $_SESSION['expire']) {
 
     <!-- Quill -->
     <!-- Main Quill library -->
-    <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet" />
-    <script src="https://cdn.quilljs.com/1.1.10/quill.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.0.0/quill.min.js"></script>
+    
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.0.0/quill.bubble.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
-   
+    <!-- Core build with no theme, formatting, non-essential modules -->
+    <link href="//cdn.quilljs.com/1.0.0/quill.core.css" rel="stylesheet">
+    <script src="//cdn.quilljs.com/1.0.0/quill.core.js"></script>
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
     <!-- End of Quill -->
 </head>
 <title id="title">Daily Roar - Email</title>
@@ -100,7 +108,7 @@ include("../faculty_nav.php");
             
                     <!-- Create the editor container -->
                     <div form="email" name="body" id="editor" class='editor_container'>
-                        <p>Welcome to The Daily Roar! Click the following: JOB OPPORTUNITY LINK!</p>
+                        <p>Welcome to The Daily Roar!</p>
                     </div>
                 </div>
                     <br>
