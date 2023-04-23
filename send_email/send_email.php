@@ -227,7 +227,10 @@
              . "Reply-To: sender@example.com\r\n"
              . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
     
-    
+             $body = "--boundary1\r\n"
+             . "Content-Type: text/html;  charset=UTF-8\r\n"
+             . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+             . "$body\r\n\r\n";
     
              // Define the attachment file path and name if file array is not null
              if($attachments != 'NULL'){
@@ -239,23 +242,30 @@
                      // Read the attachment file contents and base64 encode it
                      $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
     
-                                     // Define the email body with attachment
-                     $body = "--boundary1\r\n"
-                     . "Content-Type: text/html;  charset=UTF-8\r\n"
-                     . "Content-Transfer-Encoding: 7bit\r\n\r\n"
-                     . "$body\r\n\r\n";
+                    // Define the email body with attachment
+                    // $body = "--boundary1\r\n"
+                    // . "Content-Type: text/html;  charset=UTF-8\r\n"
+                    // . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+                    // . "$body\r\n\r\n";
     
                      $body .="--boundary1\r\n"
                      . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
                      . "Content-Transfer-Encoding: base64\r\n"
                      . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
-                     . "$attachment_data\r\n\r\n";
+                     . "$attachment_data\r\n\r\n"
+                     . "--boundary1--";
     
                      }
-    
-    
+        
                  }
-             $body .= "--boundary1--";
+               /* if($attachments == "Null")
+                 {
+                    $body = "--boundary1\r\n"
+                    . "Content-Type: text/html;  charset=UTF-8\r\n"
+                    . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+                    . "$body\r\n\r\n";
+                 } */
+          
        
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
