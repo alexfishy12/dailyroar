@@ -3,17 +3,18 @@
 
     $responseList = [];
     $errorList = [];
+    $successful_recipient_count = 0;
     $email_id = null;
 
     session_start();
     if  (!isset($_SESSION["user"])){
         array_push($errorList, "ERROR: Login email not set.");
-        print_response($responseList, $errorList);
+        print_response($responseList, $errorList, 0);
         die();
     }
     if (!isset($_SESSION["id"])){
         array_push($errorList, "ERROR: Login ID not set.");
-        print_response($responseList, $errorList);
+        print_response($responseList, $errorList, 0);
         die();
     }
     $sender_id = $_SESSION["id"];
@@ -148,13 +149,13 @@
             }
             else {
                 array_push($errorList, "ERROR: No students found using the selected filters.");
-                print_response($responseList, $errorList);
+                print_response($responseList, $errorList, 0);
                 die();
             }
         }
         else {
             array_push($errorList, "ERROR: ". $stmt->errorInfo()[2] . ":: LINE 156");
-            print_response($responseList, $errorList);
+            print_response($responseList, $errorList, 0);
             die();
         }
     }
@@ -165,6 +166,7 @@
         Global $pdo;
         Global $responseList;
         Global $errorList;
+        Global $successful_recipient_count;
 
         // Set the email headers
         $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
@@ -176,8 +178,7 @@
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
-            insert_into_tracking_table($email_id, $recipient['ID']);
-            
+
             $new_link_body = replace_links($body, $email_id, $recipient['ID']);
 
             //attach tracking link
@@ -189,6 +190,8 @@
             $email = @mail($recipient["Email"], $subject, $new_body, $headers);
             if ($email) {
                 array_push($responseList, "Email sent to ". $recipient["Email"] ." successfully.");
+                insert_into_tracking_table($email_id, $recipient['ID']);
+                $successful_recipient_count++;
             } else {
                 array_push($errorList, "An error occurred while sending the email to ". $recipient["Email"] . ".");
             }
@@ -253,7 +256,7 @@
         }
         else {
             array_push($errorList, $stmt->errorInfo()[2] . ":: LINE 229");
-            print_response($responseList, $errorList);
+            print_response($responseList, $errorList, 0);
             die();
         }
     }
@@ -324,7 +327,7 @@
         }
         else {
             array_push($errorList, $pdo->errorInfo()[2] . ":: LINE 300");
-            print_response([], $errorList);
+            print_response([], $errorList, 0);
             die();
         }
     }
@@ -416,7 +419,7 @@
         }
         else {
             array_push($errorList, $pdo->errorInfo()[2] . "::LINE 392");
-            print_response([], $errorList);
+            print_response([], $errorList, 0);
             die();
         }
     }
@@ -446,26 +449,27 @@
             }
             else {
                 array_push($errorList, "Error: File not uploaded");
-                print_response([], $errorList);
+                print_response([], $errorList, 0);
                 die();
             }
         }
         else {
             array_push($errorList, "Error: File type not accepted for file: " . $file['name']);
-            print_response([], $errorList);
+            print_response([], $errorList, 0);
             die();
         }
     }
 
-    print_response($responseList, $errorList);
+    print_response($responseList, $errorList, $successful_recipient_count);
 
     // prints response to webpage
-    function print_response($response = [], $errors = []) {
+    function print_response($response = [], $errors = [], $successful_recipient_count) {
         $string = "";
 
         // Convert response to JSON string:
         $string = "{\"errors\" : ". json_encode($errors) . ",".
-                "\"response\" : ". json_encode($response) ."}";
+                "\"response\" : ". json_encode($response) .",".
+                "\"recipients\" : ". json_encode($successful_recipient_count) ."}";
 
         echo $string;
     }
