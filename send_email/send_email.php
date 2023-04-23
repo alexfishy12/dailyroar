@@ -161,7 +161,7 @@
         }
     } // end of get recipient function
 
-    function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
+   /* function sendEmailOriginal($email_id, $sender_id, $sender_email, $recipients, $subject, $body) {
 
         //access global variables inside function
         Global $pdo;
@@ -171,25 +171,73 @@
         // Set the email headers
         $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
         $headers .= "Reply-To: ". $sender_email. "\r\n";
-        $headers .= "Content-Type: multipart/mixed; charset=UTF-8\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-        array_push($responseList, $attachments);
         // Attachment file path and name
-        $file_path = "../uploads/".$attachments;
-
-
-        if (!file_exists($file_path)) {
-            array_push($errorList, error_get_last());
-        }
-        // Read the file content into a variable
-        $file_content = file_get_contents($file_path,true);
-
-
-        // Encode the file content in base64 format
-        $file_content_encoded = base64_encode($file_content);
 
         //set baseURL for tracking link
         $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
+
+        
+        // Send the email to each recipient using the mail() function
+        foreach ($recipients as $recipient) {
+            insert_into_tracking_table($email_id, $recipient['ID']);
+            
+            //attach tracking link
+            $new_body = $body. '<img src="'.$base_url.'tracking.php?email_id='. $email_id .'&student_id='.$recipient["ID"].'" width="1" height="1" />';
+           
+            //send the actual email 
+            // (the @ symbol suppresses warnings produced by the function)
+            // in this case, I am using '@' to supress the mail function's warning about failing to connect to mail server
+            $email = @mail($recipient["Email"], $subject, $new_body, $headers);
+            if ($email) {
+                array_push($responseList, "Email sent to ". $recipient["Email"] ." successfully.");
+            } else {
+                array_push($errorList, "An error occurred while sending the email to ". $recipient["Email"] . ".");
+            }
+        }
+    } */
+    function sendEmail($email_id, $sender_id, $sender_email, $recipients, $subject, $body, $attachments) {
+
+        //access global variables inside function
+        Global $pdo;
+        Global $responseList;
+        Global $errorList;
+
+        // Set the email headers
+        //$headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
+       // $headers .= "Reply-To: ". $sender_email. "\r\n";
+       // $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+
+        // Define the attachment file path and name
+        $attachment_path = '../uploads/'. $attachments;
+        $attachment_name = $attachments;
+
+        // Read the attachment file contents and base64 encode it
+        $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
+
+        // Define the email headers
+        $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
+                . "Reply-To: sender@example.com\r\n"
+                . "Content-Type: multipart/mixed; boundary=boundary1\r\n";
+
+        // Define the email body with attachment
+        $body = "--boundary1\r\n"
+            . "Content-Type: text/html; charset=us-ascii\r\n"
+            . "Content-Transfer-Encoding: 7bit\r\n\r\n"
+            . "$body\r\n\r\n"
+            . "--boundary1\r\n"
+            . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
+            . "Content-Transfer-Encoding: base64\r\n"
+            . "Content-Disposition: attachment; filename=\"$attachment_name\"\r\n\r\n"
+            . "$attachment_data\r\n\r\n"
+            . "--boundary1--";
+
+   
+        //set baseURL for tracking link
+        $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
+
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
