@@ -28,7 +28,6 @@
   overflow-y:auto;
   overflow-x:hidden;
   height:60vh;
-  scrollbar-color: red yellow;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
