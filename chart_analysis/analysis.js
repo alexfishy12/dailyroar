@@ -51,7 +51,6 @@ function show_email(email_id) {
     get_email_data(email_id).then(function(response){
         $("div#selected_email").show()
         $("div#email_table").hide()
-        console.log(response)
         const parsedData = JSON.parse(response);
         console.log(parsedData)
 
@@ -67,7 +66,11 @@ function show_email(email_id) {
         $("#email_metadata").html(email_metadata_html)
 
         // paste the body
-        $("#editor").html(email_metadata.email.Body)
+        var body = email_metadata.email.Body
+        console.log(body)
+        body = decodeURI(body)
+        console.log(body)
+        $("#editor").html(body)
         
         // print out email analysis data
         const email_data = parsedData.response.email_data
@@ -79,6 +82,7 @@ function show_email(email_id) {
         var percentage_link_clicks = 100 * email_data['total_clicked'] / email_data['total_recipients']
         
         var email_data_html = "";
+        email_data_html += "Total recipients: " + email_data['total_recipients'] + "<br>"
         email_data_html += "Percentage opened: " + percentage_opened + "%<br>"
         email_data_html += "Percentage clicked through: " + percentage_link_clicks + "%<br>"
         $("div#email_data").html(email_data_html);
@@ -91,7 +95,6 @@ function show_email(email_id) {
         const class_standing = email_metadata.filters.class_standing
         var class_standing_string = ""
         for (standing in class_standing){
-            console.log(class_standing[standing][0])
             var standing = class_standing[standing][0]
             var standing_full_name = ""
             if (standing == "FR") {

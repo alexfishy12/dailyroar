@@ -31,6 +31,8 @@ table tr:hover{
 }
 
 .editor_container {
+    margin-top: 25px;
+    margin-bottom: 25px;
     background-color: white;
     color: black;
     height:fit-content

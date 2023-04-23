@@ -84,6 +84,7 @@
         // Fetch the result
         if ($stmt->errorCode() === '00000') {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result["Body"] = htmlspecialchars_decode($result["Body"]);
             $metadata["email"] = $result;
         }
         else {

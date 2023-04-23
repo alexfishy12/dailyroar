@@ -53,9 +53,9 @@ include("../faculty_nav.php");
                         <button class="nes-btn" id="go_back">Go back</button>
                         <hr>
                         <div id="email_metadata" class="email_metadata"></div><br>
-                        <b><u>Body</u></b>
-                        <div form="email" name="body" id="editor" class='editor_container'></div>
-                        <div id="email_data"></div>
+                        <b><u>Body</u></b><br><br>
+                        <div form="email" name="body" id="editor" class='editor_container'></div><br>
+                        <div id="email_data"></div><br>
                         <div id="charts_response">
                             <div id="data_chart" style='text-align:center;width:75%;margin-right:12.5%;margin-left:12.5%;'></div>
                         </div>
