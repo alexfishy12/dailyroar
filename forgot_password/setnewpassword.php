@@ -30,7 +30,6 @@
 if (isset($_POST['password2'])){
     $newpassword = $_POST['password2'];
     $email = $_POST['Email'];
-    $code = $_POST['Code'];
 
     // create a prepared statement
     $stmt = $con->prepare("CALL Change_Password(?, ?)");
@@ -40,9 +39,7 @@ if (isset($_POST['password2'])){
 
     // execute the statement
     if ($stmt->execute()) {
-
         echo "Your new password has been set.";
-        $sql = "DELETE FROM csemaildb.PasswordCode WHERE Code = $code";
     } else {
         echo "Could not succesfully change your password: " . $stmt->error;
     }

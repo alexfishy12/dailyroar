@@ -110,7 +110,7 @@ include("../dbconfig.php");
 
 						<div class="nes-select">
 						<label for="nes_field"> Major Two: </label>
-						<select  id="default_select" name='major2'  >
+						<select  id="default_select" name='major2' required >
 							<option value=""> </option>
 
 									<?php
@@ -131,7 +131,7 @@ include("../dbconfig.php");
 
 						<div class="nes-select">
 						<label for="nes_field"> Minor: </label>
-						<select  id="default_select" name='minor'  >
+						<select  id="default_select" name='minor' required >
 							<option value=""> </option>
 
 									<?php
