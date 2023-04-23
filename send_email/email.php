@@ -68,89 +68,83 @@ include("../faculty_nav.php");
 <div class="scroll">
   <div class="content">
         <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
-                Curriculum:
-                <div class="row small-text">
-                  <div class="column side">
-                    Unselected
-                    <select id='curriculum' size='4' multiple>
-                      
-                    </select>
-                  </div>
-                  <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
-                      <button id='curriculum_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
-                      <button id='curriculum_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
-                  </div>  
-                  <div class="column side">
-                    Selected
-                    <select id='selected_curriculum' size='4' multiple>
-                      <!-- This area will be dynamically added with options depending on which ones were chosen -->
-                      
-                    </select>
-                  </div>
-                </div>
+          <div id="compose_email_form">
+            <b><u>Select Recipients via Filters</u></b><br><br>
+            Curriculum:
+            <div class="row small-text">
+              <div class="column side">
+                Unselected
+                <select id='curriculum' size='4' multiple>
+                  
+                </select>
+              </div>
+              <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
+                  <button id='curriculum_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
+                  <button id='curriculum_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
+              </div>  
+              <div class="column side">
+                Selected
+                <select id='selected_curriculum' size='4' multiple>
+                  <!-- This area will be dynamically added with options depending on which ones were chosen -->
+                  
+                </select>
+              </div>
+            </div>
 
-                Class Standing:
-                <div class="row small-text">
-                  <div class="column side">
-                    Unselected
-                    <select id='class_standing' size='5' multiple>
-                    
-                    </select>
-                  </div>
-                  <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
-                      <button id='standing_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
-                      <button id='standing_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
-                  </div>  
-                  <div class="column side">
-                    Selected
-                    <select id='selected_class_standing' size='5' multiple>
-                      <!-- This area will be dynamically added with options depending on which ones were chosen -->
-                      
-                    </select>
-                  </div>
-                </div>
+            Class Standing:
+            <div class="row small-text">
+              <div class="column side">
+                Unselected
+                <select id='class_standing' size='5' multiple>
                 
-                <div class="nes-field">
-                <label for="subject">Subject:</label>
-                <input type="text" name="subject" id="email_subject" class="nes-input" required><br> 
-                </div>
-                <!-- EXAMPLE QUILL CODE -->
-                <div class="quill_editor">
-                    <!-- Create the toolbar container -->
-                    <div id="toolbar">
-                    </div>
-            
-                    <!-- Create the editor container -->
-                    <div form="email" name="body" id="editor" class='editor_container'>
-                        <p>Welcome to The Daily Roar!</p>
-
-        
-
-                        <p>Welcome to The Daily Roar! Click the following: JOB OPPORTUNITY LINK!</p>
-
-                    </div>
-                </div>
-                    <br>
-                  <!-- File upload delete container -->
-                  <div class = "file_names">  
-
-                  </div>
-                
-                <!-- END OF EXAMPLE QUILL CODE -->
-                <label class="nes-btn is-primary">
-                <span> Select Your File</span>
-                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg" multiple>
-                </label>
-
-                
-                <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
-            
-            
+                </select>
+              </div>
+              <div class="column middle" style="margin-top:20px;margin-bottom:20px;">
+                  <button id='standing_select_all' class='nes-btn is-primary filter_button'>Select All</button><br>
+                  <button id='standing_remove_all' class='nes-btn is-error filter_button'>Remove All</button><br>
+              </div>  
+              <div class="column side">
+                Selected
+                <select id='selected_class_standing' size='5' multiple>
+                  <!-- This area will be dynamically added with options depending on which ones were chosen -->
+                  
+                </select>
+              </div>
+            </div>
             <div id="get_response"></div>
-            <br>
+            <div class="nes-field">
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" id="email_subject" class="nes-input" placeholder="Enter email subject..." required><br> 
+            </div>
+            <!-- EXAMPLE QUILL CODE -->
+            <div class="quill_editor">
+                <!-- Create the toolbar container -->
+                <div id="toolbar">
+                </div>
+        
+                <!-- Create the editor container -->
+                <div form="email" name="body" id="editor" class='editor_container'>
+                </div>
+            </div>
+                <br>
+             <div class = "file_names">  
+
+              </div>
+            
+            <label class="nes-btn is-primary">
+                <span> Select Your File</span>
+                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg">
+                </label>
+            <!-- <button id='upload'>Upload attachments</button>-->
+            <div id="submit_error" style="color:red; margin-bottom:25px"></div>
+            <button type="button" class="nes-btn is-primary" id="form_submit">Send Email</button>
+          </div>
+          <div id="send_response">
+            <button id="view_sent_email" class="nes-btn is-primary">View Sent Email</button>
+            <div id="total_recipient_count"></div>
             <div id="send_email_response"></div>
-            <br>
-            <div id="send_email_errors"></div>
+            <div id="send_email_errors" style='color:red'></div>
+          </div>
         </div>
     </div>
   </div>
