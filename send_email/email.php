@@ -137,12 +137,9 @@ include("../faculty_nav.php");
                   </div>
                 
                 <!-- END OF EXAMPLE QUILL CODE -->
-                
-              
-                
                 <label class="nes-btn is-primary">
                 <span> Select Your File</span>
-                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg">
+                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg" multiple>
                 </label>
 
                 
