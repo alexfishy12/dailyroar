@@ -205,6 +205,7 @@
         Global $pdo;
         Global $responseList;
         Global $errorList;
+        Global $successful_recipient_count;
 
         // Set the email headers
         //$headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n";
