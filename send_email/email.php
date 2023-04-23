@@ -124,6 +124,7 @@ include("../faculty_nav.php");
         
                 <!-- Create the editor container -->
                 <div form="email" name="body" id="editor" class='editor_container'>
+                  BOOM <a href="https://www.google.com" target="_blank">LINK</a>
                 </div>
             </div>
                 <br>
