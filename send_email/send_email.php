@@ -251,8 +251,9 @@
         }
             
         //set baseURL for tracking link
-        $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
+        $base_url = "https://obi.kean.edu/~fisheral/dailyroar/";
 
+        $keanu_gif = "https://obi.kean.edu/~fisheral/dailyroar/assets/Keanu_Idle_Email-export.gif";
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {

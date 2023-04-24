@@ -79,7 +79,9 @@ function show_email(email_id) {
         }
         
         var percentage_opened = 100 * (email_data['total_opened'] / email_data['total_recipients'])
-        var percentage_link_clicks = 100 * email_data['total_clicked'] / email_data['total_recipients']
+        var percentage_link_clicks = 100 * (email_data['total_clicked'] / email_data['total_recipients'])
+        percentage_opened = percentage_opened.toFixed(2);
+        percentage_link_clicks = percentage_link_clicks.toFixed(2);
         
         var email_data_html = "";
         email_data_html += "Total recipients: " + email_data['total_recipients'] + "<br>"
