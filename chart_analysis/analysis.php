@@ -19,6 +19,7 @@ if($now > $_SESSION['expire']) {
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="analysis.js"></script>
+    <link rel="icon" href="../assets/Keanu_head.svg">
     <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">
   <link rel='stylesheet' href="../CSS/analysis.css">

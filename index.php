@@ -15,8 +15,9 @@ elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 
   <meta charset="UTF-8">
   <title>Daily Roar Login</title>
+  <link rel="icon" href="assets/Keanu_head.svg">
   <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
   <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
 

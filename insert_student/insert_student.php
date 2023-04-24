@@ -16,7 +16,7 @@ if($now > $_SESSION['expire']) {
 echo "<title id='title'>Daily Roar - Insert Student</title>";
 include("../dbconfig.php");
 ?>
-
+<link rel="icon" href="../assets/Keanu_head.svg">
 <link href="../CSS/font_family.css" rel="stylesheet">
 <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 <link href="../CSS/background_static.css" rel="stylesheet">
@@ -175,7 +175,7 @@ include("../dbconfig.php");
 
 						<br>
 						<br>
-						<input type='submit' value='Submit'>
+						<input class="nes-btn is-primary" type='submit' value='Submit'>
 
 						<br>
 					</form>
