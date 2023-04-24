@@ -179,7 +179,7 @@ $(document).ready(function(){
         var files= fileInput.files;
 
         for (var i = 0; i < files.length; i++) {
-            formData.append('file[]', files[i]);
+            fileFormData.append('file[]', files[i]);
             fileNamesArray.push(files[i].name);
         }     
       });    // end email onchange function  
@@ -257,52 +257,52 @@ function getEmailAttributes(){
 
     */
 
-    upload_attachments.then(function(){
-
-    })
-    console.log(json_form_data)
-    $("#send_response").show()
-    $("#send_email_response").show()
-    $("#send_email_response").html("<hr>Sending email...<hr>");
-    $("div#compose_email_form").hide()
-    send_email(json_form_data).then(function(response) {
-        console.log(response);
-        var responseHTML = "";
-        var errorHTML = "";
-        $("#send_email_response").html(responseHTML);
-        $("#send_email_errors").html(errorHTML);
-        response = JSON.parse(response);
-        console.log(response);
-        if (response) {
-            for (item in response.response) {
-                responseHTML += response.response[item] + "<br>";
-            }
-            for (item in response.errors) {
-                errorHTML += response.errors[item] + "<br>";
-            }
-            $("#total_recipient_count").html("<hr>Total recipient count: <span id='recipient_number'></span>")
-            if (responseHTML != "") {
-                $("#send_email_response").show();
-                $("#send_email_response").html("<hr>" + responseHTML);
-            }
-            if (errorHTML != "") {
-                $("#send_email_errors").show();
-                $("#send_email_errors").html("<hr style='color:#25a0ff'>" + errorHTML);
-            }
-            $("button#view_sent_email").show();
-            var finalNumber = response.recipients; // Change this to the final number you want to count up to
-            var currentNumber = 0;
-            var interval = setInterval(function() {
-                if (currentNumber >= finalNumber) {
-                clearInterval(interval);
-                $('#recipient_number').text(finalNumber);
-                } else {
-                currentNumber++;
-                $('#recipient_number').text(currentNumber);
+    upload_attachments().then(function(){
+        json_form_data["attachments"] = fileNamesArray;
+        console.log(json_form_data)
+        $("#send_response").show()
+        $("#send_email_response").show()
+        $("#send_email_response").html("<hr>Sending email...<hr>");
+        $("div#compose_email_form").hide()
+        send_email(json_form_data).then(function(response) {
+            console.log(response);
+            var responseHTML = "";
+            var errorHTML = "";
+            $("#send_email_response").html(responseHTML);
+            $("#send_email_errors").html(errorHTML);
+            response = JSON.parse(response);
+            console.log(response);
+            if (response) {
+                for (item in response.response) {
+                    responseHTML += response.response[item] + "<br>";
                 }
-            }, 75); // Change the interval to make the counter go faster/slower
-              
-        }
+                for (item in response.errors) {
+                    errorHTML += response.errors[item] + "<br>";
+                }
+                $("#total_recipient_count").html("<hr>Total recipient count: <span id='recipient_number'></span>")
+                if (responseHTML != "") {
+                    $("#send_email_response").show();
+                    $("#send_email_response").html("<hr>" + responseHTML);
+                }
+                if (errorHTML != "") {
+                    $("#send_email_errors").show();
+                    $("#send_email_errors").html("<hr style='color:#25a0ff'>" + errorHTML);
+                }
+                $("button#view_sent_email").show();
+                var finalNumber = response.recipients; // Change this to the final number you want to count up to
+                var currentNumber = 0;
+                var interval = setInterval(function() {
+                    if (currentNumber >= finalNumber) {
+                    clearInterval(interval);
+                    $('#recipient_number').text(finalNumber);
+                    } else {
+                    currentNumber++;
+                    $('#recipient_number').text(currentNumber);
+                    }
+                }, 75); // Change the interval to make the counter go faster/slower
+                  
+            }
+        })
     })
     
 } // end getemailattribute function
