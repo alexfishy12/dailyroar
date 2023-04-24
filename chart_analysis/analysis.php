@@ -44,7 +44,7 @@ include("../faculty_nav.php");
 </div>
 <div class="scroll">
   <div class="content">
-        <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.7)">
+        <div class="nes-container with-title is-centered">
                 <button class="nes-btn is-primary" id="select_email_analysis" hidden>Email Analysis</button>
                 <button class="nes-btn is-primary" id="select_filtered_analysis" hidden>Filtered Analysis</button>
                 <div id="email_analysis">

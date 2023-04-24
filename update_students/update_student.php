@@ -62,7 +62,7 @@ include("../faculty_nav.php");
     
     <div class="scroll">
         <div class="content">
-                <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+                <div class="nes-container with-title is-centered">
                     <form id="search">
                         <label for="student_name">Search for student by first name, last name, or email address: </label>
                         <input type="text" name="student_name" id="search_box" form="search">

@@ -17,7 +17,7 @@
 <div class="logout">
                 <a href="insert_student.php">Back</a>
             </div>
-<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+<div class="nes-container with-title is-centered">
 <?php
 include "../dbconfig.php";
 

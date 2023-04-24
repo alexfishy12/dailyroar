@@ -20,7 +20,7 @@
 <div class="logout">
                 <a href="../index.php">Back To Login</a>
             </div>
-<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+<div class="nes-container with-title is-centered">
   <form action="newpassword.php" method="post">
     <div class="nes-field">
     <label for="name_field">Please Enter Reset Code</label>
