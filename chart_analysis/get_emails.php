@@ -46,8 +46,7 @@
                     "<th>ID" .
                     "<th>Created".
                     "<th>Sender" .
-                    "<th>Subject".
-                    "<th>Message</tr>";
+                    "<th>Subject</tr>";
             
             $count = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -55,13 +54,10 @@
                     "<td>".$row['ID'].
                     "<td>".$row['Created'].
                     "<td>".$row['Sender'].
-                    "<td>".$row['Subject'].
-                    "<td>".$row['Body']."</tr>";
+                    "<td>".$row['Subject']."</tr>";
                 $count++;
             }
             $html = $html . "</table>";
-            $decodedContent = html_entity_decode($html);
-            return $decodedContent;
             return $html;
         }
         else {
