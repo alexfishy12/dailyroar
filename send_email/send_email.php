@@ -223,7 +223,7 @@
         // Define the email headers
         // Define the email headers
         $headers = "From: Daily Roar System <noreply@dailyroar.com>\r\n"
-        . "Reply-To: sender@example.com\r\n";
+        . "Reply-To: $sender_email\r\n";
         
         if ($attachments == null) {
             $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
