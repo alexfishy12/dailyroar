@@ -177,9 +177,9 @@ $(document).ready(function(){
         fileNamesArray = [];
         fileFormData = new FormData();
         var fileInput = $(this).get(0);
-        var files= fileInput.files;
+        var files = fileInput.files;
 
-
+        fileList.innerHTML = "";
         for (var i = 0; i < files.length; i++) {
             fileFormData.append('file[]', files[i]);
             fileNamesArray.push(files[i].name);
