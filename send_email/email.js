@@ -170,6 +170,7 @@ $(document).ready(function(){
         $("select#class_standing").append(options);
     })
 
+    var fileList = document.getElementById('fileList');
 
     // function gets email attachments 
    $('#email_attachments').on('change', function() {
@@ -178,9 +179,14 @@ $(document).ready(function(){
         var fileInput = $(this).get(0);
         var files= fileInput.files;
 
+
         for (var i = 0; i < files.length; i++) {
             fileFormData.append('file[]', files[i]);
             fileNamesArray.push(files[i].name);
+
+            var p = document.createElement('p');
+            p.textContent = files[i].name;
+            fileList.appendChild(p);
         }     
       });    // end email onchange function  
 })
