@@ -238,7 +238,7 @@
                 $attachment_name = $file_name;
 
                 // Read the attachment file contents and base64 encode it
-                $attachment_data = chunk_split(base64_encode(file_get_contents($attachment_path)));
+                $attachment_data = chunk_split(base64_encode(file_get_contents("$attachment_path")));
 
                 $embedded_attachment_data .= "--boundary1\r\n"
                 . "Content-Type: application/pdf; name=\"$attachment_name\"\r\n"
