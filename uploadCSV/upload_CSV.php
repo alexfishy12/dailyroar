@@ -32,18 +32,20 @@ else{
   <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet"/>
 </head>
 
-<body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
+<body class='retro' background-image="../assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
   
 <div class="title">
     <p>Upload Students CSV</P>
 </div>
 <div class="scroll">
     <div class="content">
-            <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+            <div class="nes-container with-title is-centered">
                 <div>
-                    <input type = "file" id = "uploadcsv" name = "uploadcsv" onchange = "readCSV();">
+                    <input type = "file" id = "uploadcsv" name = "uploadcsv" accept=".csv">
+                    <button id="upload" class="nes-btn is-primary" style="margin-top:25px;margin-bottom:25px;">Upload CSV</button>
                 </div>
-                <div id="responseMessage"></div>
+                <div id="loading_message" style="margin-top:25px;margin-bottom:25px;"></div>
+                <div id="responseMessage" style="margin-top:25px;margin-bottom:25px;"></div>
             </div>
     </div>
 </div>

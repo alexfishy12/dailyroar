@@ -41,7 +41,7 @@ if($now > $_SESSION['expire']) {
                 <a href="logout.php">logout</a>
             </div>
                 
-                <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+                <div class="nes-container with-title is-centered">
                     <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
                     <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
                     <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>

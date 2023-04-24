@@ -107,3 +107,7 @@ option {
   /* add border after every option */
   border-bottom: 1px solid #DDD;
 }
+
+.nes-container {
+  background:rgba(0,0,0,0.75);
+}

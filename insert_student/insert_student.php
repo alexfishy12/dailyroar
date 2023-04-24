@@ -55,7 +55,7 @@ include("../dbconfig.php");
 
 	<div class="scroll">
 		<div class="content">
-				<div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+				<div class="nes-container with-title is-centered">
 					<form name = "input" action = "enter_student.php" method = "post" >
 
 						<div class="nes-field is-inline">

@@ -66,7 +66,7 @@ include("../faculty_nav.php");
 </div>
 <div class="scroll">
   <div class="content">
-        <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
+        <div class="nes-container with-title is-centered">
           <div id="compose_email_form">
             <b><u>Select Recipients via Filters</u></b><br><br>
             Curriculum:

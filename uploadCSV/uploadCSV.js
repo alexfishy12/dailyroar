@@ -1,5 +1,30 @@
+$(document).ready(function() {
+    $("button#upload").hide()
+    $("div#loading_message").hide()
+    $("div#responseMessage").hide()
+    $("input#uploadcsv").on("change", function() {
+        console.log("File change...")
+        var fileInput = $(this).get(0);
+        var files = fileInput.files;
+        console.log(files)
+
+        if (files.length > 0) {
+            $("button#upload").show()
+        }
+        else {
+            $("button#upload").hide()
+        }
+    })
+
+    $("button#upload").on("click", readCSV)
+})
+
 function readCSV()
 {
+    $("div#loading_message").show()
+    $("div#loading_message").html("Uploading CSV...<br><br>Please be patient. This may take a few minutes.")
+    $("button#upload").hide()
+    $("input#uploadcsv").hide()
     var file = document.getElementById("uploadcsv");
     var fileName = file.files[0];
 
@@ -16,17 +41,36 @@ function readCSV()
             // create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
 
-            // // set the HTTP method and URL
-            // xhr.open('POST', 'uploadCSV/uploadCSV.php');
+            var csv_is_uploaded = false
+            var ellipses = "..."
+            var interval = setInterval(function() {
+                if (csv_is_uploaded == true) {
+                    clearInterval(interval);
+                    $("div#loading_message").hide()
+                } else {
+                    if (ellipses == "...") {
+                        ellipses = ""
+                    }
+                    else if (ellipses == "") {
+                        ellipses = "."
+                    }
+                    else if (ellipses == ".") {
+                        ellipses = ".."
+                    }
+                    else if (ellipses == "..") {
+                        ellipses = "..."
+                    }
+                    $("div#loading_message").html("Uploading CSV" + ellipses + "<br><br>Please be patient. This may take a few minutes.")
+                }
+            }, 1000); // Change the interval to make the counter go faster/slower
 
-            // // set the request header to indicate that the payload is JSON
-            // xhr.setRequestHeader('Content-Type', 'application/json');
-
-            // // send the JSON payload
-            // xhr.send(jsonString);
-
+            $("div#loading_message").show()
             upload_csv(jsonString).then(function (response) {
-                $("#responseMessage").html(response)
+                csv_is_uploaded = true
+                clearInterval(interval);
+                $("div#loading_message").hide()
+                $("div#responseMessage").show()
+                $("div#responseMessage").html(response)
             })
         }
       });
@@ -41,7 +85,7 @@ function readCSV()
                     data: csv,
                     success: function (response, status) {
                         console.log('AJAX Success.');
-                        resolve(response);
+                        resolve("Student CSV successfully uploaded!");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log('AJAX Error:' + textStatus);
