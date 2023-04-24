@@ -16,6 +16,14 @@
     1px 30px 60px rgba(16,16,16,0.4);
   padding-top:5vh;
   padding-bottom:3vh;
+
+  /* makes title text unselectable */
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .content {
