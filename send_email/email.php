@@ -129,12 +129,13 @@ include("../faculty_nav.php");
             </div>
                 <br>
              <div class = "file_names">  
+                <p id = "fileList"></p>
 
               </div>
             
             <label class="nes-btn is-primary">
                 <span> Select Your File</span>
-                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg">
+                <input type="file" id="email_attachments" name="attachments" accept=".pdf,.jpg,.png,.jpeg" multiple>
                 </label>
             <!-- <button id='upload'>Upload attachments</button>-->
             <div id="submit_error" style="color:red; margin-bottom:25px"></div>

@@ -168,6 +168,7 @@ $(document).ready(function(){
         $("select#class_standing").append(options);
     })
 
+    var fileList = document.getElementById('fileList');
 
     // function gets email attachments 
    $('#email_attachments').on('change', function() {
@@ -176,9 +177,15 @@ $(document).ready(function(){
         var files= fileInput.files;
         var formData = new FormData();
 
+
         for (var i = 0; i < files.length; i++) {
             formData.append('file[]', files[i]);
             fileNamesArray.push(files[i].name);
+
+            var p = document.createElement('p');
+            p.textContent = files[i].name;
+            fileList.appendChild(p);
+
           }
        
         var xhr = new XMLHttpRequest();
