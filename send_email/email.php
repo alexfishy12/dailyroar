@@ -38,7 +38,6 @@ if($now > $_SESSION['expire']) {
 <head>
     <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="email.js"></script>
-    <script type="text/javascript" src="attachments.js"></script>
     
     <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">

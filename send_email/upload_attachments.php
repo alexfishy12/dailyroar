@@ -21,13 +21,12 @@
 
     // Get the temporary filename
     $tempFilePath = $_FILES['file']['tmp_name'][$i];
-    echo $name ." upload: ";
 
     // Save the uploaded file to the local filesystem 
     if ( move_uploaded_file($tempFilePath, $targetFilePath) ) 
-      echo 'Success';  
+      echo $name .' upload: success; ';  
     else  
-      echo 'Failure'; 
+      echo $name .' upload: failure; '; 
   }
 
 
