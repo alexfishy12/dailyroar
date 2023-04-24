@@ -23,6 +23,7 @@ if($now > $_SESSION['expire']) {
   <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
   <link rel="icon" href="assets/Keanu_head.svg">
   <link rel=" shortcut icon" href="assets/Keanu_head.svg" type="image/x-icon" />
+
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
     <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
