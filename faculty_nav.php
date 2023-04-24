@@ -32,13 +32,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="../Faculty_Home.php">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../send_email/email.php">Email</a>
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Emails
+            </a>
+            <ul class="dropdown-menu">
 
+              <li><a class="dropdown-item" href="../send_email/email.php">Compose and Send</a></li>
+              <li><a class="dropdown-item" href="../chart_analysis/analysis.php">Analysis</a></li>
+
+            </ul>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Modify Data
@@ -48,12 +55,11 @@
               <li><a class="dropdown-item" href="../insert_student/insert_student.php">Manually Insert Student</a></li>
               <li><a class="dropdown-item" href="../update_students/update_student.php">Update Student Information</a></li>
               <li><a class="dropdown-item" href="../uploadCSV/upload_CSV.php">Upload Students CSV</a></li>
-              <li><a class="dropdown-item" href="../chart_analysis/analysis.php">Chart Analysis</a></li>
 
             </ul>
-            <li class="nav-item">
-            <a class="nav-link" href="../logout.php">Logout</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.php">Logout</a>
           </li>
 
 

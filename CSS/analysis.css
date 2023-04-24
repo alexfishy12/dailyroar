@@ -21,6 +21,19 @@ table tr:hover{
     background: #f1f1f1;
 }
 
-table tr:focus{
-    background: #bbbbbb;
+.email_metadata{
+    text-align:left;
+}
+
+.selected_email{
+    color:#95c3ff;
+    text-align: left;
+}
+
+.editor_container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: white;
+    color: black;
+    height:fit-content
 }
