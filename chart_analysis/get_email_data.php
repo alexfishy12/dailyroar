@@ -70,7 +70,7 @@
         $filters = [];
 
         // Define the query to retrieve email data       
-        $query = "SELECT E.ID as ID, E.Created as Created, L.Email_Address as Sender, Subject, Body from Email E join Login L on (E.SenderID = L.ID) where E.ID = :email_id;";
+        $query = "SELECT E.ID as ID, DATE_FORMAT(E.Created, '%m/%d/%Y %h:%i %p') as Created, L.Email_Address as Sender, Subject, Body from Email E join Login L on (E.SenderID = L.ID) where E.ID = :email_id;";
 
         // Prepare the query
         $stmt = $pdo->prepare($query);

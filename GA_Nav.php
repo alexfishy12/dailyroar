@@ -4,8 +4,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="icon" type="image/x-icon" href="../assets/Kean_University_Logo_Nav.svg.png">
-
 <title><?php echo ($title); ?></title>
 
 <!-- CSS Only -->
@@ -17,6 +15,7 @@
 <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="../uploadCSV/uploadCSV.js"></script>
+  <link rel="icon" href="../assets/Keanu_head.svg">
   <link rel="stylesheet" href="../CSS/content.css">
   <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
