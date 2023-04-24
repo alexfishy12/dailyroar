@@ -6,6 +6,7 @@
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="../uploadCSV/uploadCSV.js"></script>
   <script src="checkPasswordMatch.js"></script>
+  <link rel="icon" href="../assets/Keanu_head.svg">
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">

@@ -8,6 +8,7 @@
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link href="../CSS/background_static.css" rel="stylesheet">
   <link href="../CSS/content.css" rel="stylesheet">
+  <link rel="icon" href="../assets/Keanu_head.svg">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 <body class="retro" background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">

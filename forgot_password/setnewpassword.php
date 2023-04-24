@@ -8,6 +8,7 @@
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link rel="stylesheet" href="../CSS/background_static.css">
   <link rel="stylesheet" href="../CSS/content.css">
+  <link rel="icon" href="../assets/Keanu_head.svg">
 
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>

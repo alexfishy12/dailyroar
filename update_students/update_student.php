@@ -19,6 +19,7 @@ if($now > $_SESSION['expire']) {
 <head>
     <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="update_student.js"></script>
+    <link rel="icon" href="../assets/Keanu_head.svg">
     <link href="../CSS/font_family.css" rel="stylesheet">
     <link href="../CSS/content.css" rel="stylesheet">
     <link href="../CSS/background_static.css" rel="stylesheet">
@@ -78,7 +79,7 @@ include("../faculty_nav.php");
                     </div>
                     <div id="review_options">
                         <button id="confirm">Confirm</button><br>
-                        <button id="make_changes">Make more changes</button>
+                        <button id="make_changes">Go back</button>
                     </div>
                     <div id="finished_options">
                         <button id="refresh" onclick="location.reload()">Update more students</button><br>

@@ -25,6 +25,7 @@ else{
   <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <script src="uploadCSV.js"></script>
+  <link rel="icon" href="../assets/Keanu_head.svg">
   <link href="../CSS/font_family.css" rel="stylesheet">
   <link href="../CSS/content.css" rel="stylesheet">
   <link href="../CSS/background_static.css" rel="stylesheet">
