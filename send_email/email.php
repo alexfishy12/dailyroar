@@ -129,6 +129,7 @@ include("../faculty_nav.php");
             </div>
                 <br>
              <div class = "file_names">  
+                <p id = "fileList"></p>
 
               </div>
             
