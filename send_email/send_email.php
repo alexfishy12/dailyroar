@@ -330,7 +330,7 @@
         $sqlbody = htmlspecialchars($body, ENT_QUOTES);
 
         //insert email into email table
-        $query = "insert into Email values(null, CURRENT_TIMESTAMP(), :sender_id, :subject, :body, 0, 0, :recipient_count, null);";
+        $query = "insert into Email values(null, CURRENT_TIMESTAMP(), :sender_id, :subject, :body, 0, 0, :recipient_count);";
 
         $stmt = $pdo->prepare($query);
 
