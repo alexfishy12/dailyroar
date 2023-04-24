@@ -1,4 +1,6 @@
 var json_form_data = {}
+var fileNamesArray = []
+var fileFormData = null;
 
 var quill;
 
@@ -171,31 +173,15 @@ $(document).ready(function(){
 
     // function gets email attachments 
    $('#email_attachments').on('change', function() {
-        var fileNamesArray = [];
+        fileNamesArray = [];
+        fileFormData = new FormData();
         var fileInput = $(this).get(0);
         var files= fileInput.files;
-        var formData = new FormData();
 
         for (var i = 0; i < files.length; i++) {
             formData.append('file[]', files[i]);
             fileNamesArray.push(files[i].name);
-          }
-       
-        var xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-            json_form_data["attachments"] = fileNamesArray;
-          }
-          else {
-            console.log('Error: ' + this.status);
-          }
-        };
-      
-        xhr.open('POST', 'upload_attachments.php', true);
-        xhr.send(formData);
-     
+        }     
       });    // end email onchange function  
 })
 
@@ -270,6 +256,10 @@ function getEmailAttributes(){
 
 
     */
+
+    upload_attachments.then(function(){
+
+    })
     console.log(json_form_data)
     $("#send_response").show()
     $("#send_email_response").show()
@@ -318,20 +308,22 @@ function getEmailAttributes(){
 } // end getemailattribute function
 
 
-
-
-/*
-    async function uploadFile() {
-    let formData = new FormData(); 
-    formData.append("file", $("#email_attachments").prop("files")[0]);
-    await fetch('upload_attachments.php', {
-      method: "POST",
-      body: formData
-    }).then(data => {
-            console.log(data);
-    })
+function upload_attachments(){
+    return new Promise(function(resolve) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                resolve('Success: Files uploaded.')
+            }
+            else {
+                resolve('Error: ' + this.status);
+            }
+        };
+        xhr.open('POST', 'upload_attachments.php', true);
+        xhr.send(fileFormData);
+    });
 }
-*/
 
 function send_email(email_data){
     return new Promise(function(resolve) {
