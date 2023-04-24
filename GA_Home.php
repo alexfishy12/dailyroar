@@ -38,7 +38,7 @@ if($now > $_SESSION['expire']) {
     <div class="scroll">
         <div class="content">
             <div class="logout">
-                <a href="logout.php">logout</a>
+                <a href="logout.php"><span class="nes-text is-success">Logout</span></a>
             </div>
                 
                 <div class="nes-container with-title is-centered">
