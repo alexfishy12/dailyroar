@@ -15,7 +15,7 @@
     </div>
 <div class="content">
 <div class="logout">
-                <a href="insert_student.php">Back</a>
+                <a href="insert_student.php"><span class="nes-text is-success">Go Back</span></a>
             </div>
 <div class="nes-container with-title is-centered">
 <?php

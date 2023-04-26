@@ -14,7 +14,6 @@
 
 <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
-  <script src="../uploadCSV/uploadCSV.js"></script>
   <link rel="icon" href="../assets/Keanu_head.svg">
   <link rel="stylesheet" href="../CSS/content.css">
   <script src= "../libraries/papaparse.min.js" ></script>
