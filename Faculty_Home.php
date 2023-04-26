@@ -22,8 +22,6 @@ if($now > $_SESSION['expire']) {
   <title>Faculty Home Page</title>
   <audio autoplay="" loop="" src="./Wii_Music.mp3"></audio>
   <link rel="icon" href="assets/Keanu_head.svg">
-  <link rel=" shortcut icon" href="assets/Keanu_head.svg" type="image/x-icon" />
-
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 	<link href="CSS/font_family.css" rel="stylesheet">
     <link href="CSS/background_moving.css" rel="stylesheet" type="text/css"/>
@@ -41,7 +39,7 @@ if($now > $_SESSION['expire']) {
                 <a href="logout.php">logout</a>
             </div>
                 
-                <div class="nes-container with-title is-centered">
+                <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
                     <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
                     <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
                     <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
