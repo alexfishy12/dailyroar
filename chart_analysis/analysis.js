@@ -86,7 +86,7 @@ function show_email(email_id) {
         var email_data_html = "";
         email_data_html += "Total recipients: " + email_data['total_recipients'] + "<br>"
         email_data_html += "Percentage opened: " + percentage_opened + "%<br>"
-        email_data_html += "Percentage clicked through: " + percentage_link_clicks + "%<br>"
+        email_data_html += "Percentage link clicks: " + percentage_link_clicks + "%<br>"
         $("div#email_data").html(email_data_html);
 
         // print out google chart
