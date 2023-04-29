@@ -41,10 +41,11 @@ if($now > $_SESSION['expire']) {
                 
                 <div class="nes-container with-title is-centered" style="background:rgba(0,0,0,0.5)">
                     <a href="send_email/email.php" class="nes-btn button_format" style="margin:20px">Compose Email</a>
+                    <a href="chart_analysis/analysis.php" class="nes-btn button_format" style="margin:20px">Email Analysis</a>
                     <a href="insert_student/insert_student.php" class="nes-btn button_format" style="margin:20px">Manually Insert a Student</a><br>
                     <a href="update_students/update_student.php" class="nes-btn button_format" style="margin:20px">Update a Student</a>
                     <a href="uploadCSV/upload_CSV.php" class="nes-btn button_format" style="margin:20px">Upload Students CSV</a>
-                    <a href="chart_analysis/analysis.php" class="nes-btn button_format" style="margin:20px">Email Analysis</a>
+                    <a href="create_user/create_user.php" class="nes-btn button_format" style="margin:20px">Create New User</a>
                 </div>
         </div>
     </div>  

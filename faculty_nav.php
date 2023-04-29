@@ -51,6 +51,7 @@
 
               <li><a class="dropdown-item" href="../insert_student/insert_student.php">Manually Insert Student</a></li>
               <li><a class="dropdown-item" href="../update_students/update_student.php">Update Student Information</a></li>
+              <li><a class="dropdown-item" href="../create_user/create_user.php">Create New User</a></li>
               <li><a class="dropdown-item" href="../uploadCSV/upload_CSV.php">Upload Students CSV</a></li>
 
             </ul>
