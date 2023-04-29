@@ -89,7 +89,7 @@
         $values_to_search = [];
 
         // start query
-        $query = "SELECT ID, FirstName, LastName, EmailAddress from csemaildb.TestStudents where ";
+        $query = "SELECT ID, FirstName, LastName, EmailAddress from csemaildb.Students where ";
 
         //paramCount
         $count = 0;
@@ -251,8 +251,9 @@
         }
             
         //set baseURL for tracking link
-        $base_url = "http://obi.kean.edu/~fisheral/dailyroar/";
+        $base_url = "https://obi.kean.edu/~fisheral/dailyroar/";
 
+        $keanu_gif = "https://obi.kean.edu/~fisheral/dailyroar/assets/Keanu_Idle_Email-export.gif";
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {
