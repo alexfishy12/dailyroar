@@ -52,22 +52,22 @@ include("../dbconfig.php");
                 <br>
                 <hr>
                <div class="nes-select">
-                    <label for="inline-field"> Account Type: </label>
+                    <label for="inline-field"> Account Type: (Select one)</label>
                         <br>
                     <label>
-                        <input type="radio" class="nes-radio" name="answer" checked required/>
+                        <input type="radio" class="nes-radio" name="acc_type" value="FA" checked required/>
                         <span>Faculty</span>
                     </label>
 
                     <label>
-                        <input type="radio" class="nes-radio" name="answer" required/>
+                        <input type="radio" class="nes-radio" name="acc_type" value ="GA" required/>
                         <span>Graduate Assistant</span>
                     </label>
                </div>
                <hr>
                <br>
                <div class="nes-field is-inline">
-                    <label for="inline-field"> Email Adress: </label>
+                    <label for="inline-field"> Email Address: </label>
                     <input type="email" id="inline_field" class="nes-input is-success" name="email" required>
                 </div>
                 <br>
