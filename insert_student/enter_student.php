@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-<title>Forgot Password</title>
+<title>Manually Insert Student</title>
   <script src= "../libraries/papaparse.min.js" ></script>
   <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
   <link href="../CSS/font_family.css" rel="stylesheet">

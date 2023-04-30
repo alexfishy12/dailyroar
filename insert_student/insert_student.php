@@ -22,6 +22,7 @@ include("../dbconfig.php");
 <link href="../CSS/background_static.css" rel="stylesheet">
 <link href="../CSS/content.css" rel="stylesheet">
 
+
 <?php
 	if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 		
