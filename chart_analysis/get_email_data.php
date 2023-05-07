@@ -38,7 +38,7 @@
             sum(1) as total_recipients,
             sum(case when Opened = 1 then 1 else 0 end) as total_opened,
             sum(case when Clicked = 1 then 1 else 0 end) as total_clicked
-            FROM csemaildb.Tracking where EmailID = :email_id;";
+            FROM Tracking where EmailID = :email_id;";
 
         // Prepare the query
         $stmt = $pdo->prepare($query);
