@@ -2,7 +2,7 @@ var json_form_data = {}
 var fileNamesArray = []
 var fileFormData = null;
 
-var quill;
+var editor;
 
 
 $(document).ready(function(){
@@ -13,103 +13,8 @@ $(document).ready(function(){
     $("#send_email_errors").hide();
 
     load_filter_options()
-
-
-    var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-        ['link'], 
-      
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-      
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-      
-        ['clean']                                         // remove formatting button
-      ];
-
-
-    //initialize quill editor
-    quill = new Quill('#editor', {
-        modules: { 
-            toolbar: toolbarOptions,
-            
-        },
-        theme: 'snow',
-        placeholder: "Welcome to the daily roar!"
-    });
-
-    var toolbar = quill.theme.modules.toolbar
-    lastLinkRange = null;
-
-    /**
-     * Add protocol to link if it is missing. Considers the current selection in Quill.
-     */
-    function updateLink() {
-        var selection = quill.getSelection(),
-            selectionChanged = false;
-        if (selection === null) {
-            var tooltip = quill.theme.tooltip;
-            if (tooltip.hasOwnProperty('linkRange')) {
-                // user started to edit a link
-                lastLinkRange = tooltip.linkRange;
-                return;
-            } else {
-                // user finished editing a link
-                var format = quill.getFormat(lastLinkRange),
-                    link = format.link;
-                quill.setSelection(lastLinkRange.index, lastLinkRange.length, 'silent');
-                selectionChanged = true;
-            }
-        } 
-        else {
-            var format = quill.getFormat();
-            if (!format.hasOwnProperty('link')) {
-                return; // not a link after all
-            }
-            var link = format.link;
-        }
-        // add protocol if not there yet
-        if (!/^https?:/.test(link)) {
-            link = 'http://' + link;
-            quill.format('link', link);
-            // reset selection if we changed it
-            if (selectionChanged) {
-                if (selection === null) {
-                    quill.setSelection(selection, 0, 'silent');
-                } else {
-                    quill.setSelection(selection.index, selection.length, 'silent');
-                }
-            }
-        }
-    }
-
-    // listen for clicking 'save' button
-    editor.addEventListener('click', function(event) {
-        // only respond to clicks on link save action
-        if (event.target === editor.querySelector('.ql-tooltip[data-mode="link"] .ql-action')) {
-            updateLink();
-        }
-    });
-
-    // listen for 'enter' button to save URL
-    editor.addEventListener('keydown', function(event) {
-        // only respond to clicks on link save action
-        var key = (event.which || event.keyCode);
-        if (key === 13 && event.target === editor.querySelector('.ql-tooltip[data-mode="link"] input')) {
-            updateLink();
-        }
-    });
     
-     
+    var editor = new RichTextEditor("#editor")
       
     
     $("#form_submit").on("click", function(){
@@ -208,12 +113,8 @@ function getEmailAttributes(){
     var submit_error = false
 
     json_form_data["subject"] = $("input#email_subject").val();
-    // var delta = quill.getContents();
-    // var text = quill.getText();
-
-    //add html content from QuillJS to "body" property of json
-    var just_html = quill.root.innerHTML;
-    json_form_data["body"] = just_html;
+    
+    json_form_data["body"] = editor.getHTMLCode()
 
     //get selected options for curriculum
     var curriculum = []

@@ -52,7 +52,7 @@ $data = json_decode($jsonString,true);
     foreach($filterCurriculum as $val1)
     {
         
-        $insertCurriculum = "INSERT INTO csemaildb.Curriculum VALUES (NULL,'$val1')";
+        $insertCurriculum = "INSERT INTO Curriculum VALUES (NULL,'$val1')";
         $result = mysqli_query($con,$insertCurriculum);
 
 
@@ -65,7 +65,7 @@ $data = json_decode($jsonString,true);
    foreach($filterActiveProgram as $val2)
    {
        
-       $insertActivePrograms = "INSERT INTO csemaildb.ActiveProgram VALUES (NULL,'$val2')";
+       $insertActivePrograms = "INSERT INTO ActiveProgram VALUES (NULL,'$val2')";
        $result = mysqli_query($con,$insertActivePrograms);
 
 
@@ -77,11 +77,11 @@ $data = json_decode($jsonString,true);
    for($i = 0; $i < count($lastNameArr); $i++)
    {
         
-        $getActiveProgramId = "SELECT id AS activeProgram FROM csemaildb.ActiveProgram  WHERE ActiveProgram = '$activeProgramsArr[$i]'";
-        $getMajor1Id = "SELECT id as major1  FROM csemaildb.Curriculum WHERE Curriculum = '$major1Arr[$i]' ";
-        $getMajor2Id = "SELECT id as major2 FROM csemaildb.Curriculum WHERE Curriculum = '$major2Arr[$i]'";
-        $getMinorId = "SELECT id as minor FROM csemaildb.Curriculum WHERE Curriculum = '$minorArr[$i]'";
-        $getClassStandingId = "SELECT id AS classStanding FROM csemaildb.ClassStanding WHERE Standing = '$classLevelArr[$i]'";
+        $getActiveProgramId = "SELECT id AS activeProgram FROM ActiveProgram  WHERE ActiveProgram = '$activeProgramsArr[$i]'";
+        $getMajor1Id = "SELECT id as major1  FROM Curriculum WHERE Curriculum = '$major1Arr[$i]' ";
+        $getMajor2Id = "SELECT id as major2 FROM Curriculum WHERE Curriculum = '$major2Arr[$i]'";
+        $getMinorId = "SELECT id as minor FROM Curriculum WHERE Curriculum = '$minorArr[$i]'";
+        $getClassStandingId = "SELECT id AS classStanding FROM ClassStanding WHERE Standing = '$classLevelArr[$i]'";
         
 
         $activeProgramResultId = mysqli_query($con, $getActiveProgramId);
@@ -208,7 +208,7 @@ $data = json_decode($jsonString,true);
         // echo $classLevelId."\n";
         // echo $email."\n";
       
-      $insertStudent = "INSERT INTO csemaildb.Students 
+      $insertStudent = "INSERT INTO Students 
                         VALUES(NULL,'$firstName', '$lastName',$activeProgramId,$major1Id, $major2Id,$minorId,$classLevelId,'$email' )";
 
        $insertResult = mysqli_query($con, $insertStudent);

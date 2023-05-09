@@ -29,7 +29,7 @@
         if (isset($_POST['name_field'])){
 
             $email=$_POST['name_field'];
-            $sql = "SELECT Email_Address FROM csemaildb.Login WHERE Email_Address = '$email' ";
+            $sql = "SELECT Email_Address FROM Login WHERE Email_Address = '$email' ";
             $result = mysqli_query($con, $sql);
             $count = mysqli_num_rows($result);
 
@@ -37,7 +37,7 @@
                 echo "A message with a reset code will be sent to your email.";
                 $code = sprintf("%06d", mt_rand(1, 999999));
                 echo "<br>";
-                $sqlcode = "INSERT INTO csemaildb.PasswordCode VALUES (NULL, '$email', '$code', CURRENT_TIMESTAMP()) ";
+                $sqlcode = "INSERT INTO PasswordCode VALUES (NULL, '$email', '$code', CURRENT_TIMESTAMP()) ";
                 $resultcode = mysqli_query($con, $sqlcode);
 
                 $to = $email;
