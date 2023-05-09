@@ -43,7 +43,7 @@ if (isset($_POST['password2'])){
     if ($stmt->execute()) {
 
         echo "Your new password has been set.";
-        $sql = "DELETE FROM csemaildb.PasswordCode WHERE Code = $code";
+        $sql = "DELETE FROM PasswordCode WHERE Code = $code";
     } else {
         echo "Could not succesfully change your password: " . $stmt->error;
     }

@@ -30,7 +30,7 @@
         if (isset($_POST['code'])){
             
             $enteredcode=$_POST['code'];
-            $sql = "SELECT * FROM csemaildb.PasswordCode WHERE Code = '$enteredcode' ";
+            $sql = "SELECT * FROM PasswordCode WHERE Code = '$enteredcode' ";
             $result = mysqli_query($con, $sql);
             $count = mysqli_num_rows($result);
 
@@ -40,7 +40,7 @@
             if ($count > 0) {
 
                 $sqltime = "SELECT TIMESTAMPDIFF(SECOND  , DateOfCode, NOW()) AS time_difference
-                FROM csemaildb.PasswordCode WHERE Code = $enteredcode";
+                FROM PasswordCode WHERE Code = $enteredcode";
                 $resulttime = mysqli_query($con, $sqltime);
                 $row = mysqli_fetch_assoc($resulttime);
                 $datediff = $row['time_difference'];

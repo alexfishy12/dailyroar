@@ -45,13 +45,12 @@ if($now > $_SESSION['expire']) {
   <link href="../CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
-    <!-- Quill -->
-    <!-- Main Quill library -->
-    <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet" />
-    <script src="https://cdn.quilljs.com/1.1.10/quill.min.js"></script>
-
+    <!-- RICH TEXT EDITOR -->
+    <link rel="stylesheet" href="../libraries/richtexteditor/rte_theme_default.css" />
+    <script type="text/javascript" src="../libraries/richtexteditor/rte.js"></script>
+    <script type="text/javascript" src='../libraries/richtexteditor/plugins/all_plugins.js'></script>
    
-    <!-- End of Quill -->
+    <!-- RICH TEXT EDITOR -->
 </head>
 <title id="title">Daily Roar - Email</title>
 <nav class= "retro">
@@ -115,16 +114,9 @@ include("../faculty_nav.php");
             <label for="subject">Subject:</label>
             <input type="text" name="subject" id="email_subject" class="nes-input" placeholder="Enter email subject..." required><br> 
             </div>
-            <!-- EXAMPLE QUILL CODE -->
-            <div class="quill_editor">
-                <!-- Create the toolbar container -->
-                <div id="toolbar">
-                </div>
-        
-                <!-- Create the editor container -->
-                <div form="email" name="body" id="editor" class='editor_container'>
-                  
-                </div>
+            <!-- RICH TEXT EDITOR -->
+            <div id="editor">
+              
             </div>
                 <br>
              <div class = "file_names">  

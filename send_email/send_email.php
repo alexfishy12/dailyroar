@@ -89,7 +89,7 @@
         $values_to_search = [];
 
         // start query
-        $query = "SELECT ID, FirstName, LastName, EmailAddress from csemaildb.Students where ";
+        $query = "SELECT ID, FirstName, LastName, EmailAddress from TestStudents where ";
 
         //paramCount
         $count = 0;

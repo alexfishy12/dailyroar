@@ -108,7 +108,7 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
 
 
    if ($count == 0) {
-        $sql = "INSERT INTO csemaildb.Students VALUES (NULL, '$first_name', '$last_name', '$program', '$major1', ";
+        $sql = "INSERT INTO Students VALUES (NULL, '$first_name', '$last_name', '$program', '$major1', ";
         if (empty($major2)) {
             $sql = $sql . "NULL, ";
         }

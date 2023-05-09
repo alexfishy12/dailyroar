@@ -28,7 +28,7 @@
         // Define the query to retrieve the students
         $query = "";
         if ($search_text == "" || $search_text == null) {
-            $query = "SELECT * FROM csemaildb.Students;";
+            $query = "SELECT * FROM Students;";
         }
         else {
             $search_text = "%" . $search_text . "%";

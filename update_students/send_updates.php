@@ -80,13 +80,13 @@
             $query = "";
             $stmt;
             if ($student["delete"] == 'true') {
-                $query = "DELETE FROM csemaildb.Students WHERE ID = :student_id;";
+                $query = "DELETE FROM Students WHERE ID = :student_id;";
                                 
                 $stmt = $pdo->prepare($query);
             }
             else {
                 //start query
-                $query = "UPDATE csemaildb.Students SET ";
+                $query = "UPDATE Students SET ";
                 
                 // check which values were sent to update
                 foreach ($student["new_values"] as &$new_value) {
@@ -139,7 +139,7 @@
 
     function get_student_table_columns() {
         Global $pdo;
-        $query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'csemaildb' AND TABLE_NAME = 'Students'";
+        $query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Students'";
         $stmt = $pdo->prepare($query);
 
         $stmt->execute();
