@@ -26,9 +26,9 @@ include("../dbconfig.php");
 <?php
 	if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ) {
 		
-		$sqlActive = "SELECT * FROM csemaildb.ActiveProgram";
-		$sqlCurriculum = "SELECT * FROM csemaildb.Curriculum ";
-		$sqlClassStanding = "SELECT * FROM csemaildb.ClassStanding";
+		$sqlActive = "SELECT * FROM ActiveProgram";
+		$sqlCurriculum = "SELECT * FROM Curriculum ";
+		$sqlClassStanding = "SELECT * FROM ClassStanding";
 		
 
 		$resultActive = mysqli_query($con, $sqlActive);
