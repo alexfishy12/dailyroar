@@ -28,11 +28,11 @@
         // Define the query to retrieve the students
         $query = "";
         if ($search_text == "" || $search_text == null) {
-            $query = "SELECT * FROM Students;";
+            $query = "SELECT * FROM TestStudents;";
         }
         else {
             $search_text = "%" . $search_text . "%";
-            $query = "SELECT * from Students where (FirstName like :first_name) OR (LastName like :last_name) OR (EmailAddress like :email)";
+            $query = "SELECT * from TestStudents where (FirstName like :first_name) OR (LastName like :last_name) OR (EmailAddress like :email)";
         }
         // Prepare the query
         $stmt = $pdo->prepare($query);
