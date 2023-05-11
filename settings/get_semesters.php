@@ -4,51 +4,53 @@
 
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 
+    $errorList;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (!isset($_POST["search_text"]) || $_POST["search_text"] === null) {
-            echo "ERROR: undefined input data";
-            die();
-        }
-        $search_text = $_POST["search_text"];
-        $result = get_students($search_text);
-        $result = $result;
-        echo $result;
+        $result = get_semesters();
+        print_response($result, []);
         die();
     }
     else
     {
-        echo "ERROR: Invalid request method.";
+        array_push($errorList, "ERROR: Invalid request method.");
+        print_response("", $errorList);
         die();
     }
 
-    
-    function generate_dropdown($choices, $default_choice_id = null, $col_name) {
-        if ($choices === null) {
-            echo "Error: Invalid choices";
-            die();
-        }
+    function get_semesters(){
+        Global $pdo;
 
-        $html = "<select name='". $col_name ."' form='update_student'>";
+        $query = "SELECT * from Semester order by Year Asc;";
 
-        if ($default_choice_id == null) {
-            $html = $html . "<option class='original_value' value='null' selected></option>";
-        }
-        else {
-            $html = $html . "<option value='null'></option>";
-        }
-        foreach ($choices as &$choice){
-            if ($choice["ID"] == $default_choice_id && $default_choice_id !== null) {
-                $html = $html . "<option class='original_value' value='". $choice["ID"] ."' selected>". $choice["name"] ."</option>";
+        $stmt = $pdo->prepare($query);
+
+        //execute query
+        $stmt->execute();
+
+         // Fetch the result
+         if ($stmt->errorCode() === '00000') {
+            $semesters = [];
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                array_push($semesters, $row);
             }
-            else {
-                $html = $html . "<option value='". $choice["ID"] ."'>". $choice["name"] ."</option>";
-            }
-            unset($choice);
-        }
-        $html = $html . "</select>";
-
-        return $html;
+            return $semesters;
+         }
+         else {
+             array_push($error_list, array("query" => $query, "error" => $pdo->errorInfo()[2]));
+             print_response("", $error_list);
+             die();
+         }
     }
 
+    // prints response to webpage
+    function print_response($response = "", $errors = []) {
+        $string = "";
+
+        // Convert response to JSON string:
+        $string = "{\"errors\" : ". json_encode($errors) . ",".
+                "\"response\" : ". json_encode($response) ."}";
+
+        echo $string;
+    }
 ?>
