@@ -19,6 +19,13 @@ body {
   bottom: 0%;
   object-fit: cover;
   height: auto;
+
+  /* makes undraggable */
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .background {
@@ -57,5 +64,12 @@ body {
   left: 0%;
   bottom: 0%;
   z-index: -1;
+
+  /* makes undraggable */
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 

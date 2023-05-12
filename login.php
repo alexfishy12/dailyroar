@@ -41,15 +41,15 @@
                 $_SESSION['id'] = $response['ID'];
 
                 // get active semester and set as session variable
-                $query = "SELECT ID from Semester where IsActive = 1";
+                $query = "SELECT * from Semester where IsActive = 1";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 if ($stmt->errorCode() === "00000") {
                     $response = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $_SESSION['active_semester'] = $response["ID"];
+                    $_SESSION['semester'] = $response["Semester"] . " " . $response['Year'];
                 }
                 else {
-                    $_SESSION['active_semester'] = null;
+                    $_SESSION['semester'] = null;
                 }
 
 

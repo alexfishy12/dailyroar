@@ -15,7 +15,7 @@ $(document).ready(function() {
             for (semester in semesters) {
                 var semester = semesters[semester]
                 if (semester.IsActive == 1) {
-                    $("span#active_semester_text").html(semester.Semester + " " + semester.Year)
+                    $("span#active_semester_text").html(`${semester.Semester} ${semester.Year}`)
                     $("select#semester").append("<option value='" + semester.ID + "' selected class='original_value'>" + semester.Semester + " " + semester.Year + "</option>")
                 }
                 else {

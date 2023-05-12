@@ -16,14 +16,14 @@ if($now > $_SESSION['expire']) {
 ?>
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../_libraries/jquery-3.6.0.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="analysis.js"></script>
-    <link rel="icon" href="../assets/Keanu_head.svg">
-    <link rel="stylesheet" href="../CSS/background_static.css">
-  <link rel="stylesheet" href="../CSS/content.css">
-  <link rel='stylesheet' href="../CSS/analysis.css">
-  <link href="../CSS/font_family.css" rel="stylesheet">
+    <link rel="icon" href="../_assets/Keanu_head.svg">
+    <link rel="stylesheet" href="../_CSS/background_static.css">
+  <link rel="stylesheet" href="../_CSS/content.css">
+  <link rel='stylesheet' href="../_CSS/analysis.css">
+  <link href="../_CSS/font_family.css" rel="stylesheet">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
     <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet" />
@@ -31,16 +31,16 @@ if($now > $_SESSION['expire']) {
 
     
 </head>
-<title id="title">Daily Roar - Analysis</title>
+<title id="title">Daily Roar - Sent Inbox</title>
 <nav class= "retro">
 <?php 
 include("../faculty_nav.php"); 
 ?>
 </header>
 
-<body class='retro' background-image="assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
-  <div class='title'>
-    Email Analysis
+<body class='retro' background-image="_assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
+  <div class='subtitle'>
+    Sent Inbox
 </div>
 <div class="scroll">
   <div class="content">
@@ -122,10 +122,10 @@ include("../faculty_nav.php");
 
 
   <div class="background_parent">
-      <img class='pixel_perfect keanu' src='../assets/Keanu_Idle_FULLSCREEN.gif'></img>
-      <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
-      <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
-      <img class='pixel_perfect background' src='../assets/Background.png'></img>
+      <img class='pixel_perfect keanu' src='../_assets/Keanu_Idle_FULLSCREEN.gif'></img>
+      <img class='pixel_perfect foreground primary-fg' src='../_assets/Foreground_1.png'></img>
+      <img class='pixel_perfect middleground primary-mg' src='../_assets/Middleground_2.png'></img>
+      <img class='pixel_perfect background' src='../_assets/Background.png'></img>
   </div>
 </body>
 

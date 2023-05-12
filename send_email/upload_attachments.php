@@ -17,7 +17,7 @@
   foreach ( $file_name as $i => $name) {
 
     // Get uploaded file name
-    $targetFilePath = "../uploads/".$name;
+    $targetFilePath = "../_uploads/".$name;
 
     // Get the temporary filename
     $tempFilePath = $_FILES['file']['tmp_name'][$i];

@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     include("../dbconfig.php");
 
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
@@ -74,6 +74,7 @@
         }
         
         // Successfully activated the semester
+        $_SESSION['semester'] = $semester . " " . $year;
         return "$semester $year is now the active semester!";
     }
     

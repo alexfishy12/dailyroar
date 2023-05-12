@@ -234,7 +234,7 @@
             foreach($attachments as $file_name){
                 $embedded_attachment_data = "";
 
-                $attachment_path = '../uploads/'. $file_name;
+                $attachment_path = '../_uploads/'. $file_name;
                 $attachment_name = $file_name;
 
                 // Read the attachment file contents and base64 encode it
@@ -253,7 +253,7 @@
         //set baseURL for tracking link
         $base_url = "https://obi.kean.edu/~fisheral/dailyroar/";
 
-        $keanu_gif = "https://obi.kean.edu/~fisheral/dailyroar/assets/Keanu_Idle_Email-export.gif";
+        $keanu_gif = "https://obi.kean.edu/~fisheral/dailyroar/_assets/Keanu_Idle_Email-export.gif";
         
         // Send the email to each recipient using the mail() function
         foreach ($recipients as $recipient) {

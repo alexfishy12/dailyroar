@@ -1,5 +1,5 @@
 <?php 
-
+    session_start();
     include("../dbconfig.php");
 
     $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
@@ -82,6 +82,7 @@
                 die();
             }
             
+            $_SESSION['semester'] = $semester . " " . $year;
             print_response("$semester $year is now the active semester!", ["$semester $year already exists!"]);
             die();
         }
@@ -111,6 +112,7 @@
 
         //return this if the semester was created and set to active
         if ($make_active == 1) {
+            $_SESSION['semester'] = $semester . " " . $year;
             return "The $semester $year semester has been created and activated!";
         }
 
