@@ -28,7 +28,7 @@ $(document).ready(function(){
     })
     $("button#view_sent_email").on('click', function() {
         console.log("Redirecting to email analysis page...")
-        window.location.href = "../chart_analysis/analysis.php"
+        window.location.href = "../sent_inbox/analysis.php"
     })
 
     //on select filter

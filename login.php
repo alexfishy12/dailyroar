@@ -39,8 +39,22 @@
                 $_SESSION["user"] = $user;
                 $_SESSION['account_type'] = $response['Account_Type'];
                 $_SESSION['id'] = $response['ID'];
+
+                // get active semester and set as session variable
+                $query = "SELECT * from Semester where IsActive = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+                if ($stmt->errorCode() === "00000") {
+                    $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $_SESSION['semester'] = $response["Semester"] . " " . $response['Year'];
+                }
+                else {
+                    $_SESSION['semester'] = null;
+                }
+
+
                 $_SESSION["start"] = time();
-                $_SESSION['expire'] = $_SESSION['start'] + (3600) ; 
+                $_SESSION['expire'] = $_SESSION['start'] + (3600);
                 if($_SESSION['account_type']=="FA"){
                     echo "Location:Faculty_Home.php";
                     die();

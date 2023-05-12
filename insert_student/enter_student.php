@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-<title>Manually Insert Student</title>
-  <script src= "../libraries/papaparse.min.js" ></script>
-  <script type="text/javascript" src="../libraries/jquery-3.6.0.min.js"></script>
-  <link href="../CSS/font_family.css" rel="stylesheet">
-  <link rel="stylesheet" href="../CSS/background_static.css">
-  <link rel="stylesheet" href="../CSS/content.css">
+<title>Daily Roar - Insert New Student</title>
+  <link href="../_CSS/font_family.css" rel="stylesheet">
+  <link rel="stylesheet" href="../_CSS/background_static.css">
+  <link rel="stylesheet" href="../_CSS/content.css">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet"/>
     </head>
-<body class="retro" background-image="../assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
-<div class="title" style="text-align: center">
-        <p>Manually Insert a Student</p>
+<body class="retro" background-image="../_assets/Background.png"  background-size="cover" style="background-color:#0c5eb3;">
+<div class="subtitle" style="text-align: center">
+        <p>Insert a New Student</p>
     </div>
 <div class="content">
 <div class="logout">
@@ -150,10 +148,10 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']== "FA" ){
 </div>
 </div>
 <div class="background_parent">
-      <img class='pixel_perfect keanu' src='../assets/Keanu_Idle_FULLSCREEN.gif'></img>
-      <img class='pixel_perfect foreground primary-fg' src='../assets/Foreground_1.png'></img>
-      <img class='pixel_perfect middleground primary-mg' src='../assets/Middleground_2.png'></img>
-      <img class='pixel_perfect background' src='../assets/Background.png'></img>
+      <img class='pixel_perfect keanu' src='../_assets/Keanu_Idle_FULLSCREEN.gif'></img>
+      <img class='pixel_perfect foreground primary-fg' src='../_assets/Foreground_1.png'></img>
+      <img class='pixel_perfect middleground primary-mg' src='../_assets/Middleground_2.png'></img>
+      <img class='pixel_perfect background' src='../_assets/Background.png'></img>
   </div>
 </body> 
 </html>

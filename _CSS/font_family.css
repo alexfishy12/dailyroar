@@ -1,0 +1,76 @@
+@font-face {
+  font-family: retro;
+  src: url(../_assets/PressStart2P-Regular.ttf);
+}
+
+.retro {
+  font-family: retro;
+  color: #25a0ff;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: 700;
+  color: #f5f5f5;
+  text-shadow:
+  /* MainOutline */
+  -1px -1px 0px black,
+  1px 1px 0px black,
+  -1px 1px 0px black,
+  1px -1px 0px black,
+
+  /* BubbleText */
+  0px 6px 0px rgba(105, 105, 105, 1),
+
+  /* BubbleOutline */
+  1px 7px 0px black,
+  -1px 7px 0px black,
+
+  /* Backdrop shadow (blurry) */
+  0px 18px 6px rgba(0, 0, 0, 0.7);
+
+  /* makes unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.subtitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #f5f5f5;
+  text-shadow:
+    /* MainOutline */
+    -1px -1px 0px black,
+    1px 1px 0px black,
+    -1px 1px 0px black,
+    1px -1px 0px black,
+
+    /* BubbleText */
+    0px 3px 0px rgba(105, 105, 105, 1),
+
+    /* BubbleOutline */
+    1px 4px 0px black,
+    -1px 4px 0px black,
+
+    /* Backdrop shadow (blurry) */
+    0px 18px 6px rgba(0, 0, 0, 0.7);
+
+  padding-bottom:3vh;
+
+
+  /* makes unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
