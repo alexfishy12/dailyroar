@@ -3,12 +3,6 @@ var quill;
 google.charts.load('current', {packages: ['corechart']});
 
 $(document).ready(function(){
-    //show email analysis by default
-    $("div#email_analysis").show();
-    $("div#filtered_analysis").hide();
-    $("div#selected_email").hide()
-
-    //load_event_handlers()
     //load_filter_options()      
 
     quill = new Quill('#editor', {
@@ -22,10 +16,11 @@ $(document).ready(function(){
     const toolbar = quill.getModule('toolbar');
     toolbar.container.style.display = 'none'; // hide the toolbar
     
-    load_emails().then(function(response){
+    load_emails("active").then(function(response){
         $("#email_table").html(response);
 
-        $("div#email_table table tr, this").click(function(){
+        // click on email in sent inbox
+        $("#email_table tr, this").click(function(){
             console.log("Clicked on row.")
             var email_id = $(this).attr("id");
 
@@ -37,20 +32,111 @@ $(document).ready(function(){
             {
                 show_email(email_id);
             }
-            
         })
     })
 
+    get_semesters().then(function(response){
+        if (response.response.length == 0) {
+            console.log("No semesters found.")
+            $("select#semester").append("<option value='" + null + "' selected class='original_value'>None found</option>")
+            return;
+        }
+
+        const semesters = response.response
+        console.log(semesters)
+        
+        // add option to select dropdown and set active semester to selected
+        var table_loaded = false;
+        for (semester in semesters) {
+            var semester = semesters[semester]
+            if (semester.IsActive != 1) {
+                $("select#semester").append("<option value='" + semester.ID + "'>" + semester.Semester + " " + semester.Year + "</option>")
+                
+                // load emails for first possible semester in select list
+                if (!table_loaded) {
+                    load_emails(semester.ID).then(function(response){
+                        $("#archive_table").html(response);
+
+                        // click on email in sent inbox
+                        $("#archive_table tr, this").click(function(){
+                            console.log("Clicked on row.")
+                            var email_id = $(this).attr("id");
+
+                            if (email_id == "header" || email_id == "" || email_id == null)
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                show_email(email_id);
+                            }
+                        })
+                    })
+                    table_loaded = true
+                }
+            }
+        }        
+    })
+
+    event_handler()
+})
+
+function event_handler() {
+    $("div#email_analysis").show();
+    $("div#filtered_analysis").hide();
+    $("div#selected_email").hide()
+    $(".master_content").find(".data_content").hide()
+    $("#main_content").show()
+
     $("button#go_back").on('click', function() {
         $("div#selected_email").hide()
-        $("div#email_table").show()
+        $("div.master_content").show()
     })
-})
+
+    $(".tab").on('click', function(){
+        //unselect each tab
+        var parent_class = $(this).parent().attr('class')
+        $("." + parent_class).find(".tab").removeClass("selected")
+
+        //select clicked tab
+        var tab_id = $(this).attr('id')
+        $(this).addClass('selected')
+
+
+        //hide other analysis content
+        $(".master_content").find(".data_content").hide()
+        $("#" + tab_id + "_content").show()
+    })
+
+    // on semester change in archive
+    $("select#semester").change(function() {
+        var semester_id = $("select#semester > option:selected").val()
+        
+        load_emails(semester_id).then(function(response){
+            $("#archive_table").html(response);
+
+            // click on email in sent inbox
+            $("#archive_table tr, this").click(function(){
+                console.log("Clicked on row.")
+                var email_id = $(this).attr("id");
+
+                if (email_id == "header" || email_id == "" || email_id == null)
+                {
+                    return;
+                }
+                else
+                {
+                    show_email(email_id);
+                }
+            })
+        })
+    })
+}
 
 function show_email(email_id) {
     get_email_data(email_id).then(function(response){
         $("div#selected_email").show()
-        $("div#email_table").hide()
+        $("div.master_content").hide()
         const parsedData = JSON.parse(response);
         console.log(parsedData)
 
@@ -130,12 +216,31 @@ function show_email(email_id) {
     })
 }
 
-function load_emails(){
+function load_emails(semester_id){
     return new Promise(function(resolve) {
         $.ajax({
             url: 'get_emails.php',
             dataType: 'text',
-            type: 'GET',
+            type: 'POST',
+            data: {semester_id: semester_id},
+            success: function (response, status) {
+                console.log('AJAX Success.');
+                resolve(response);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('AJAX Error:' + textStatus);
+                resolve("Error " . textStatus);
+            }
+        })
+    });
+}
+
+function get_semesters(){
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: '../get_semesters.php',
+            dataType: 'json',
+            type: 'POST',
             success: function (response, status) {
                 console.log('AJAX Success.');
                 resolve(response);
