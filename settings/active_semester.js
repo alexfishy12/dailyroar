@@ -102,7 +102,7 @@ function set_year_options() {
 }
 
 
-// push changes to the database
+
 function set_active_semester(semester_id){
     return new Promise(function(resolve) {
         $.ajax({
@@ -122,7 +122,7 @@ function set_active_semester(semester_id){
     });
 }
 
-// push changes to the database
+
 function create_semester(formData){
     return new Promise(function(resolve) {
         $.ajax({
@@ -144,11 +144,11 @@ function create_semester(formData){
     });
 }
 
-// push changes to the database
+
 function get_semesters(){
     return new Promise(function(resolve) {
         $.ajax({
-            url: 'get_semesters.php',
+            url: '../get_semesters.php',
             dataType: 'json',
             type: 'POST',
             success: function (response, status) {

@@ -89,7 +89,7 @@
         $values_to_search = [];
 
         // start query
-        $query = "SELECT ID, FirstName, LastName, EmailAddress from TestStudents where ";
+        $query = "SELECT ID, FirstName, LastName, EmailAddress FROM TestStudents WHERE SemesterID = (SELECT ID FROM Semester WHERE IsActive = 1);";
 
         //paramCount
         $count = 0;
@@ -164,7 +164,7 @@
             }
         }
         else {
-            array_push($errorList, "ERROR: ". $stmt->errorInfo()[2] . ":: LINE 156");
+            array_push($errorList, "ERROR: ". $stmt->errorInfo()[2] . ":: LINE 167");
             print_response($responseList, $errorList, 0);
             die();
         }
