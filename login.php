@@ -41,8 +41,13 @@
                 $_SESSION['id'] = $response['ID'];
                 $_SESSION["start"] = time();
                 $_SESSION['expire'] = $_SESSION['start'] + (3600) ; 
+                
                 if($_SESSION['account_type']=="FA"){
                     echo "Location:Faculty_Home.php";
+                    die();
+                }
+                elseif($_SESSION['account_type']=="AD"){
+                    echo "Location:Admin_Home.php";
                     die();
                 }
                 else{

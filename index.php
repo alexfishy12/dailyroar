@@ -4,6 +4,10 @@ if(isset($_SESSION['account_type']) && $_SESSION['account_type']=="FA"){
 	header("Location: Faculty_Home.php");
 	exit;
 	}
+  elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="AD"){
+    header("Location: Admin_Home.php");
+    exit;
+  }
 elseif(isset($_SESSION['account_type']) && $_SESSION['account_type']=="GA"){
 	header("Location: GA_Home.php");
 	exit;
