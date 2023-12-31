@@ -39,10 +39,11 @@ else{
 </div>
 <div class="scroll">
     <div class="content">
-        <div class= "csvDownload" >
+        <div class= "csvDownload">
            <a href="Daily Roar Student Upload Template.csv" download ><span class="nes-text is-success">Download CSV Template</span></a>
          </div>
             <div class="nes-container with-title is-centered">
+                <div class="note">Note: The active semester is <?php echo $_SESSION['semester']; ?></div>
                 <div>
                     <input type = "file" id = "uploadcsv" name = "uploadcsv" accept=".csv">
                     <button id="upload" class="nes-btn is-primary" style="margin-top:25px;margin-bottom:25px;">Upload CSV</button>
