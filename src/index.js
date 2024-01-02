@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //console.log("JS connected.")
+    console.log("JS connected.")
     $("form#login").submit(function(e) {
         e.preventDefault();
         var values = {};
@@ -8,7 +8,7 @@ $(document).ready(function() {
         });
 
         try_login(values['login_id'], values['password']).then(function(response) {
-            //console.log(response);
+            console.log(response);
             if (response.startsWith("Location:")){
                 window.location.replace(response.split(":")[1])
             }

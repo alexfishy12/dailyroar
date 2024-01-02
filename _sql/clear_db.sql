@@ -21,3 +21,5 @@ select * from Email;
 select * from Students;
 select * from ActiveProgram;
 select * from Curriculum;
+
+select * from TestStudents;

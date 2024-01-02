@@ -1,5 +1,5 @@
 <?php
-$dbhost="imc.kean.edu";
+$dbhost="db";
 $dbuser="csemail";
 $dbpass="2023CSemail";
 $dbname="csemaildb2";
