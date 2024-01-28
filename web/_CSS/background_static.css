@@ -1,0 +1,75 @@
+body {
+  background-color: #0c5eb3;
+  z-index: -10;
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  overflow-x:hidden;
+  overflow-y:hidden; 
+}
+
+.pixel_perfect {
+  image-rendering: pixelated;
+}
+
+.background_parent {
+  margin-bottom: auto;
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  object-fit: cover;
+  height: auto;
+
+  /* makes undraggable */
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.background {
+  width: 100%;
+  height: inherit;
+  object-fit:cover;
+  position: absolute;
+  left:0%;
+  bottom:0%;
+  z-index: -4;
+}
+
+.middleground {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  z-index: -3;
+}
+
+.foreground {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  z-index: -2;
+}
+
+.keanu {
+  /* animation: keanu_walk 20s infinite linear; */
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  z-index: -1;
+
+  /* makes undraggable */
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+

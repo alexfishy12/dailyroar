@@ -1,0 +1,46 @@
+.select_semester {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.label {
+    margin-right: 10px;
+     /* makes title text unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select {
+    width:fit-content;
+    padding:5px;
+}
+
+button#save_active {
+  margin-left:15px;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid;
+}
+
+.separator:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
+}

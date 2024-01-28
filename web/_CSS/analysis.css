@@ -1,0 +1,106 @@
+/* TAB LIST */
+.inbox_tab_list {
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    z-index:1;
+    width: 100%;
+    margin-right:60vw;
+}
+
+.tab {
+    /* border */
+    border-left:5px solid;
+    border-right:5px solid;
+    border-top:5px solid;
+    border-color:black;
+    text-align:center;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    background-color:rgba(0,0,0,0.5);
+    line-height:1.5;
+    padding-top:0.75em;
+    padding-bottom:0.75em;
+
+    font-weight:bolder;
+    color: rgba(37, 160, 255, 0.75);
+}
+
+.selected {
+    background-color:rgba(0,0,0,0.75);
+    color: rgba(37, 160, 255, 1);
+}
+
+/* CONTENT */
+
+.nes-container {
+    position:relative;
+    border-top: 0px;
+}
+
+
+.text-unselectable {
+    /* makes title text unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.email_table {
+    max-height:50vh;
+    max-width:80vw;
+    overflow:auto;
+}
+
+table{
+	border-collapse:collapse;  
+}
+table tr td, th{
+	border:1px solid #ccc;
+  	padding:5px;
+}
+table tr:hover{  
+    background: #f1f1f1;
+}
+
+.email_metadata{
+    text-align:left;
+}
+
+.selected_email{
+    text-align: left;
+}
+
+.editor_container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: white;
+    color: black;
+    height:fit-content
+}
+
+.select_semester {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.label {
+    margin-right: 10px;
+     /* makes title text unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+select#semester {
+    width:fit-content;
+    padding:5px;
+}

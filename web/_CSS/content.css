@@ -1,0 +1,85 @@
+.content {
+  margin-left:20vw; 
+  margin-right:20vw;
+  height:min-content;
+}
+
+.scroll {
+  overflow-y:auto;
+  overflow-x:hidden;
+  height:60vh;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroll::-webkit-scrollbar {
+  color: black;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.column {
+  float: left;
+  height:fit-content;
+}
+
+.side {
+  width: 40%;
+}
+
+.middle {
+  width: 20%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row {
+  height:fit-content;
+}
+
+.small-text {
+  font-size: smaller;
+}
+
+select {
+  width: 100%;
+}
+
+option {
+  /* wrap text in compatible browsers */
+  -moz-white-space: pre-wrap;
+  -o-white-space: pre-wrap;
+  white-space: pre-wrap;
+  /* hide text that can't wrap with an ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* add border after every option */
+  border-bottom: 1px solid #DDD;
+}
+
+.nes-container {
+  background:rgba(0,0,0,0.75);
+}
