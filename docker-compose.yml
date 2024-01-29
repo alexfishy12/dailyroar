@@ -5,7 +5,7 @@ services:
       context: ./web
       dockerfile: Dockerfile
     ports:
-      - 1100:80 # map port 1100 on host to port 80 on container
+      - ${PORT_WEB}:80 # map port 1100 on host to port 80 on container
     env_file:
       - ".env" # load environment variables from .env file
   db:
@@ -13,16 +13,16 @@ services:
       context: ./db
       dockerfile: Dockerfile
     ports:
-      - 1101:3306
+      - ${PORT_DATABASE}:3306
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_DATABASE=csemaildb
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ALLOW_EMPTY_PASSWORD=0
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 1102:80
+      - ${PORT_PHPMYADMIN}:80
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
