@@ -5,19 +5,34 @@
 <summary>Table of Contents</summary>
 
 1. [Summary](#Summary)
-2. [Visuals](#visuals)
-3. [Technologies](#technologies)
-4. [What We Learned](#what-we-learned)
-5. [Setup and Installation](#setup-and-installation)
-6. [Usage](#usage)
-7. [Code Examples](#code-examples)
-8. [License](#license)
-9. [Contact](#contact)
+2. [Documentation](#documentation)
+3. [Features](#features)
+4. [Visuals](#visuals)
+5. [Technologies](#technologies)
+6. [What We Learned](#what-we-learned)
+7. [Setup and Installation](#setup-and-installation)
+8. [Usage](#usage)
+9. [Code Examples](#code-examples)
+10. [Contact](#contact)
+11. [Acknowledgments](#acknowledgments)
 
 </details>
 
 ## Summary
 A web application that serves as an email broadcasting system for Kean University's CS & IT Department.
+
+## Documentation
+- [Final Report](web/_assets/documents/Daily%20Roar%20Final%20Report.docx.pdf)
+- [Final Poster](web/_assets/documents/Capstone%20Poster.pdf)
+- [Software Design Document](web/_assets/documents/Software_Design_Document_v1.1.docx.pdf)
+- [Software Project Management Plan](web/_assets/documents/sw_project_mgt_plan_V%201.1.docx.pdf)
+    - [Business Case](web/_assets/documents/business_case_V%201.0.docx.pdf)
+    - [Project Description](web/_assets/documents/project_desc_text_V%201.0.docx.pdf)
+    - [Statement of Work](web/_assets/documents/statement_of_work.docx.pdf)
+- [Test Cases Sprint 1](web/_assets/documents/Test%20Cases%20Sprint%201.xlsx.pdf)
+- [Test Cases Sprint 2](web/_assets/documents/Test%20Cases%20Sprint%202.xlsx.pdf)
+- [User Stories Sprint 1](web/_assets/documents/User_Stories_Sprint1_v1.0.docx.pdf)
+- [User Stories Sprint 2](web/_assets/documents/User_Stories_Sprint2_v1.0.docx.pdf)
 
 ## Features
 - **Email Broadcasting**: Generates an email list for each email draft depending on selected filters of recipient criteria.
@@ -34,20 +49,6 @@ A web application that serves as an email broadcasting system for Kean Universit
 <p float="center">
   <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_stats_screenshot.png" width="100%" /> 
 </p>
-
-## Documentation
-- [Final Report](web/_assets/documents/Daily%20Roar%20Final%20Report.docx.pdf)
-- [Final Poster](web/_assets/documents/Capstone%20Poster.pdf)
-- [Software Design Document](web/_assets/documents/Software_Design_Document_v1.1.docx.pdf)
-- [Software Project Management Plan](web/_assets/documents/sw_project_mgt_plan_V%201.1.docx.pdf)
-    - [Business Case](web/_assets/documents/business_case_V%201.0.docx.pdf)
-    - [Project Description](web/_assets/documents/project_desc_text_V%201.0.docx.pdf)
-    - [Statement of Work](web/_assets/documents/statement_of_work.docx.pdf)
-- [Test Cases Sprint 1](web/_assets/documents/Test%20Cases%20Sprint%201.xlsx.pdf)
-- [Test Cases Sprint 2](web/_assets/documents/Test%20Cases%20Sprint%202.xlsx.pdf)
-- [User Stories Sprint 1](web/_assets/documents/User_Stories_Sprint1_v1.0.docx.pdf)
-- [User Stories Sprint 2](web/_assets/documents/User_Stories_Sprint2_v1.0.docx.pdf)
-
 
 ## Technologies
 - Front-end: HTML, CSS (with Bootstrap), Javascript, RichTextEditor API, Google Charts API
