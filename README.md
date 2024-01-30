@@ -35,6 +35,20 @@ A web application that serves as an email broadcasting system for Kean Universit
   <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_stats_screenshot.png" width="100%" /> 
 </p>
 
+## Documentation
+- [Final Report](web/_assets/documents/Daily%20Roar%20Final%20Report.docx.pdf)
+- [Final Poster](web/_assets/documents/Capstone%20Poster.pdf)
+- [Software Design Document](web/_assets/documents/Software_Design_Document_v1.1.docx.pdf)
+- [Software Project Management Plan](web/_assets/documents/sw_project_mgt_plan_V%201.1.docx.pdf)
+    - [Business Case](web/_assets/documents/business_case_V%201.0.docx.pdf)
+    - [Project Description](web/_assets/documents/project_desc_text_V%201.0.docx.pdf)
+    - [Statement of Work](web/_assets/documents/statement_of_work.docx.pdf)
+- [Test Cases Sprint 1](web/_assets/documents/Test%20Cases%20Sprint%201.xlsx.pdf)
+- [Test Cases Sprint 2](web/_assets/documents/Test%20Cases%20Sprint%202.xlsx.pdf)
+- [User Stories Sprint 1](web/_assets/documents/User_Stories_Sprint1_v1.0.docx.pdf)
+- [User Stories Sprint 2](web/_assets/documents/User_Stories_Sprint2_v1.0.docx.pdf)
+
+
 ## Technologies
 - Front-end: HTML, CSS (with Bootstrap), Javascript, RichTextEditor API, Google Charts API
 - Back-end: Linux OS, hosted on Digital Ocean Droplet (Virtual Private Server), MariaDB SQL Database, PHP server-side scripts
