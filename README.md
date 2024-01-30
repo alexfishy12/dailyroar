@@ -29,10 +29,10 @@ A web application that serves as an email broadcasting system for Kean Universit
 ## Visuals
 <p float="left">
   <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/Keanu_Walk_GIF.gif" width="150" />
-  <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_screenshot.png" width="500" /> 
+  <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_screenshot.png" width="100%" /> 
 </p>
 <p float="center">
-  <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_stats_screenshot.png" width="500" /> 
+  <img src="https://raw.githubusercontent.com/alexfishy12/dailyroar/main/web/_assets/dailyroar_stats_screenshot.png" width="100%" /> 
 </p>
 
 ## Technologies
